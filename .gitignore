@@ -1,3 +1,9 @@
+cmn_gw_5/
+.DS_Store
+cmn_gw_5_LDC2011T13.tgz
+context_cleaned.csv
+CPM-1-Generate
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
