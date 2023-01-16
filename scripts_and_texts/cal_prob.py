@@ -64,14 +64,26 @@ def cal_prob(target_word, row):
     
     return logprob
 
-def cal_alternate_prob(target_form, target_word, row):
-    new_abbr_dict = load_abbr_dict()
+# get the alternate form
+def get_alternate(target_form, target_word):
+    abbr_dict = load_abbr_dict()
     if target_form == 'short':
-        new_target_word = new_abbr_dict[target_word]
+        alternate_word = abbr_dict[target_word]
     else:
-        new_target_word = list(new_abbr_dict.keys())[list(new_abbr_dict.values()).index(target_word)]
+        alternate_word = list(abbr_dict.keys())[list(abbr_dict.values()).index(target_word)]
 
-    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(new_target_word, row)
+    return alternate_word
+
+# check if alternate word in the context will not be retokenized to something else
+def alternate_token_checker(alternate_word, row):
+    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(alternate_word, row)
+    return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in sent_tokens])
+
+
+def cal_alternate_prob(target_form, target_word, row):
+    alternate_word = get_alternate(target_form, target_word)
+    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(alternate_word, row)
+    
     result = model(torch.tensor(sent_tokens))
     logprobs = torch.log_softmax(result.logits, -1)[:, tuple(sent_tokens[1:])].diag()
     ending_index = len(up_to_target_tokens) - 3
@@ -85,19 +97,23 @@ def save_prob(output):
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
-
 if __name__ == "__main__":
-    with open('test_context.csv', 'r', encoding = 'utf-8') as f:
+    with open('context_1000sample.csv', 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
             target_word = row[0]
             target_form = row[1]
             line_num = row[4]
-            logprob = cal_prob(target_word, row)
-            alternate_logprob = cal_alternate_prob(target_form, target_word, row)
-            # add them up by torch.logaddexp before the .item()
-            disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
-            output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
+
+            alternate_word = get_alternate(row[1], row[0])
+            if alternate_token_checker(alternate_word, row):
+                logprob = cal_prob(target_word, row)
+                alternate_logprob = cal_alternate_prob(target_form, target_word, row)
+                # add them up by torch.logaddexp before the .item()
+                disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
+                output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
+            else:
+                output = target_word, target_form, line_num
             save_prob(output)
 
 

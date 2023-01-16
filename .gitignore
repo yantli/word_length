@@ -1,4 +1,6 @@
 cmn_gw_5/
+context_1000sample.csv
+context_100pairs.csv
 .DS_Store
 cmn_gw_5_LDC2011T13.tgz
 context_cleaned.csv
