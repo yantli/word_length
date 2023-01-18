@@ -26,19 +26,54 @@ def load_abbr_dict():
         abbr_dict[short] = long
     return abbr_dict
 
-# making sure the length of the whole news is shorter than 1265
-def check_len(row):
-    return len(row[0]) + len(row[2]) <= 1200
+# making sure pre-context is within 200 characters, and post-context is within 50.
+def row_size_standardizer(row):
+    target_word = row[0]
+    target_form = row[1]
+    pre_context = row[2]
+    post_context = row[3]
+    line_num = row[4]
+
+    if len(pre_context) > 200:
+        new_pre_context = pre_context[-200:]
+    else:
+        new_pre_context = pre_context
+    if len(post_context) > 50:
+        new_post_context = post_context[:50]
+    else: 
+        new_post_context = post_context
+
+    new_row = [target_word, target_form, new_pre_context, new_post_context, line_num]
+
+    return new_row
+
+# get the alternate form
+def get_alternate_word(target_form, target_word):
+    abbr_dict = load_abbr_dict()
+    if target_form == 'short':
+        alternate_word = abbr_dict[target_word]
+    else:
+        for short, long in abbr_dict.items():
+            if long == target_word:
+                alternate_word = short
+
+    return alternate_word
 
 def alternate_row_creater(row):
-    alternate_word = get_alternate(row[1], row[0])
+    alternate_word = get_alternate_word(row[1], row[0])
     if row[1] == 'short':
         alternate_form = 'long'
     else:
         alternate_form = 'short'
     alternate_row = [alternate_word, alternate_form, row[2], row[3], row[4]]
+    standardized_alternate_row = row_size_standardizer(alternate_row)
 
-    return alternate_row
+    return standardized_alternate_row
+
+# check if alternate word in the context will not be retokenized to something else
+def stable_tokenization_checker(target_word, row):
+    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    return ' '.join([str(x) for x in up_to_target_tokens]) in ' '.join([str(x) for x in sent_tokens])
 
 # getting the token(s) of 1) the target word, 2) the tokens of the whole story up to the target word and 3) the tokens of the whole sentence
 def get_tokens(target_word, row):
@@ -51,17 +86,10 @@ def get_tokens(target_word, row):
     pre_context = row[2]
     post_context = row[3]
 
-    if tokens_with_stop[0] == 8:
-        target_tokens_str = ' '.join([str(token) for token in tokens_with_stop])[2:end_idx]
-    
-    else:
-        target_tokens_str = ' '.join([str(token) for token in tokens_with_stop])[:end_idx]
+    target_tokens_str = ' '.join([str(token) for token in tokens_with_stop])[:end_idx]
     
     target_tokens = [int(token) for token in target_tokens_str.split()]
-    up_to_target_tokens = tokenizer.encode(pre_context + target_word)
-
-    if up_to_target_tokens[-(len(target_tokens)+3)] == 8:
-        up_to_target_tokens = tokenizer.encode(pre_context + target_word)[:-(len(target_tokens)+3)] + target_tokens + [4, 3]
+    up_to_target_tokens = tokenizer.encode(pre_context + target_word)[:-2]
 
     sent = pre_context + target_word + post_context
     sent_tokens = tokenizer.encode(sent)
@@ -83,27 +111,8 @@ def cal_prob(target_word, row):
     
     return logprob
 
-# get the alternate form
-def get_alternate(target_form, target_word):
-    abbr_dict = load_abbr_dict()
-    if target_form == 'short':
-        alternate_word = abbr_dict[target_word]
-    else:
-        for short, long in abbr_dict.items():
-            if long == target_word:
-                alternate_word = short
-
-    return alternate_word
-
-# check if alternate word in the context will not be retokenized to something else
-def alternate_token_checker(alternate_word, row):
-# TODO: this needs to be fixed since it didn't specify the position of the target token
-    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(alternate_word, row)
-    return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in sent_tokens])
-
-
 def cal_alternate_prob(target_form, target_word, row):
-    alternate_word = get_alternate(target_form, target_word)
+    alternate_word = get_alternate_word(target_form, target_word)
     target_tokens, up_to_target_tokens, sent_tokens = get_tokens(alternate_word, row)
     
     result = model(torch.tensor(up_to_target_tokens))
@@ -122,15 +131,15 @@ def save_prob(output):
 def new_way():
     rows = []
     discard_rows = []
-    with open('context_1000sample.csv', 'r', encoding = 'utf-8') as f:
+    with open('context_1100sample.csv', 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
+            row = row_size_standardizer(row)
             target_word = row[0]
             target_form = row[1]
-            line_num = row[4]
-            alternate_word = get_alternate(target_form, target_word)
+            alternate_word = get_alternate_word(target_form, target_word)
             # check when the alternate form is inserted in the news, whether it keeps its original tokenization
-            if alternate_token_checker(alternate_word, row):
+            if stable_tokenization_checker(alternate_word, row):
                 rows.append(row)
                 alternate_row = alternate_row_creater(row)
                 rows.append(alternate_row)
@@ -166,34 +175,36 @@ def new_way():
 
     # padding
     row_tokens = [row_token+[5]*(max_length - len(row_token)) for row_token in row_tokens if len(row_token) < max_length]
-    result = model(torch.tensor(row_tokens))           
+    # result = model(torch.tensor(row_tokens))       
+
+    return row_tokens    
 
 
-def old_way():
-    with open('context_1000sample.csv', 'r', encoding = 'utf-8') as f:
+def line_by_line(file):
+    with open(file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
+            row = row_size_standardizer(row)
             target_word = row[0]
             target_form = row[1]
             line_num = row[4]
-            alternate_word = get_alternate(row[1], row[0])
+            alternate_word = get_alternate_word(target_form, target_word)
             
-            if check_len(row):
-                if alternate_token_checker(alternate_word, row):
-                    logprob = cal_prob(target_word, row)
-                    alternate_logprob = cal_alternate_prob(target_form, target_word, row)
-                    print(alternate_logprob)
-                    # add them up by torch.logaddexp before the .item()
-                    disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
-                    output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
-                    print(output)
-                else:
-                    output = target_word, target_form, line_num
-                    print(output)
-                save_prob(output)
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row):
+                logprob = cal_prob(target_word, row)
+                alternate_logprob = cal_alternate_prob(target_form, target_word, row)
+                print(alternate_logprob)
+                # add them up by torch.logaddexp before the .item()
+                disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
+                output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
+                print(output)
+            else:
+                output = target_word, target_form, line_num
+                print(output)
+            # save_prob(output)
 
 if __name__ == "__main__":
-    old_way()
+    line_by_line('test_context.csv')
     
 # if __name__ == "__main__":
 
