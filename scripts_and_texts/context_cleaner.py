@@ -66,6 +66,7 @@ def get_tokens(target_word, row):
     return target_tokens, up_to_target_tokens, sent_tokens
 
 # completing 3), return True if we should keep the line
+# TODO: this needs to be fixed since it didn't specify the position of the target token
 def screener_three(target_word, row):
     target_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in sent_tokens])
