@@ -29,10 +29,10 @@ def load_dict(file):
     return abbr_dict
 
 # building a newer abbr dict containing only word pairs left in the cleaned context
-def dict_in_cleaned_context(dict_file, csv_file):
+def dict_in_context(dict_file, context_file):
     abbr_dict = load_dict(dict_file)
     cleaned_abbr_dict = {}
-    with open(csv_file, 'r', encoding = 'utf-8') as f:
+    with open(context_file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
             target_word = row[0]
@@ -74,7 +74,7 @@ def abbr_freq_ratio_counter(file):
 
 def abbr_screener_by_ratio(min_ratio, max_ratio):
     summary_list = abbr_freq_ratio_counter('cleaned_abbr_freq.txt')
-    cleaned_abbr_dict = dict_in_cleaned_context('new_abbr_dict.txt', 'context_cleaned.csv')
+    cleaned_abbr_dict = dict_in_context('new_abbr_dict.txt', 'context_cleaned.csv')
     cleaned_abbr_dict_by_ratio = cleaned_abbr_dict.copy()
     # summary = (short_word, short_count, long_word, long_count, ratio)
     keys = [summary[0] for summary in summary_list if summary[1] > 10 if summary[3] > 10 if min_ratio < summary[4] < max_ratio]
@@ -168,5 +168,5 @@ def save_context(file, row):
 
 if __name__ == "__main__":
     # cleaned_abbr_dict_by_ratio = abbr_screener_by_ratio(0.1, 10)
-    # context_screener('cleaned_abbr_dict_by_ratio_tok.txt', 110, 'context_cleaned.csv', 'context_110pairs.csv')
-    randomized_context_picker('context_110pairs.csv', 5, 'context_1100sample.csv')
+    context_screener('cleaned_abbr_dict_by_ratio_tok.txt', len(load_dict('cleaned_abbr_dict_by_ratio_tok.txt')), 'context_cleaned.csv', 'context_992pairs.csv')
+    # randomized_context_picker('context_110pairs.csv', 5, 'context_1100sample.csv')
