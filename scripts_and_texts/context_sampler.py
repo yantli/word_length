@@ -55,7 +55,7 @@ def abbr_freq_ratio_counter(file):
     # in word_counts, item[0] is the count, item[1] is the word, item[2] is whether it's long or short
     short_list = [item[1] for item in word_counts if item[2] == 'short']
     long_list = [item[1] for item in word_counts if item[2] == 'long']
-    
+
     short_freq_dict = {}
     long_freq_dict = {}
     for item in word_counts:
@@ -65,10 +65,12 @@ def abbr_freq_ratio_counter(file):
             long_freq_dict[item[1]] = int(item[0])
     
     short_count_list = [short_freq_dict.get(short) for short in short_list]    
-    long_count_list = [long_freq_dict.get(long) for long in long_list]    
+    abbr_dict = load_dict('new_abbr_dict.txt')
+    sorted_long_list = [abbr_dict.get(short_list[i])for i in range(len(short_list))]
+    long_count_list = [long_freq_dict.get(long) for long in sorted_long_list]    
     ratio_list = [int(short_count_list[i])/int(long_count_list[i]) for i in range(len(short_count_list))]    
 
-    summary_list = [(short_list[i], short_count_list[i], long_list[i], long_count_list[i], ratio_list[i]) for i in range(len(short_list))]
+    summary_list = [(short_list[i], short_count_list[i], sorted_long_list[i], long_count_list[i], ratio_list[i]) for i in range(len(short_list))]
     
     return summary_list
 
@@ -109,7 +111,6 @@ def get_token(target_word):
     stop_token = ' 8 12 4 3'
     tokens_with_stop = tokenizer.encode(target_word + '。')
     return tokens_with_stop[0] == 8
-
 
 # save the updated dictionary
 def write_new_dict(dict_to_write, file):
@@ -167,6 +168,5 @@ def save_context(file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    # cleaned_abbr_dict_by_ratio = abbr_screener_by_ratio(0.1, 10)
-    context_screener('cleaned_abbr_dict_by_ratio_tok.txt', len(load_dict('cleaned_abbr_dict_by_ratio_tok.txt')), 'context_cleaned.csv', 'context_992pairs.csv')
-    # randomized_context_picker('context_110pairs.csv', 5, 'context_1100sample.csv')
+    context_screener('cleaned_abbr_dict_by_ratio_tok.txt', len(load_dict('cleaned_abbr_dict_by_ratio_tok.txt')), 'context_cleaned.csv', 'context_full_pairs.csv')
+    # randomized_context_picker('context_992pairs.csv', 5, 'context_sampled_full.csv')
