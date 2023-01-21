@@ -74,12 +74,12 @@ def abbr_freq_ratio_counter(file):
     
     return summary_list
 
-def abbr_screener_by_ratio(min_ratio, max_ratio):
+def abbr_screener_by_ratio(min_count, min_ratio, max_ratio):
     summary_list = abbr_freq_ratio_counter('cleaned_abbr_freq.txt')
     cleaned_abbr_dict = dict_in_context('new_abbr_dict.txt', 'context_cleaned.csv')
     cleaned_abbr_dict_by_ratio = cleaned_abbr_dict.copy()
     # summary = (short_word, short_count, long_word, long_count, ratio)
-    keys = [summary[0] for summary in summary_list if summary[1] > 10 if summary[3] > 10 if min_ratio < summary[4] < max_ratio]
+    keys = [summary[0] for summary in summary_list if summary[1] > min_count if summary[3] > min_count if min_ratio < summary[4] < max_ratio]
     
     useless_keys = [key for key in cleaned_abbr_dict.keys() if key not in keys]
     for key in useless_keys:
@@ -120,7 +120,7 @@ def write_new_dict(dict_to_write, file):
             output_f.writelines('\t'.join(pair))
             output_f.writelines('\n')
 
-# randomly pick 100 pairs of words from the abbr dict and create a new dict
+# randomly pick num_to_select of pairs of words from the abbr dict and create a new dict
 def pick_pair(dict_file, num_to_select):
     abbr_dict = load_dict(dict_file)
     group_of_items = abbr_dict.keys()
@@ -168,5 +168,5 @@ def save_context(file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    context_screener('cleaned_abbr_dict_by_ratio_tok.txt', len(load_dict('cleaned_abbr_dict_by_ratio_tok.txt')), 'context_cleaned.csv', 'context_full_pairs.csv')
+    context_screener('abbr_dict_100count.txt', 100, 'context_cleaned.csv', 'context_100count_pairs.csv')
     # randomized_context_picker('context_992pairs.csv', 5, 'context_sampled_full.csv')

@@ -72,3 +72,10 @@ write_csv(balanced_ratio10, "abbr_balanced10.csv")
 # 1) pairs with either short_ and long_count <= 10
 # 2) pairs with 0.1 < short_long_ratio < 10
 # 3) wrong short form for long form by eyeballing
+
+cleaned_abbr_freq <- read_delim("cleaned_abbr_freq.csv", locale=locale(encoding="UTF-8"), 
+                        col_names = c("short_form",
+                                      "short_count",
+                                      "long_form",
+                                      "long_count",
+                                      "short_long_ratio"))
