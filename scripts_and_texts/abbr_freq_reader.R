@@ -79,3 +79,7 @@ cleaned_abbr_freq <- read_delim("cleaned_abbr_freq.csv", locale=locale(encoding=
                                       "long_form",
                                       "long_count",
                                       "short_long_ratio"))
+
+ratio1 <- filter(cleaned_abbr_freq, short_count > 10, long_count > 10, short_long_ratio > 0.1, short_long_ratio < 10)
+high_freq_pairs <-filter(ratio1, short_count > 100, long_count > 100)
+high_freq_pairs

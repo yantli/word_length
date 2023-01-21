@@ -197,11 +197,11 @@ def line_by_line(file):
                 # add them up by torch.logaddexp before the .item()
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
-                print(output)
+                # print(output)
             else:
                 output = target_word, target_form, line_num
-                print(output)
-            # save_prob(output)
+                # print(output)
+            save_prob(output)
 
 if __name__ == "__main__":
     line_by_line('test_context.csv')
