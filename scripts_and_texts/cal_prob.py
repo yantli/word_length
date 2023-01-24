@@ -103,8 +103,7 @@ def cal_prob(target_word, row):
     # we can use result.arrange(2*100*10) to structure the tesnor
     logprobs = torch.log_softmax(result.logits, -1)[:, tuple(up_to_target_tokens[1:])].diag()
     # find the indices of the encountered form:
-    # len(up_to_target_tokens) is the actual length+2 since there is [4, 3] at the end
-    ending_index = len(up_to_target_tokens) - 3
+    ending_index = len(up_to_target_tokens) - 1
     starting_index = ending_index - len(target_tokens)
     logprob = logprobs[starting_index:ending_index].sum()
     
@@ -116,7 +115,7 @@ def cal_alternate_prob(target_form, target_word, row):
     
     result = model(torch.tensor(up_to_target_tokens))
     logprobs = torch.log_softmax(result.logits, -1)[:, tuple(up_to_target_tokens[1:])].diag()
-    ending_index = len(up_to_target_tokens) - 3
+    ending_index = len(up_to_target_tokens) - 1
     starting_index = ending_index - len(target_tokens)
     alternate_logprob = logprobs[starting_index:ending_index].sum()
 
@@ -127,7 +126,7 @@ def save_prob(output):
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
-def new_way():
+def cal_in_batch():
     rows = []
     discard_rows = []
     with open('context_1100sample.csv', 'r', encoding = 'utf-8') as f:
@@ -200,8 +199,8 @@ def line_by_line(file):
                 print(output)
             else:
                 output = target_word, target_form, line_num
-                # print(output)
-            save_prob(output)
+                print(output)
+            # save_prob(output)
 
 if __name__ == "__main__":
     line_by_line('test_context.csv')
@@ -242,3 +241,10 @@ if __name__ == "__main__":
 
 # result = model(torch.tensor(list_of_sents))
 # logprobs = torch.log_softmax(result.logits, -1)[:, tuple(sent_tokens[1:])].diag()
+
+
+len_i_want = 100
+# then my tensor is
+lp = torch.stack([torch.cat([sent, sent.new_zeros(len_i_want - sent.size(0))], 0) for sent in sent_list])
+# sent.size(0) might be len(sent)
+# new_zeros might need to be changed because it's probably only adding 0
