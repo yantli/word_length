@@ -92,9 +92,9 @@ def abbr_screener_by_tokenization(dict_file):
     abbr_dict = load_dict(dict_file)
     new_abbr_dict = abbr_dict.copy()
     short = list([key for key in abbr_dict.keys()])
-    short_to_be_thrown = [word for word in short if get_token(word)]
+    short_to_be_thrown = [word for word in short if check_token(word)]
     long = list([value for value in abbr_dict.values()])
-    long_to_be_thrown = [word for word in long if get_token(word)]
+    long_to_be_thrown = [word for word in long if check_token(word)]
     for short, long in abbr_dict.items():
         if long in long_to_be_thrown and short not in short_to_be_thrown:
             short_to_be_thrown.append(short) 
@@ -105,7 +105,7 @@ def abbr_screener_by_tokenization(dict_file):
     return new_abbr_dict
 
 # getting the tokenization of each target word
-def get_token(target_word):
+def check_token(target_word):
     # find the tokens of the target word by adding a 。 at the end of it
     # the token for '。' is [8, 12, 4, 3]
     stop_token = ' 8 12 4 3'
@@ -134,7 +134,7 @@ def pick_pair(dict_file, num_to_select):
 
     return target_words
 
-# pick out contexts that only contain target words
+# pick out contexts that contain target words
 def context_screener(dict_file, num_to_select, context_file, output_file):
     target_words = pick_pair(dict_file, num_to_select)
     with open(context_file, 'r', encoding = 'utf-8') as f:

@@ -1,41 +1,73 @@
-# To analyze data generated from context_1100samples.csv
 # Yanting Li
-# 1/20/2023
+# 1/23/2023
 
 library(tidyverse)
 library(dplyr)
 library(showtext)
 showtext_auto()
 
+lpfreq <- read_delim("prob10000samples.csv", locale=locale(encoding="UTF-8"), 
+                           col_names = c("target_word",
+                                         "concept",
+                                         "word_form",
+                                         "target_word_logprob",
+                                         "disj_logprob",
+                                         "line_num"))
+lpfreq$line_num <- as.factor(lpfreq$line_num)
+filteredata <- filter(lpfreq, word_form =='long') 
+lpfreq$if_short <- c(as.factor(ifelse(lpfreq$word_form == 'short', 0, 1)))
+
+ggplot(lpfreq) +
+  geom_point(aes(x=word_form, y=disj_logprob, color = word_form)) + 
+  facet_wrap(~ concept)
+
+
+
+grouped <- group_by(lpfreq, concept)
+arrange(grouped, concept)
+
+p_values <- list()
+groups <- unique(lpfull$concept)
+for (i in 1:length(groups)) {
+  group <- groups[i]
+  subdata <- subset(lpfull, concept == group)
+  p_values[[group]] <- t.test(disj_logprob ~ word_form, data=subdata)$p.value
+}
+
+
+
+
+
+
+
+
+
+
 # loading logprob data
 logprob_1100 <- read_delim("prob1100samples.csv", locale=locale(encoding="UTF-8"), 
-                        col_names = c("target_word",
-                                      "concept",
-                                      "word_form",
-                                      "target_word_logprob",
-                                      "disj_logprob",
-                                      "line_num"))
+                           col_names = c("target_word",
+                                         "concept",
+                                         "word_form",
+                                         "target_word_logprob",
+                                         "disj_logprob",
+                                         "line_num"))
 logprob_1100$line_num <- as.factor(logprob_1100$line_num)
-
-long <-filter(logprob_1100, word_form == 'long')
-
-ggplot(logprob_1100) +
-  geom_point(aes(x=target_word, y=target_word_logprob, color=target_word), size=3, show.legend = FALSE) +
-  facet_wrap(~ concept) +
-  xlab("word") +
-  ylab("surprisal")
+logprob_1100$if_short <- c(as.factor(ifelse(logprob_1100$word_form == 'short', 0, 1)))
 
 ggplot(logprob_1100) +
-  geom_point(aes(x=concept, y=target_word_logprob, color=target_word), size=3, show.legend = FALSE) +
-  xlab("word") +
-  ylab("surprisal")
-
-ggplot(logprob_1100) +
-  geom_point(aes(x=concept, y=target_word_logprob, color=as.factor(target_word)), size=3) +
-  xlab("concept") +
-  ylab("surprisal")
+  geom_point(aes(x=word_form, y=disj_logprob, color = word_form)) + 
+  facet_wrap(~ concept)
 
 
-lapply(split(mtcars, factor(mtcars$cyl)), function(x)t.test(data=x, mpg ~ am, paired=FALSE))
 
+grouped <- group_by(logprob_1100, concept)
+arrange(grouped, concept)
+
+p_values <- list()
+groups <- unique(logprob_1100$concept)
+for (i in 1:length(groups)) {
+  group <- groups[i]
+  subdata <- subset(logprob_1100, concept == group)
+  p_values[[group]] <- t.test(disj_logprob ~ word_form, data=subdata)$p.value
+}
 

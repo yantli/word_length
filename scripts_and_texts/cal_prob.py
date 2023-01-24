@@ -72,8 +72,8 @@ def alternate_row_creater(row):
 
 # check if alternate word in the context will not be retokenized to something else
 def stable_tokenization_checker(target_word, row):
-    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-    return ' '.join([str(x) for x in up_to_target_tokens]) in ' '.join([str(x) for x in sent_tokens])
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    return ' '.join([str(x) for x in pre_context_tokens]) in ' '.join([str(x) for x in sent_tokens])
 
 # getting the token(s) of 1) the target word, 2) the tokens of the whole story up to the target word and 3) the tokens of the whole sentence
 def get_tokens(target_word, row):
@@ -82,23 +82,22 @@ def get_tokens(target_word, row):
     stop_token = ' 8 12 4 3'
     tokens_with_stop = tokenizer.encode(target_word + '。')
     end_idx = ' '.join([str(token) for token in tokens_with_stop]).find(stop_token)
+    target_tokens_str = ' '.join([str(token) for token in tokens_with_stop])[:end_idx]
+    target_tokens = [int(token) for token in target_tokens_str.split()]
 
     pre_context = row[2]
+    pre_context_tokens = tokenizer.encode(pre_context)[:-2]
     post_context = row[3]
-
-    target_tokens_str = ' '.join([str(token) for token in tokens_with_stop])[:end_idx]
-    
-    target_tokens = [int(token) for token in target_tokens_str.split()]
-    up_to_target_tokens = tokenizer.encode(pre_context + target_word)[:-2]
+    up_to_target_tokens = tokenizer.encode(pre_context + target_word)[:-2]  # getting rid of the [4, 3] at the end
 
     sent = pre_context + target_word + post_context
     sent_tokens = tokenizer.encode(sent)
 
-    return target_tokens, up_to_target_tokens, sent_tokens
+    return target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens
 
 # calculating the probability of each short and long form in the context they appeared
 def cal_prob(target_word, row):
-    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     result = model(torch.tensor(up_to_target_tokens))
     # TODO: we can replace up_to_target_tokens with a list that contains the tokens of 1000 sentences
     # we can use result.arrange(2*100*10) to structure the tesnor
@@ -113,7 +112,7 @@ def cal_prob(target_word, row):
 
 def cal_alternate_prob(target_form, target_word, row):
     alternate_word = get_alternate_word(target_form, target_word)
-    target_tokens, up_to_target_tokens, sent_tokens = get_tokens(alternate_word, row)
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(alternate_word, row)
     
     result = model(torch.tensor(up_to_target_tokens))
     logprobs = torch.log_softmax(result.logits, -1)[:, tuple(up_to_target_tokens[1:])].diag()
@@ -192,8 +191,9 @@ def line_by_line(file):
             
             if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row):
                 logprob = cal_prob(target_word, row)
-                alternate_logprob = cal_alternate_prob(target_form, target_word, row)
-                print(alternate_logprob)
+                # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
+                alternate_logprob = cal_prob(alternate_word)
+                # print(alternate_logprob)
                 # add them up by torch.logaddexp before the .item()
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
