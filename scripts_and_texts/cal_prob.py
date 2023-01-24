@@ -192,12 +192,12 @@ def line_by_line(file):
             if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row):
                 logprob = cal_prob(target_word, row)
                 # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
-                alternate_logprob = cal_prob(alternate_word)
+                alternate_logprob = cal_prob(alternate_word, alternate_row_creater(row))
                 # print(alternate_logprob)
                 # add them up by torch.logaddexp before the .item()
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
-                # print(output)
+                print(output)
             else:
                 output = target_word, target_form, line_num
                 # print(output)
