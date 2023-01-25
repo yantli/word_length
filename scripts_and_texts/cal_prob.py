@@ -243,11 +243,11 @@ def line_by_line(file):
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
                 print(output)
+                save_prob(output)
             else:
                 output = target_word, target_form, line_num
-                print(output)
-            # save_prob(output)
-
+                # print(output)
+            
 if __name__ == "__main__":
     line_by_line('context_10000_freq_samples.csv')
     
@@ -289,8 +289,8 @@ if __name__ == "__main__":
 # logprobs = torch.log_softmax(result.logits, -1)[:, tuple(sent_tokens[1:])].diag()
 
 
-len_i_want = 100
+# len_i_want = 100
 # then my tensor is
-lp = torch.stack([torch.cat([sent, sent.new_zeros(len_i_want - sent.size(0))], 0) for sent in sent_list])
+# lp = torch.stack([torch.cat([sent, sent.new_zeros(len_i_want - sent.size(0))], 0) for sent in sent_list])
 # sent.size(0) might be len(sent)
 # new_zeros might need to be changed because it's probably only adding 0
