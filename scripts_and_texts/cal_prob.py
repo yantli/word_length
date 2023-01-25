@@ -121,15 +121,57 @@ def cal_alternate_prob(target_form, target_word, row):
 
     return alternate_logprob
 
+# this is checking whether switching word form will change the tokenization of the context
+def context_pair_tokenization_checker(target_word, row):
+    alt_row = alternate_row_creater(row)
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
+
+    return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
+
+def clean_rows(rows):
+    index_to_throw = []
+    index = 0
+    while index < len(rows)-2:
+        target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(rows[index][0], rows[index])
+        alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(rows[index+1][0], rows[index+1])
+
+        if up_to_target_tokens[:-len(target_tokens)] != alt_up_to_target_tokens[:-len(alt_target_tokens)]:
+            index_to_throw.append(index)
+            index_to_throw.append(index+1)
+        index += 2 
+    index_to_throw = sorted(index_to_throw, reverse = True)
+
+    # Below is an alternative method:
+    # row_tokens is the up_to_context_tokens
+    # target_tokens = [get_tokens(row[0], row)[0] for row in rows]
+    # row_tokens = [get_tokens(row[0], row)[2] for row in rows]
+
+    # index_to_throw = []
+    # index = 0
+    # while index < len(target_word_tokens)-2:
+    #     target_token_len = len(target_word_tokens[index])
+    #     alternate_token_len = len(target_word_tokens[index+1])
+    #     if row_tokens[index][:-(target_token_len)] != row_tokens[index+1][:-(alternate_token_len)]:
+    #         # print(index)
+    #         index_to_throw.append(index)
+    #         index_to_throw.append(index+1)
+    #     index += 2 
+
+    for index in index_to_throw:
+        del rows[index]
+
+    max_length = max([len(row_token) for row_token in row_tokens])
+
 def save_prob(output):
-    with open('prob.csv', 'a', newline='') as csvf:
+    with open('prob_125.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
 def cal_in_batch():
     rows = []
     discard_rows = []
-    with open('context_1100sample.csv', 'r', encoding = 'utf-8') as f:
+    with open('context_10000_freq_samples.csv', 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
             row = row_size_standardizer(row)
@@ -137,23 +179,27 @@ def cal_in_batch():
             target_form = row[1]
             alternate_word = get_alternate_word(target_form, target_word)
             # check when the alternate form is inserted in the news, whether it keeps its original tokenization
-            if stable_tokenization_checker(alternate_word, row):
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row):
                 rows.append(row)
                 alternate_row = alternate_row_creater(row)
                 rows.append(alternate_row)
             else:
                 discard_rows.append(row)
 
-    # every row_token ends with [4, 3], so we need to get rid of it
-    target_tokens = [get_tokens(row[0], row)[0] for row in rows]
-    row_tokens = [get_tokens(row[0], row)[1][:-2] for row in rows]
+    clean_rows(rows)
 
+    # row_tokens is the up_to_context_tokens
+    target_word_tokens = [get_tokens(row[0], row)[0] for row in rows]
+    row_tokens = [get_tokens(row[0], row)[2] for row in rows]
+
+    # this is checking whether switching word form will change the tokenization of the context
     index_to_throw = []
     index = 0
-    while index < len(target_tokens)-2:
-        target_token_len = len(target_tokens[index])
-        alternate_token_len = len(target_tokens[index+1])
-        if row_tokens[index][:-(target_token_len)] != row_tokens[index+1][:-(alternate_token_len)]:
+    while index < len(rows)-2:
+        target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(rows[index][0], rows[index])
+        alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(rows[index+1][0], rows[index+1])
+
+        if up_to_target_tokens[:-len(target_tokens)] != alt_up_to_target_tokens[:-len(alt_target_tokens)]:
             index_to_throw.append(index)
             index_to_throw.append(index+1)
         index += 2 
@@ -188,7 +234,7 @@ def line_by_line(file):
             line_num = row[4]
             alternate_word = get_alternate_word(target_form, target_word)
             
-            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row):
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
                 logprob = cal_prob(target_word, row)
                 # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
                 alternate_logprob = cal_prob(alternate_word, alternate_row_creater(row))
@@ -203,7 +249,7 @@ def line_by_line(file):
             # save_prob(output)
 
 if __name__ == "__main__":
-    line_by_line('test_context.csv')
+    line_by_line('context_10000_freq_samples.csv')
     
 # if __name__ == "__main__":
 
