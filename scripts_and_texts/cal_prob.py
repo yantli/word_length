@@ -70,16 +70,6 @@ def alternate_row_creater(row):
 
     return standardized_alternate_row
 
-# def stable_tokenization_checker(target_word, row):
-#     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-#     return ' '.join([str(x) for x in pre_context_tokens]) in ' '.join([str(x) for x in sent_tokens])
-
-# check if target word in the context will not be retokenized to something else
-def stable_tokenization_checker(target_word, row):
-    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-    # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
-    return target_tokens == up_to_target_tokens[-len(target_tokens):]
-
 # getting the token(s) of 1) the target word, 2) the tokens of the whole story up to the target word and 3) the tokens of the whole sentence
 def get_tokens(target_word, row):
     # find the tokens of the target word by adding a 。 at the end of it
@@ -99,6 +89,29 @@ def get_tokens(target_word, row):
     sent_tokens = tokenizer.encode(sent)
 
     return target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens
+
+# def stable_tokenization_checker(target_word, row):
+#     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+#     return ' '.join([str(x) for x in pre_context_tokens]) in ' '.join([str(x) for x in sent_tokens])
+
+# check if target word following the pre-context will not be retokenized to something else
+def stable_tokenization_checker(target_word, row):
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
+    return target_tokens == up_to_target_tokens[-len(target_tokens):]
+
+# check if target word in the whole sentence will not be retokenized to something else
+def stable_tokenization_checker2(target_word, row):
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
+    return target_tokens == sent_tokens[len(pre_context_tokens):(len(pre_context_tokens)+len(target_tokens))]
+
+def context_pair_tokenization_checker(target_word, row):
+    alt_row = alternate_row_creater(row)
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
+
+    return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
 
 # calculating the probability of each short and long form in the context they appeared
 def cal_prob(target_word, row):
@@ -127,12 +140,6 @@ def cal_alternate_prob(target_form, target_word, row):
     return alternate_logprob
 
 # this is checking whether switching word form will change the tokenization of the context
-def context_pair_tokenization_checker(target_word, row):
-    alt_row = alternate_row_creater(row)
-    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
-
-    return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
 
 def clean_rows(rows):
     index_to_throw = []
@@ -239,7 +246,8 @@ def line_by_line(file):
             line_num = row[4]
             alternate_word = get_alternate_word(target_form, target_word)
             
-            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
+            # if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
                 logprob = cal_prob(target_word, row)
                 # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
                 alternate_logprob = cal_prob(alternate_word, alternate_row_creater(row))
