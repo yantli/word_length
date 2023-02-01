@@ -26,6 +26,7 @@ def create_abbr_dict():
             else:
                 abbr_dict[short] = long
 
+    # deleting short forms that share the same long form:
     seen = set()
     duplicated = []
     for short in abbr_dict.keys():
@@ -124,7 +125,7 @@ def update_abbr_dict(min_ratio, max_ratio):
     problematic_short = ['上图', '乔峰', '二毛', '优品', '公益', 
                          '共市', '印报', '吐纳', '工装', '成府', 
                          '探子', '效颦', '棒喝', '海货', '精油',
-                         '蚁防', '西大', '领台']
+                         '蚁防', '西大', '领台', '县府']
     useless_keys += problematic_short
 
     for key in useless_keys:

@@ -70,10 +70,15 @@ def alternate_row_creater(row):
 
     return standardized_alternate_row
 
-# check if alternate word in the context will not be retokenized to something else
+# def stable_tokenization_checker(target_word, row):
+#     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+#     return ' '.join([str(x) for x in pre_context_tokens]) in ' '.join([str(x) for x in sent_tokens])
+
+# check if target word in the context will not be retokenized to something else
 def stable_tokenization_checker(target_word, row):
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-    return ' '.join([str(x) for x in pre_context_tokens]) in ' '.join([str(x) for x in sent_tokens])
+    # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
+    return target_tokens == up_to_target_tokens[-len(target_tokens):]
 
 # getting the token(s) of 1) the target word, 2) the tokens of the whole story up to the target word and 3) the tokens of the whole sentence
 def get_tokens(target_word, row):
@@ -158,13 +163,13 @@ def clean_rows(rows):
     #         index_to_throw.append(index+1)
     #     index += 2 
 
-    for index in index_to_throw:
-        del rows[index]
+    # for index in index_to_throw:
+    #     del rows[index]
 
-    max_length = max([len(row_token) for row_token in row_tokens])
+    # max_length = max([len(row_token) for row_token in row_tokens])
 
 def save_prob(output):
-    with open('prob_125.csv', 'a', newline='') as csvf:
+    with open('prob_131.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 

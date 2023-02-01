@@ -8,6 +8,7 @@ showtext_auto()
 library(lme4)
 library(lmerTest)
 library(ggplot2)
+library(poolr)
 
 
 
@@ -20,11 +21,107 @@ load_data <- function(file) {
                                      "disj_logprob",
                                      "line_num"))
   logprob$line_num <- as.factor(logprob$line_num)
+  logprob$word_form <- as.factor(logprob$word_form)
   return(logprob)
 }
 
+data <- load_data("prob125.csv")
 
-data <- load_data("probnewer10000samples.csv")
+
+# data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 
+#   ggplot(aes(x=word_form, y=target_word_logprob, label=target_word, group=concept)) + geom_line() + geom_text() + theme_classic()
+
+# data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% 
+#   ungroup() %>% spread(word_form, concept) %>% mutate(diff=short-long) %>% gather(word_form, target_word_logprob, short, long)
+
+data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% 
+  ungroup() %>% select(-target_word, -target_word_logprob) %>% spread(word_form, disj_logprob) 
+
+# means = data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() 
+# using this can directly change logprob to surprisal
+means = data %>% group_by(target_word, concept, word_form) %>% summarize(concept_surprisal=-mean(disj_logprob), target_word_surprisal=-mean(target_word_logprob)) %>% ungroup() 
+head(means)
+
+# the t test between mean_long_disj vs mean_short_disj
+# t_test_data <- means %>% select(-target_word, -target_word_logprob) %>% spread(word_form, disj_logprob)
+# t.test(t_test_data$long, t_test_data$short, paired = TRUE)
+
+# the t test between mean_concept_surprisal_when_long_form_is_used vs mean_concept_surprisal_when_short_form_is_used
+t_test_data <- means %>% select(-target_word, -target_word_surprisal) %>% spread(word_form, concept_surprisal)
+t.test(t_test_data$long, t_test_data$short, paired = TRUE)
+
+# plotting the difference in surprisal
+# t_test_data %>% mutate(above_zero = (-long + short)>0) %>%
+#   ggplot(aes(x=reorder(concept, (-long + short), mean), y= -long + short, label = concept, color=above_zero)) +
+#   geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 3) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
+#   geom_hline(yintercept = 0) + theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" ))
+t_test_data %>% mutate(above_zero = (long - short)>0) %>%
+  ggplot(aes(x=reorder(concept, (long - short), mean), y= long - short, label = concept, color=above_zero)) +
+  geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 3) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
+  geom_hline(yintercept = 0) + theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" ))
+
+
+# plotting the word pairs against their surprisals and link each pair with a line. 
+# Ideally we wish the slopes are mostly negative, i.e. going downward.
+# plotdata = means %>% select(-target_word, -target_word_logprob) %>% spread(word_form, disj_logprob) %>% mutate(diff=short - long) %>% select(-short, -long) %>% inner_join(means)
+# ggplot(plotdata, aes(x=word_form, y=-disj_logprob, label=target_word, group=concept)) + geom_line(aes(color = diff)) + geom_text(alpha = 0.5) + 
+#   theme_classic() + scale_color_gradient2(low = "red", high = "blue") + labs(x="\nWord Form", y="Concept Surprisal (nats)\n", color="Surprisal\nDifference")
+plotdata = means %>% select(-target_word, -target_word_surprisal) %>% spread(word_form, concept_surprisal) %>% mutate(diff= long-short) %>% select(-short, -long) %>% inner_join(means)
+ggplot(plotdata, aes(x=word_form, y=concept_surprisal, label=target_word, group=concept)) + geom_line(aes(color = diff)) + geom_text(alpha = 0.5) + 
+  theme_classic() + scale_color_gradient2(low = "red", high = "blue") + labs(x="\nWord Form", y="Concept Surprisal (nats)\n", color="Surprisal\nDifference")
+
+# =================================================================================
+
+# mixed model
+
+disj <- data %>% select(-target_word, -target_word_logprob, -line_num) %>% mutate(surprisal = -disj_logprob) %>% mutate(is_short = ifelse(word_form == 'short', 0, 1))
+disj$word_form <- as.factor(disj$word_form)
+
+#mixed_ml <- glmer(if_short ~ 1 + disj_logprob + (1 + disj_logprob|concept), data = concept_disj_table, family = binomial)
+# summary(mixed_ml)
+mixed_ml2 <- glmer(word_form ~ 1 + surprisal + (1 + surprisal|concept), data = disj, family = binomial)
+mixed_ml2 <- glmer(is_short ~ 1 + surprisal + (1 + surprisal|concept), data = disj, family = binomial)
+summary(mixed_ml2)
+
+# ============================================================================================
+
+# Fisher's method
+
+# subconcept <- data %>% select(-target_word, -target_word_logprob, -line_num) %>% filter(concept == '东协')
+# sub_short <- subconcept %>% filter(word_form == 'short') %>% rename(short_disj = disj_logprob) %>% select(-word_form) %>% mutate(row = row_number()) 
+# sub_long <- subconcept %>% filter(word_form == 'long') %>% rename(long_disj = disj_logprob)%>% select(-word_form, -concept) %>% mutate(row = row_number()) 
+# combined <- full_join(sub_short, sub_long, by = "row")
+# t.test(combined$short_disj, combined$long_disj)
+
+groups <- unique(data$concept)
+ps <- data.frame(concept=unlist(groups))
+pvalue <- c()
+for (i in 1:length(groups)) {
+  group <- groups[i]                                                                                                                                                                              
+  subdata <- subset(data, concept == group)
+  p_value <- t.test(disj_logprob ~ word_form, data=subdata)$p.value
+  pvalue <- append(pvalue, p_value)
+}
+ps$p_value <- unlist(pvalue)
+ps %>% filter(p_value < 0.05)
+
+fisher(ps$p_value)
+
+# =================================================================================
+
+# See if word length diff effect surprisal diff
+means = data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() 
+difftable = means %>% select(-target_word_logprob) %>% spread(word_form, disj_logprob)
+
+t_test_data <- means %>% select(-target_word, -target_word_logprob) %>% spread(word_form, disj_logprob)
+t.test(t_test_data$long, t_test_data$short, paired = TRUE)
+
+# =================================================================================
+
+
+
+
+
 
 # creating the mean_logprob_table containing 
 # "concept", "short_words", "short_mean", "long_words", "long_mean"
@@ -53,10 +150,8 @@ ggplot(mean_logprob_table) +
   geom_point(aes(x=concept, y=short_mean), size=3) + 
   geom_point(aes(x=concept, y=long_mean), size=1) 
 
-t_test_data %>% mutate(above_zero = (-long + short)>0) %>%
-ggplot(aes(x=reorder(concept, (-long + short), mean), y= -long + short, label = concept, color=above_zero)) +
-  geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 3) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
-  geom_hline(yintercept = 0) + theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" ))
+
+# =================================================================================
 
 # creating the word_word_table containing 
 # "words" containing both short and long words, "means", "if_short" (1 for yes and 0 for no)
@@ -69,10 +164,21 @@ long_table$if_short <- replicate(100, 0)
 
 word_mean_table <- dplyr::bind_rows(short_table, long_table)
 word_mean_table$if_short <- as.factor(word_mean_table$if_short)
-  
+
+# creating the concept_disj_table containing 
+# "concepts", "disj_prob", "if_short" (1 for yes and 0 for no)
+df1_disj_grouped <- df1_subset %>% select(concept, disj_logprob) %>% group_by(concept) 
+df1_disj_grouped$if_short <- replicate(4862, 1)
+
+df3_disj_grouped <- df3_subset %>% select(concept, disj_logprob) %>% group_by(concept) 
+df3_disj_grouped$if_short <- replicate(4958, 0)
+
+concept_disj_table <- dplyr::bind_rows(df1_disj_grouped, df3_disj_grouped)
+concept_disj_table$if_short <- as.factor(concept_disj_table$if_short)
+
 # need to change means to disj_mean
 head(plotdata)
-t.test(plotdata$disj_logprob[plotdata$word_form==1],word_mean_table$means[word_mean_table$if_short==0], var.equal=TRUE)
+t.test(plotdata$disj_logprob[plotdata$word_form=="short"], plotdata$disj_logprob[plotdata$word_form=="long"], a var.equal=TRUE)
 model = lm(mean~if_short, data=word_mean_table)
 
 # paired T test
@@ -84,42 +190,9 @@ ggplot(word_mean_table) +
   ylab("logprob")
 ggplot(word_mean_table, aes(x=if_short, y=means, label=words, group=words)) + geom_text() + geom_line()
 
-data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 
-  ggplot(aes(x=word_form, y=target_word_logprob, label=target_word, group=concept)) + geom_line() + geom_text() + theme_classic()
-
-data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% 
-  ungroup() %>% spread(word_form, concept) %>% mutate(diff=short-long) %>% gather(word_form, target_word_logprob, short, long)
-
-data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% 
-  ungroup() %>% select(-target_word, -target_word_logprob) %>% spread(word_form, disj_logprob) 
-
-means = data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() 
-head(means)
-
-t_test_data <- means %>% select(-target_word, -target_word_logprob) %>% spread(word_form, disj_logprob)
-t.test(t_test_data$long, t_test_data$short, paired = TRUE)
-
-plotdata = means %>% select(-target_word, -target_word_logprob) %>% spread(word_form, disj_logprob) %>% mutate(diff=short - long) %>% select(-short, -long) %>% inner_join(means)
-ggplot(plotdata, aes(x=word_form, y=-disj_logprob, label=target_word, group=concept)) + geom_line(aes(color = diff)) + geom_text(alpha = 0.5) + 
-  theme_classic() + scale_color_gradient2(low = "red", high = "blue") + labs(x="\nWord Form", y="Concept Surprisal (nats)\n", color="Surprisal\nDifference")
 
 
 
-# creating the concept_disj_table containing 
-# "concepts", "disj_prob", "if_short" (1 for yes and 0 for no)
-df1_disj_grouped <- df1_subset %>% select(concept, disj_logprob) %>% group_by(concept) 
-df1_disj_grouped$if_short <- replicate(4931, 1)
-
-df3_disj_grouped <- df3_subset %>% select(concept, disj_logprob) %>% group_by(concept) 
-df3_disj_grouped$if_short <- replicate(4971, 0)
-
-concept_disj_table <- dplyr::bind_rows(df1_disj_grouped, df3_disj_grouped)
-concept_disj_table$if_short <- as.factor(concept_disj_table$if_short)
-
-# mixed model
-mixed_ml <- lmer(disj_logprob ~ 1 + if_short + (1|concept), data = concept_disj_table)
-mixed_ml <- glmer(if_short ~ 1 + disj_logprob + (1 + disj_logprob|concept), data = concept_disj_table, family = binomial)
-summary(mixed_ml)
 
 
 
