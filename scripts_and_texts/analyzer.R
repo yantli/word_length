@@ -25,7 +25,7 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("prob125.csv")
+data <- load_data("prob1312.csv")
 
 
 # data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 
@@ -49,6 +49,8 @@ head(means)
 # the t test between mean_concept_surprisal_when_long_form_is_used vs mean_concept_surprisal_when_short_form_is_used
 t_test_data <- means %>% select(-target_word, -target_word_surprisal) %>% spread(word_form, concept_surprisal)
 t.test(t_test_data$long, t_test_data$short, paired = TRUE)
+mean(t_test_data$long)
+mean(t_test_data$short)
 
 # plotting the difference in surprisal
 # t_test_data %>% mutate(above_zero = (-long + short)>0) %>%
@@ -87,23 +89,30 @@ summary(mixed_ml2)
 
 # Fisher's method
 
-# subconcept <- data %>% select(-target_word, -target_word_logprob, -line_num) %>% filter(concept == '东协')
-# sub_short <- subconcept %>% filter(word_form == 'short') %>% rename(short_disj = disj_logprob) %>% select(-word_form) %>% mutate(row = row_number()) 
-# sub_long <- subconcept %>% filter(word_form == 'long') %>% rename(long_disj = disj_logprob)%>% select(-word_form, -concept) %>% mutate(row = row_number()) 
-# combined <- full_join(sub_short, sub_long, by = "row")
-# t.test(combined$short_disj, combined$long_disj)
+subconcept <- data %>% select(-target_word, -target_word_logprob, -line_num) %>% filter(concept == '东协')
+sub_short <- subconcept %>% filter(word_form == 'short') %>% rename(short_disj = disj_logprob) %>% select(-word_form) %>% mutate(row = row_number())
+sub_long <- subconcept %>% filter(word_form == 'long') %>% rename(long_disj = disj_logprob)%>% select(-word_form, -concept) %>% mutate(row = row_number())
+combined <- full_join(sub_short, sub_long, by = "row")
+t.test(combined$short_disj, combined$long_disj)
 
 groups <- unique(data$concept)
 ps <- data.frame(concept=unlist(groups))
 pvalue <- c()
+test_stats <- c()
 for (i in 1:length(groups)) {
   group <- groups[i]                                                                                                                                                                              
   subdata <- subset(data, concept == group)
   p_value <- t.test(disj_logprob ~ word_form, data=subdata)$p.value
+  t <- t.test(disj_logprob ~ word_form, data=subdata)[[1]]
   pvalue <- append(pvalue, p_value)
+  test_stats <- append(test_stats, t )
 }
 ps$p_value <- unlist(pvalue)
+ps$test_stats <- unlist(test_stats)
 ps %>% filter(p_value < 0.05)
+ps %>% filter(p_value < 0.05 & test_stats < 0)
+ps %>% filter(p_value < 0.05 & test_stats > 0)
+ps %>% filter(p_value < 0.05 & test_stats == 0)
 
 fisher(ps$p_value)
 

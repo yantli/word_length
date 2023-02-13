@@ -140,7 +140,6 @@ def cal_alternate_prob(target_form, target_word, row):
     return alternate_logprob
 
 # this is checking whether switching word form will change the tokenization of the context
-
 def clean_rows(rows):
     index_to_throw = []
     index = 0
@@ -176,14 +175,13 @@ def clean_rows(rows):
     # max_length = max([len(row_token) for row_token in row_tokens])
 
 def save_prob(output):
-    with open('prob_1312.csv', 'a', newline='') as csvf:
+    with open('prob_batch_10000_freq.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
-def cal_in_batch():
+def cal_in_batch(file):
     rows = []
-    discard_rows = []
-    with open('context_10000_freq_samples.csv', 'r', encoding = 'utf-8') as f:
+    with open(file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
             row = row_size_standardizer(row)
@@ -191,49 +189,48 @@ def cal_in_batch():
             target_form = row[1]
             alternate_word = get_alternate_word(target_form, target_word)
             # check when the alternate form is inserted in the news, whether it keeps its original tokenization
-            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row):
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
                 rows.append(row)
                 alternate_row = alternate_row_creater(row)
                 rows.append(alternate_row)
-            else:
-                discard_rows.append(row)
+    # clean_rows(rows)
+    # the above step is commented out since context_pair_tokenization_checker is doing the same thing
 
-    clean_rows(rows)
+    line_nums = [row[4] for row in rows]
+    words = [row[0] for row in rows]
+    word_tokens = [w[:-2] for w in tokenizer(words).get('input_ids')]
+    sents = [row[2]+row[0] for row in rows]
+    sent_tokens = tokenizer(sents, padding = True).get('input_ids')
+    # the sent_token for each sentence will be their up_to_target_tokens + [4, 3] + certain number of [5]
+    sent_token_lens = [(sum(x)-2) for x in tokenizer(sents, padding = True).get('attention_mask')]
 
-    # row_tokens is the up_to_context_tokens
-    target_word_tokens = [get_tokens(row[0], row)[0] for row in rows]
-    row_tokens = [get_tokens(row[0], row)[2] for row in rows]
-
-    # this is checking whether switching word form will change the tokenization of the context
-    index_to_throw = []
-    index = 0
-    while index < len(rows)-2:
-        target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(rows[index][0], rows[index])
-        alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(rows[index+1][0], rows[index+1])
-
-        if up_to_target_tokens[:-len(target_tokens)] != alt_up_to_target_tokens[:-len(alt_target_tokens)]:
-            index_to_throw.append(index)
-            index_to_throw.append(index+1)
-        index += 2 
-    index_to_throw = sorted(index_to_throw, reverse = True)
+    result = model(torch.tensor(sent_tokens))
+    # we can use result.logits.shape to check if it gives us the matrix of the right size
     
-    for index in index_to_throw:
-        del rows[index]
-        del target_tokens[index]
-        del row_tokens[index]
+    n = 0
+    while n <= len(sent_tokens)-2:        
+        target_word_token = word_tokens[n]
+        ending_index = sent_token_lens[n] - 1
+        starting_index = ending_index - len(target_word_token)
+        target_logprobs = torch.log_softmax(result.logits, -1)[n][:, tuple(sent_tokens[n][1:])].diag()
+        logprob = target_logprobs[starting_index:ending_index].sum()
+        
+        alt_word_token = word_tokens[n+1]
+        alt_ending_index = sent_token_lens[n+1] - 1
+        alt_starting_index = alt_ending_index - len(alt_word_token)       
+        alt_logprobs = torch.log_softmax(result.logits, -1)[n+1][:, tuple(sent_tokens[n+1][1:])].diag()
+        alt_logprob = alt_logprobs[alt_starting_index:alt_ending_index].sum()         
+        
+        disj_logprob = torch.logaddexp(logprob, alt_logprob).item() 
 
-    max_length = max([len(row_token) for row_token in row_tokens])
-
-    # max_length is 6392, and then 5336, 4662, 4425
-    # row_tokens = [row_token for row_token in row_tokens if len(row_token) < 5000]
-
-    # result.arrange(len(rows) * max_length) 
-
-    # padding
-    row_tokens = [row_token+[5]*(max_length - len(row_token)) for row_token in row_tokens if len(row_token) < max_length]
-    # result = model(torch.tensor(row_tokens))       
-
-    return row_tokens    
+        if len(words[n]) < len(words[n+1]):
+            target_form = 'short'
+        else:
+            target_form = 'long'
+        output = words[n], target_form, logprob.item(), disj_logprob, line_nums[n]
+        print(output)
+        save_prob(output)        
+        n += 2
 
 
 def line_by_line(file):
@@ -262,7 +259,8 @@ def line_by_line(file):
                 # print(output)
             
 if __name__ == "__main__":
-    line_by_line('context_10000_freq_samples.csv')
+    # line_by_line('context_10000_freq_samples.csv')
+    cal_in_batch('context_10000_freq_samples.csv')
     
 # if __name__ == "__main__":
 
@@ -282,8 +280,6 @@ if __name__ == "__main__":
 #         output = target_word, target_form, line_num
 #     print(output)
 
-
-
 # for each context, we need the tokenization with the short form, and the tokenization with the long form
 # short: c1 c2 w1 w2 0 0        (the 0 is the padding pattern)
 # long:  c1 c2 w1 w2 w3 w4
@@ -296,7 +292,6 @@ if __name__ == "__main__":
 
 # 1. create short and long sentences (Done)
 # 2. check whether the tokenization of the forms are unchanged (Done)
-
 
 # result = model(torch.tensor(list_of_sents))
 # logprobs = torch.log_softmax(result.logits, -1)[:, tuple(sent_tokens[1:])].diag()
