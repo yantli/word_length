@@ -25,7 +25,7 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("prob1312.csv")
+data <- load_data("prob_batch.csv")
 
 
 # data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 

@@ -34,8 +34,8 @@ def row_size_standardizer(row):
     post_context = row[3]
     line_num = row[4]
 
-    if len(pre_context) > 200:
-        new_pre_context = pre_context[-200:]
+    if len(pre_context) > 100:
+        new_pre_context = pre_context[-100:]
     else:
         new_pre_context = pre_context
     if len(post_context) > 50:
@@ -175,13 +175,13 @@ def clean_rows(rows):
     # max_length = max([len(row_token) for row_token in row_tokens])
 
 def save_prob(output):
-    with open('prob_batch_10000_freq.csv', 'a', newline='') as csvf:
+    with open('test_prob.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
 def cal_in_batch(file):
     rows = []
-    with open(file, 'r', encoding = 'utf-8') as f:
+    with open('test_context.csv', 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
             row = row_size_standardizer(row)
@@ -260,7 +260,7 @@ def line_by_line(file):
             
 if __name__ == "__main__":
     # line_by_line('context_10000_freq_samples.csv')
-    cal_in_batch('context_10000_freq_samples.csv')
+    cal_in_batch('test_context.csv')
     
 # if __name__ == "__main__":
 
