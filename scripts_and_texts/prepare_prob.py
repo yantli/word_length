@@ -25,7 +25,7 @@ def read_in_file(file):
                 rows.append(row)
     for row in rows:
         new_row = new_row_generator(row)
-        save_prob('prob_batcholdpair50.csv', new_row)
+        save_prob('prob_lineoldpair200.csv', new_row)
 
 
 def new_row_generator(row):
@@ -54,5 +54,5 @@ def save_prob(output_file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    read_in_file('prob_batch_oldpair50.csv')
+    read_in_file('prob_line_oldpair200.csv')
     

@@ -168,5 +168,5 @@ def save_context(file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    context_screener('abbr_dict_100count_new.txt', 100, 'context_cleaned.csv', 'context_100count_pairs_291.csv')
-    # randomized_context_picker('context_992pairs.csv', 5, 'context_sampled_full.csv')
+    context_screener('abbr_dict_100count_vo.txt', 56, 'context_cleaned.csv', 'context_100count_vo.csv')
+    # randomized_context_picker('context_100count_newpairs.csv', 100, 'context_20000_newpairs.csv')

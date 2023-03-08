@@ -87,7 +87,7 @@ def get_tokens(target_word, row):
 
     sent = pre_context + target_word + post_context
     sent_tokens = tokenizer.encode(sent)
-
+ 
     return target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens
 
 # def stable_tokenization_checker(target_word, row):
@@ -101,7 +101,7 @@ def stable_tokenization_checker(target_word, row):
     return target_tokens == up_to_target_tokens[-len(target_tokens):]
 
 # check if target word in the whole sentence will not be retokenized to something else
-def stable_tokenization_checker2(target_word, row):
+def stable_tokenization_checker2(lm, target_word, row):
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
     return target_tokens == sent_tokens[len(pre_context_tokens):(len(pre_context_tokens)+len(target_tokens))]
@@ -109,18 +109,20 @@ def stable_tokenization_checker2(target_word, row):
 def context_pair_tokenization_checker(target_word, row):
     alt_row = alternate_row_creater(row)
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
+    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(lm, alt_row[0], alt_row)
 
     return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
 
 # calculating the probability of each short and long form in the context they appeared
 def cal_prob(target_word, row):
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    # tok_for_tensor = up_to_target_tokens[-(len(target_tokens)+2):]
+    # result = model(torch.tensor(tok_for_tensor))
+    # logprobs = torch.log_softmax(result.logits, -1)[:, tuple(tok_for_tensor[1:])].diag()
     result = model(torch.tensor(up_to_target_tokens))
-    # TODO: we can replace up_to_target_tokens with a list that contains the tokens of 1000 sentences
-    # we can use result.arrange(2*100*10) to structure the tesnor
     logprobs = torch.log_softmax(result.logits, -1)[:, tuple(up_to_target_tokens[1:])].diag()
     # find the indices of the encountered form:
+    # ending_index = len(tok_for_tensor)-1
     ending_index = len(up_to_target_tokens) - 1
     starting_index = ending_index - len(target_tokens)
     logprob = logprobs[starting_index:ending_index].sum()
@@ -252,15 +254,15 @@ def line_by_line(file):
                 # add them up by torch.logaddexp before the .item()
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
-                print(output)
-                save_prob(output)
+                # print(output)
+                # save_prob(output)
             else:
                 output = target_word, target_form, line_num
-                # print(output)
+                print(output)
             
 if __name__ == "__main__":
-    # line_by_line('context_10000_freq_samples.csv')
-    cal_in_batch('test_context.csv')
+    line_by_line('test_context.csv')
+    # cal_in_batch('test_context.csv')
     
 # if __name__ == "__main__":
 

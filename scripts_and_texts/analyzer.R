@@ -9,7 +9,7 @@ library(lme4)
 library(lmerTest)
 library(ggplot2)
 library(poolr)
-
+library(ggrepel)
 
 
 load_data <- function(file) {
@@ -25,7 +25,7 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("prob_batch.csv")
+data <- load_data("prob_linenewpair200.csv")
 
 
 # data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 
@@ -62,6 +62,17 @@ t_test_data %>% mutate(above_zero = (long - short)>0) %>%
   geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 3) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
   geom_hline(yintercept = 0) + theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" ))
 
+t_test_data %>% mutate(above_zero = (long - short)>0) %>% filter(above_zero == TRUE)
+
+t_test_data %>% mutate(above_zero = (long - short)>0) %>%
+  ggplot(aes(x=reorder(concept, (long - short), mean), y= long - short, label = concept, color=above_zero)) +
+  geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 14) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
+  geom_hline(yintercept = 0) + theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" )) +
+  theme(axis.text.y = element_text(size = 50),
+        axis.title.x = element_text(size = 50),
+        axis.title.y = element_text(size = 50))
+ggsave("diff_plot.jpeg", scale = 4, width = 14, height = 2, units = c("cm"))
+geom_text_repel(nudge_x = -1.4, nudge_y = 1, segment.alpha = 0, angle = -45, size = 10)
 
 # plotting the word pairs against their surprisals and link each pair with a line. 
 # Ideally we wish the slopes are mostly negative, i.e. going downward.
@@ -89,7 +100,7 @@ summary(mixed_ml2)
 
 # Fisher's method
 
-subconcept <- data %>% select(-target_word, -target_word_logprob, -line_num) %>% filter(concept == '东协')
+subconcept <- data %>% select(-target_word, -target_word_logprob, -line_num)
 sub_short <- subconcept %>% filter(word_form == 'short') %>% rename(short_disj = disj_logprob) %>% select(-word_form) %>% mutate(row = row_number())
 sub_long <- subconcept %>% filter(word_form == 'long') %>% rename(long_disj = disj_logprob)%>% select(-word_form, -concept) %>% mutate(row = row_number())
 combined <- full_join(sub_short, sub_long, by = "row")
