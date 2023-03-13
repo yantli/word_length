@@ -8,7 +8,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 tokenizer = AutoTokenizer.from_pretrained("THUDM/glm-10b-chinese", trust_remote_code=True)
 model = AutoModelForSeq2SeqLM.from_pretrained("THUDM/glm-10b-chinese", trust_remote_code=True)
-model = model.half().cuda()
+model = model.half()
 
 def get_tokens(target_word, row):
     # find the tokens of the target word. Usually the token will be [50002, ..., ..., ..., 50000]
@@ -25,7 +25,8 @@ def get_tokens(target_word, row):
 def cal_prob(target_word, row):
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     # this is to make sure that cuda is used instead of cpu
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = "cpu"
     model = model.to(device)
     
     sent_tensor = torch.tensor(up_to_target_tokens).to(device)
@@ -37,7 +38,7 @@ def cal_prob(target_word, row):
     result = model(sent_tensor)
     # result.logits.size() should return [0, num of tokens in the input, 50048]
     # for the first word of the sentence: logprob = torch.log_softmax(result.logits, -1)[0, 0, sent[1]]
-    logprobs = torch.log_softmax(result.logits, -1)[0, :, tuple(sent[1:])].diag()
+    logprobs = torch.log_softmax(result.logits, -1)[0, :, tuple(up_to_target_tokens[1:])].diag()
 
     ending_index = len(up_to_target_tokens) - 1
     starting_index = ending_index - len(target_tokens)
@@ -45,7 +46,9 @@ def cal_prob(target_word, row):
     
     return logprob
 
-# sent = tokenizer.encode("这是北京大学。")
+# sent3 = tokenizer.encode("这是北京大学。")
+# sent2 = tokenizer.encode("我喜欢吃美味的食物。")
+# sent1 = tokenizer.encode("我喜欢吃恶心的食物。")
 
 # load the new_abbr_dict
 def load_abbr_dict():
@@ -67,8 +70,8 @@ def row_size_standardizer(row):
     post_context = row[3]
     line_num = row[4]
 
-    if len(pre_context) > 100:
-        new_pre_context = pre_context[-100:]
+    if len(pre_context) > 200:
+        new_pre_context = pre_context[-200:]
     else:
         new_pre_context = pre_context
     if len(post_context) > 50:
@@ -109,7 +112,7 @@ def stable_tokenization_checker(target_word, row):
     return target_tokens == up_to_target_tokens[-len(target_tokens):]
 
 # check if target word in the whole sentence will not be retokenized to something else
-def stable_tokenization_checker2(lm, target_word, row):
+def stable_tokenization_checker2(target_word, row):
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
     return target_tokens == sent_tokens[len(pre_context_tokens):(len(pre_context_tokens)+len(target_tokens))]
@@ -117,7 +120,7 @@ def stable_tokenization_checker2(lm, target_word, row):
 def context_pair_tokenization_checker(target_word, row):
     alt_row = alternate_row_creater(row)
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(lm, alt_row[0], alt_row)
+    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
 
     return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
 

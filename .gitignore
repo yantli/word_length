@@ -1,9 +1,11 @@
-cmn_gw_5/
+corpora/
+probs/
 program.prof
 *.csv
+*.jpeg
+*.key
+*.pdf
 .DS_Store
-cmn_gw_5_LDC2011T13.tgz
-CPM-1-Generate
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

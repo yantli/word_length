@@ -5,7 +5,7 @@
 library(tidyverse)
 library(dplyr)
 
-abbr_freq <- read_delim("abbr_freq.csv", locale=locale(encoding="UTF-8"), 
+abbr_freq <- read_delim("firstapp_abbr_freq.csv", locale=locale(encoding="UTF-8"), 
            col_names = c("short_form",
                          "short_count",
                          "long_form",

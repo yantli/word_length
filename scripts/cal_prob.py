@@ -34,8 +34,8 @@ def row_size_standardizer(row):
     post_context = row[3]
     line_num = row[4]
 
-    if len(pre_context) > 100:
-        new_pre_context = pre_context[-100:]
+    if len(pre_context) > 200:
+        new_pre_context = pre_context[-200:]
     else:
         new_pre_context = pre_context
     if len(post_context) > 50:
@@ -101,7 +101,7 @@ def stable_tokenization_checker(target_word, row):
     return target_tokens == up_to_target_tokens[-len(target_tokens):]
 
 # check if target word in the whole sentence will not be retokenized to something else
-def stable_tokenization_checker2(lm, target_word, row):
+def stable_tokenization_checker2(target_word, row):
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
     return target_tokens == sent_tokens[len(pre_context_tokens):(len(pre_context_tokens)+len(target_tokens))]
@@ -109,7 +109,7 @@ def stable_tokenization_checker2(lm, target_word, row):
 def context_pair_tokenization_checker(target_word, row):
     alt_row = alternate_row_creater(row)
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
-    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(lm, alt_row[0], alt_row)
+    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
 
     return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
 
@@ -254,11 +254,11 @@ def line_by_line(file):
                 # add them up by torch.logaddexp before the .item()
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
-                # print(output)
-                # save_prob(output)
+                print(output)
+                save_prob(output)
             else:
                 output = target_word, target_form, line_num
-                print(output)
+                # print(output)
             
 if __name__ == "__main__":
     line_by_line('test_context.csv')
