@@ -1,3 +1,4 @@
+# to analyze the surprisal data
 # Yanting Li
 # 1/23/2023
 
@@ -25,7 +26,7 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("prob_linevv2tok.csv")
+data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_linenewpair2tok.csv")
 
 
 # data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 
@@ -60,7 +61,8 @@ mean(t_test_data$short)
 t_test_data %>% mutate(above_zero = (long - short)>0) %>%
   ggplot(aes(x=reorder(concept, (long - short), mean), y= long - short, label = concept, color=above_zero)) +
   geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 3) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
-  geom_hline(yintercept = 0) + theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" ))
+  geom_hline(yintercept = 0) + scale_x_discrete(expand = c(0.05, 0.05)) + scale_y_discrete(expand = c(0.13, 0)) +
+  theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" ))
 
 t_test_data %>% mutate(above_zero = (long - short)>0) %>% filter(above_zero == TRUE)
 

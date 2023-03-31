@@ -16,7 +16,7 @@ model = AutoModelWithLMHead.from_pretrained("TsinghuaAI/CPM-Generate")
 
 # load the new_abbr_dict
 def load_abbr_dict():
-    with open('new_abbr_dict.txt', 'r', encoding = 'utf-8') as f:
+    with open('/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt', 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
     abbr_dict = {}
     for i in range(len(lines)):

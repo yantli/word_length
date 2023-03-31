@@ -8,7 +8,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 tokenizer = AutoTokenizer.from_pretrained("THUDM/glm-10b-chinese", trust_remote_code=True)
 model = AutoModelForSeq2SeqLM.from_pretrained("THUDM/glm-10b-chinese", trust_remote_code=True)
-model = model.half()
+# model = model.half()
 
 def get_tokens(target_word, row):
     # find the tokens of the target word. Usually the token will be [50002, ..., ..., ..., 50000]
@@ -50,6 +50,23 @@ def cal_prob(target_word, row):
 # sent2 = tokenizer.encode("我喜欢吃美味的食物。")
 # sent1 = tokenizer.encode("我喜欢吃恶心的食物。")
 
+def cal_backward(target_word, row):
+    post_context = row[3]
+    device = "cpu"
+    model = model.to(device)
+
+    input_ids = torch.tensor(tokenizer.encode(post_context[::-1])).unsqueeze(0).to(device)
+    # this is to create an empty map using a matrix of 0
+    perm_mask = torch.zeros((1, input_ids.shape[1], input_ids.shape[1]), dtype=torch.float).to(device)
+    # this is to put a pin on the map telling us where the <mask> is. 45542 is the token for "<".
+    mask_pos = (input_ids == 45542).nonzero()[0][-1].item()
+    perm_mask[:, :, mask_pos] = 1.0 
+    target_mapping = torch.zeros((1, 1, input_ids.shape[1]), dtype=torch.float).to(device)
+    target_mapping[0, 0, mask_pos] = 1.0
+    with torch.no_grad():
+        outputs = model(input_ids, perm_mask=perm_mask, target_mapping=target_mapping)
+    predict_logits = outputs.logits
+    
 # load the new_abbr_dict
 def load_abbr_dict():
     with open('new_abbr_dict.txt', 'r', encoding = 'utf-8') as f:
@@ -123,7 +140,7 @@ def context_pair_tokenization_checker(target_word, row):
     alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
 
     return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
-
+    
 def save_prob(output):
     with open('test_prob.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')

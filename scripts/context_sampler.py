@@ -15,6 +15,7 @@ from transformers import (
 tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
 model = AutoModelWithLMHead.from_pretrained("TsinghuaAI/CPM-Generate")
 
+new_abbr_dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
 
 # loading the new abbr dict we relied on to clean the context
 def load_dict(file):
@@ -65,7 +66,7 @@ def abbr_freq_ratio_counter(file):
             long_freq_dict[item[1]] = int(item[0])
     
     short_count_list = [short_freq_dict.get(short) for short in short_list]    
-    abbr_dict = load_dict('new_abbr_dict.txt')
+    abbr_dict = load_dict(new_abbr_dict_path)
     sorted_long_list = [abbr_dict.get(short_list[i])for i in range(len(short_list))]
     long_count_list = [long_freq_dict.get(long) for long in sorted_long_list]    
     ratio_list = [int(short_count_list[i])/int(long_count_list[i]) for i in range(len(short_count_list))]    
@@ -75,8 +76,8 @@ def abbr_freq_ratio_counter(file):
     return summary_list
 
 def abbr_screener_by_ratio(min_count, min_ratio, max_ratio):
-    summary_list = abbr_freq_ratio_counter('cleaned_abbr_freq.txt')
-    cleaned_abbr_dict = dict_in_context('new_abbr_dict.txt', 'context_cleaned.csv')
+    summary_list = abbr_freq_ratio_counter('/Users/yanting/Desktop/word_length/abbr_dict/first_mention_freq.txt')
+    cleaned_abbr_dict = dict_in_context(new_abbr_dict_path, '/Users/yanting/Desktop/word_length/data/context_cleaned_firstmention.csv')
     cleaned_abbr_dict_by_ratio = cleaned_abbr_dict.copy()
     # summary = (short_word, short_count, long_word, long_count, ratio)
     keys = [summary[0] for summary in summary_list if summary[1] > min_count if summary[3] > min_count if min_ratio < summary[4] < max_ratio]

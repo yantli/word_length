@@ -10,7 +10,7 @@ import csv
 
 # generating the dict containing all short-long word pairs
 def create_abbr_dict():
-    with open('abbr_list_full.txt', 'r', encoding = 'utf-8') as f:
+    with open('/Users/yanting/Desktop/word_length/abbr_dict/abbr_list_full.txt', 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
 
     abbr_dict = {}
@@ -41,10 +41,11 @@ def create_abbr_dict():
     
     return abbr_dict
 
+# taking in a txt file with word counts of each target word
 # generating a list of tuples for each short or long form that consists of:
 # 1) word count 2) the word itself, and 3) whether it's a short or long form 
-def create_abbr_freq():
-    with open('abbr_freq.txt', 'r', encoding = 'utf-8') as f:
+def create_abbr_freq(file):
+    with open(file, 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
 
         word_counts = []
@@ -55,9 +56,9 @@ def create_abbr_freq():
     return word_counts
         
 # checking whether both short and long form of a concept showed up in the text:
-def abbr_pair_checker():
+def abbr_pair_checker(freq_file):
     abbr_dict = create_abbr_dict()
-    word_counts = create_abbr_freq()
+    word_counts = create_abbr_freq(freq_file)
 
     # in word_counts, item[0] is the count, item[1] is the word, item[2] is whether it's long or short
     full_short_list = [item[1] for item in word_counts if item[2] == 'short']
@@ -114,8 +115,8 @@ def single_token_checker():
     return short_tokens
 
 # generating a new dict without the unpaired words:
-def update_abbr_dict(min_ratio, max_ratio):
-    summary_list = abbr_pair_checker()[4]
+def update_abbr_dict(freq_file, min_ratio, max_ratio):
+    summary_list = abbr_pair_checker(freq_file)[4]
     abbr_dict = create_abbr_dict()
     new_abbr_dict = abbr_dict.copy()
     # summary = (short_word, short_count, long_word, long_count, ratio)
