@@ -1,4 +1,4 @@
-# randomly selecting 100 word pairs to build our test file containing 1000 contexts
+# randomly selecting 100 word pairs to build our test file containing 10000 contexts
 # Yanting Li
 # 1/12/2023
 
@@ -15,7 +15,36 @@ from transformers import (
 tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
 model = AutoModelWithLMHead.from_pretrained("TsinghuaAI/CPM-Generate")
 
-new_abbr_dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
+new_abbr_dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/clue_new_abbr_dict.txt'
+
+problematic_short = ['上图', '乔峰', '二毛', '优品', '公益', 
+                    '共市', '印报', '吐纳', '工装', '成府', 
+                    '探子', '西大', '县府', '中大', '人大', 
+                    '国标', '留美', '电联', '孤寡', '家教'] 
+
+    # short_in_long =    ['效颦', '棒喝', '海货', '精油', '复关',
+    #                     '蚁防', '领台', '升幅', '阪神', '读博',
+    #                     '港人', '包商', '票选', '密报', '裂伤',
+    #                     '报备', '外贸', '放贷', '影评', '要角', 
+    #                     '内销', '葬仪', '十届', '金市', '金价', 
+    #                     '内资', '名导', '开发协会', '港警',
+    #                     '剧评', '脱贫', '港岛', '空港', '车市',
+    #                     '港大', '赛地', '军报', '三产', '办展', 
+    #                     '军代表', '植棉', '外宣', '油市',
+    #                     '产需', '还贷', '加幅', '港客', '雪联',   
+    #                     '川大', '产供', '护鸟', 
+    #                     '受教', '空运', '二产', '一监', '电站',
+    #                     '寸照', '史著', '一产', '鲜蔬', 
+    #                     '陆架', '养教', '防保', '儿麻', '体模',
+    #                     '校建', '民警', '乐评', '弹速',
+    #                     '体语', '影带', '融政', '摄制', '余资',
+    #                     '港商', '差旅', '像带', '泳技', '校企',
+    #                     '地价', '外销', '路警', '计陷', '影业',
+    #                     '持平', '话机', '息率', '耗能', '泳协',
+    #                     '泌乳', '关检', '观展', '速生', '影技',
+    #                     '要项', '名记', '影圈', '津城',
+                        
+    #                     '中央美院', '计生户', '尤杯赛', '汤杯赛',]
 
 # loading the new abbr dict we relied on to clean the context
 def load_dict(file):
@@ -54,8 +83,15 @@ def abbr_freq_ratio_counter(file):
             word_counts.append(line)
 
     # in word_counts, item[0] is the count, item[1] is the word, item[2] is whether it's long or short
-    short_list = [item[1] for item in word_counts if item[2] == 'short']
-    long_list = [item[1] for item in word_counts if item[2] == 'long']
+    shortlist = [item[1] for item in word_counts if item[2] == 'short']
+    longlist = [item[1] for item in word_counts if item[2] == 'long']
+    abbr_dict = load_dict(new_abbr_dict_path)
+    short_list = []
+    long_list = []
+    for short, long in abbr_dict.items():
+        if long in longlist and short in shortlist:
+            short_list.append(short)
+            long_list.append(long)
 
     short_freq_dict = {}
     long_freq_dict = {}
@@ -64,9 +100,8 @@ def abbr_freq_ratio_counter(file):
             short_freq_dict[item[1]] = int(item[0])
         if item[1] in long_list:
             long_freq_dict[item[1]] = int(item[0])
-    
-    short_count_list = [short_freq_dict.get(short) for short in short_list]    
-    abbr_dict = load_dict(new_abbr_dict_path)
+
+    short_count_list = [short_freq_dict.get(short) for short in short_list]
     sorted_long_list = [abbr_dict.get(short_list[i])for i in range(len(short_list))]
     long_count_list = [long_freq_dict.get(long) for long in sorted_long_list]    
     ratio_list = [int(short_count_list[i])/int(long_count_list[i]) for i in range(len(short_count_list))]    
@@ -76,8 +111,8 @@ def abbr_freq_ratio_counter(file):
     return summary_list
 
 def abbr_screener_by_ratio(min_count, min_ratio, max_ratio):
-    summary_list = abbr_freq_ratio_counter('/Users/yanting/Desktop/word_length/abbr_dict/first_mention_freq.txt')
-    cleaned_abbr_dict = dict_in_context(new_abbr_dict_path, '/Users/yanting/Desktop/word_length/data/context_cleaned_firstmention.csv')
+    summary_list = abbr_freq_ratio_counter('/Users/yanting/Desktop/word_length/abbr_dict/clue_cleaned_freq.txt')
+    cleaned_abbr_dict = dict_in_context(new_abbr_dict_path, '/Users/yanting/Desktop/word_length/data/cluecomm_context_cleaned.csv')
     cleaned_abbr_dict_by_ratio = cleaned_abbr_dict.copy()
     # summary = (short_word, short_count, long_word, long_count, ratio)
     keys = [summary[0] for summary in summary_list if summary[1] > min_count if summary[3] > min_count if min_ratio < summary[4] < max_ratio]
@@ -86,7 +121,12 @@ def abbr_screener_by_ratio(min_count, min_ratio, max_ratio):
     for key in useless_keys:
         del cleaned_abbr_dict_by_ratio[key]
     
-    return cleaned_abbr_dict_by_ratio
+    ratio_dict = {}
+    for short, long in cleaned_abbr_dict_by_ratio.items():
+        if short not in problematic_short:
+            ratio_dict[short] = long
+
+    return ratio_dict
 
 # further screen abbr by whether the tokenization of either form starts with an "8"
 def abbr_screener_by_tokenization(dict_file):
@@ -169,5 +209,5 @@ def save_context(file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    context_screener('abbr_dict_100count_vo.txt', 56, 'context_cleaned.csv', 'context_100count_vo.csv')
-    # randomized_context_picker('context_100count_newpairs.csv', 100, 'context_20000_newpairs.csv')
+    # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/abbr_dict_120count.txt', 100, '/Users/yanting/Desktop/word_length/data/context_cleaned.csv', '/Users/yanting/Desktop/word_length/data/context_120count.csv')
+    randomized_context_picker('/Users/yanting/Desktop/word_length/data/context_120count.csv', 120, '/Users/yanting/Desktop/word_length/data/context_24000_set3pairs.csv')

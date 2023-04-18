@@ -1,0 +1,3918 @@
+  48 23中 short
+  41 65中 short
+  14 第23中学 long
+  18 第65中学 long
+ 117 一产 short
+  34 一冶 short
+  76 一幼 short
+ 245 一秘 short
+ 197 一纵 short
+  19 七建 short
+  10 七纵 short
+1752 三产 short
+  13 三棉 short
+ 391 上京 short
+ 188 上博 short
+ 621 上工 short
+  20 上感 short
+ 133 上戏 short
+  54 上昆 short
+  35 上柴 short
+ 283 上港 short
+2806 上航 short
+  24 上芭 short
+ 163 上视 short
+  10 上财 short
+  47 上铁 short
+  43 上音 short
+ 307 专储 short
+ 265 专干 short
+1528 专才 short
+ 126 专控 short
+  15 专校 short
+ 174 专署 short
+2656 专责 short
+   2 世协 short
+  83 世局 short
+9509 世行 short
+34961 世贸 short
+  43 业校 short
+2696 东协 short
+1624 东汽 short
+12266 东航 short
+1884 丝路 short
+ 539 严处 short
+2499 严控 short
+  46 严斥 short
+1307 严管 short
+ 106 严罚 short
+ 309 个唱 short
+8027 个税 short
+1731 个贷 short
+6717 中大 short
+1197 中委 short
+1511 中总 short
+ 185 中戏 short
+ 785 中控 short
+1150 中直 short
+ 170 中芭 short
+ 580 中野 short
+6179 中院 short
+3399 临客 short
+  13 临屋 short
+ 238 临建 short
+   8 临快 short
+  71 临管 short
+5062 主因 short
+1134 主控 short
+ 225 主秘 short
+ 246 主险 short
+ 121 举协 short
+ 253 举发 short
+  42 举联 short
+  97 义教 short
+  71 义消 short
+ 665 乌市 short
+   1 乐疗 short
+ 175 乐评 short
+2027 乒协 short
+ 229 乒总 short
+ 168 乒联 short
+ 477 乙脑 short
+  45 乡建 short
+ 122 乡邮 short
+ 244 书家 short
+ 195 书艺 short
+   8 书赛 short
+ 311 二产 short
+  79 二商 short
+ 152 二外 short
+  23 二棉 short
+ 385 二汽 short
+ 135 二秘 short
+ 183 云大 short
+ 109 五交 short
+ 369 亚乒 short
+ 272 亚姐 short
+ 156 亚青 short
+2838 交大 short
+ 122 交委 short
+15082 交行 short
+1077 产供 short
+33321 产能 short
+16778 产销 short
+ 593 产需 short
+  17 人医 short
+115625 人大 short
+   7 人委 short
+ 149 人普 short
+10982 人武 short
+  79 人美 short
+2574 人防 short
+ 746 从商 short
+ 241 价改 short
+  28 企办 short
+  52 企务 short
+ 145 企协 short
+  13 企财 short
+  39 企银 short
+ 142 伊协 short
+  94 伊航 short
+ 140 伊阵 short
+  64 伏休 short
+6804 众院 short
+   5 优分 short
+ 425 优长 short
+   1 体事 short
+ 129 体健 short
+3722 体协 short
+ 975 体工 short
+2269 体彩 short
+3788 体校 short
+  10 体模 short
+  56 体疗 short
+1576 体院 short
+   9 余资 short
+ 450 佛协 short
+1399 作训 short
+  12 佳市 short
+   5 侗民 short
+   6 供市 short
+  45 侦处 short
+  31 侦技 short
+  29 俄商 short
+ 117 俄航 short
+ 139 俄队 short
+  38 保共 short
+ 325 保教 short
+  16 保盟 short
+ 262 保队 short
+  11 信资 short
+4305 修宪 short
+  12 修律 short
+ 126 修院 short
+ 932 债信 short
+  98 债息 short
+1761 停售 short
+   6 停捕 short
+1050 停播 short
+  10 停检 short
+ 336 健检 short
+  37 储种 short
+  92 储贷 short
+   3 僚气 short
+ 258 儿艺 short
+ 143 儿麻 short
+  30 克旗 short
+ 385 免刑 short
+  66 免诉 short
+  25 兑汇 short
+5612 党史 short
+ 876 党工 short
+12722 党建 short
+10547 党纪 short
+ 320 全委 short
+ 179 全麻 short
+  35 八办 short
+37105 公交 short
+12156 公关 short
+ 260 公判 short
+4287 公厕 short
+ 452 公审 short
+1760 公屋 short
+1371 公德 short
+  78 公意 short
+22398 公投 short
+ 138 公捕 short
+ 268 公校 short
+ 425 公铁 short
+ 104 兰铁 short
+ 382 共保 short
+ 112 共军 short
+16711 共建 short
+ 509 共治 short
+  21 共盟 short
+1022 共管 short
+1140 共荣 short
+   4 共集 short
+1484 关员 short
+  30 关检 short
+ 311 兵总 short
+   8 养教 short
+  91 内刊 short
+  11 内处 short
+ 262 内审 short
+2404 内控 short
+  28 内潜 short
+3585 内资 short
+4068 内销 short
+  50 再障 short
+1555 军体 short
+3980 军力 short
+ 103 军妓 short
+  47 军婚 short
+  10 军干 short
+3659 军情 short
+ 710 军报 short
+2598 军控 short
+ 461 军援 short
+1918 军机 short
+ 203 军检 short
+ 189 军管 short
+5218 军训 short
+ 170 军贸 short
+   8 农中 short
+ 180 农军 short
+ 357 农办 short
+ 342 农化 short
+1585 农地 short
+1349 农大 short
+ 205 农居 short
+   7 农广 short
+1904 农房 short
+4915 农技 short
+  15 农投 short
+  40 农改 short
+  35 农本 short
+ 835 农电 short
+5450 农科 short
+ 484 农经 short
+ 222 农话 short
+ 284 农贷 short
+11931 农资 short
+ 978 农运 short
+  25 农院 short
+ 502 农险 short
+  63 冰协 short
+  10 冰啤 short
+ 542 冰期 short
+  30 冰联 short
+ 202 准购 short
+2245 减亏 short
+ 623 减让 short
+ 173 减资 short
+  96 函大 short
+11168 分获 short
+5344 刑侦 short
+1031 刑庭 short
+3011 刑拘 short
+ 448 刑案 short
+ 143 刑辩 short
+ 155 刑释 short
+ 120 创演 short
+  76 创议 short
+  51 初小 short
+ 210 初教 short
+ 216 判监 short
+ 157 利废 short
+ 418 制播 short
+ 554 制程 short
+ 546 前指 short
+  21 剑校 short
+ 132 剖验 short
+ 186 剧评 short
+ 759 办展 short
+ 639 加幅 short
+ 194 加航 short
+  23 劣品 short
+ 145 动检 short
+   7 动源 short
+ 175 助查 short
+ 135 助研 short
+ 982 劳保 short
+  15 劳卫 short
+   2 劳大 short
+  66 劳技 short
+1132 劳改 short
+4161 劳教 short
+ 156 劳服 short
+7170 劳模 short
+  88 劳联 short
+  26 劳防 short
+ 179 勒赎 short
+ 547 包商 short
+  17 化废 short
+   1 化救 short
+ 945 化武 short
+ 344 北体 short
+35466 北大 short
+ 214 北展 short
+ 240 北影 short
+  60 北昆 short
+   5 北视 short
+ 137 北邮 short
+  46 区府 short
+  24 医助 short
+   8 医协 short
+1101 医大 short
+  62 医工 short
+ 336 医技 short
+ 675 医界 short
+   8 医研 short
+16118 十届 short
+ 141 协处 short
+ 188 协寻 short
+  25 协拍 short
+ 320 南侨 short
+2824 南大 short
+ 398 南师 short
+ 239 南艺 short
+ 110 南队 short
+ 212 博协 short
+1439 博导 short
+  54 卫技 short
+ 367 卫校 short
+ 450 卫片 short
+93409 印尼 short
+  81 厂校 short
+1067 厦大 short
+ 411 厨卫 short
+  33 去今 short
+   2 县干 short
+1403 县府 short
+10647 参会 short
+ 215 参拍 short
+  39 参游 short
+8324 参演 short
+  99 参编 short
+2615 参训 short
+7402 参访 short
+ 586 参试 short
+1057 参赌 short
+7455 参院 short
+5349 友协 short
+  10 反和 short
+1118 反帝 short
+5354 反战 short
+ 113 反殖 short
+ 306 发股 short
+2334 受托 short
+ 191 受教 short
+3273 受阅 short
+ 421 叙军 short
+ 277 古史 short
+2143 台企 short
+5482 台大 short
+ 125 台客 short
+  19 台市 short
+1532 台生 short
+18193 台胞 short
+  14 史展 short
+  34 史著 short
+  10 司助 short
+ 119 司训 short
+ 793 吉化 short
+ 792 吉大 short
+  86 名址 short
+ 391 名导 short
+  50 吧女 short
+  19 启导 short
+ 737 呼市 short
+2403 和约 short
+29364 和谈 short
+  24 品改 short
+ 445 哥大 short
+  62 商台 short
+ 192 商展 short
+ 150 商服 short
+1782 商检 short
+ 141 商流 short
+  17 商经 short
+ 602 商誉 short
+ 398 商贷 short
+  64 商运 short
+ 319 商银 short
+ 269 善信 short
+   4 困斗 short
+ 751 围殴 short
+23138 国企 short
+   5 国列 short
+ 460 国基 short
+ 253 国控 short
+2264 国标 short
+   1 国补 short
+2871 国贸 short
+  40 国银 short
+ 261 图博 short
+1014 土军 short
+1151 土改 short
+14654 地价 short
+ 834 地勘 short
+ 149 地埋 short
+1713 地学 short
+1774 地矿 short
+ 212 坚拒 short
+  53 垒协 short
+   8 城工 short
+ 135 城巴 short
+6097 城建 short
+ 161 城改 short
+16279 城管 short
+3507 城郊 short
+ 212 城雕 short
+ 605 基干 short
+12183 基建 short
+ 106 基材 short
+   4 基训 short
+  36 塑编 short
+59426 增幅 short
+   9 增干 short
+ 120 增招 short
+ 847 增支 short
+25793 增收 short
+1379 增税 short
+ 126 增编 short
+56941 增速 short
+  94 增销 short
+  11 墨市 short
+  35 壁饰 short
+  32 声画 short
+1116 复交 short
+ 488 复健 short
+1076 复关 short
+ 477 夏训 short
+10208 外事 short
+3593 外军 short
+2256 外宣 short
+   1 外次 short
+  71 外烟 short
+  14 外片 short
+  64 外秘 short
+2236 外空 short
+ 477 外经 short
+ 339 外航 short
+47393 外贸 short
+4936 外销 short
+  73 外院 short
+4490 外需 short
+ 150 多经 short
+ 349 大本 short
+   4 大核 short
+1587 大龄 short
+ 978 太钢 short
+   1 央航 short
+80900 央行 short
+ 424 失忆 short
+3056 奥体 short
+ 104 奥校 short
+ 695 女中 short
+ 662 女举 short
+1612 女乒 short
+21964 女单 short
+9837 女双 short
+ 136 女台 short
+3431 女团 short
+1645 女垒 short
+  69 女师 short
+2510 女曲 short
+  86 女板 short
+ 328 女柔 short
+ 678 女校 short
+  84 女泳 short
+  56 女监 short
+ 468 女花 short
+ 181 女超 short
+30244 女足 short
+  86 妇委 short
+  95 妇检 short
+1024 委办 short
+ 272 委培 short
+  30 委管 short
+2395 婉拒 short
+ 468 婚龄 short
+18773 嫌犯 short
+ 365 孔教 short
+   4 季检 short
+   7 学优 short
+  86 学具 short
+1839 学联 short
+ 244 学运 short
+ 420 学额 short
+  21 守疆 short
+26202 安保 short
+  18 安控 short
+13081 安检 short
+4888 安盟 short
+ 334 安钢 short
+  57 宋瓷 short
+  89 完中 short
+  91 完封 short
+ 506 完小 short
+ 109 官校 short
+1033 定存 short
+  12 实小 short
+ 298 实操 short
+12229 实效 short
+  94 审执 short
+  12 审期 short
+ 493 审案 short
+ 768 客量 short
+ 803 宣导 short
+1498 宣教 short
+  54 宪草 short
+  66 宪警 short
+4668 家教 short
+   3 家服 short
+1555 家财 short
+ 185 密报 short
+   5 寸照 short
+  34 射联 short
+  11 射距 short
+1205 小巴 short
+   6 少体 short
+   1 少足 short
+ 541 尤杯 short
+  80 尸表 short
+  36 尸解 short
+1140 尼共 short
+  32 尼大 short
+  19 尿感 short
+1311 尿检 short
+4346 局地 short
+  18 局麻 short
+  18 届退 short
+12185 展馆 short
+   2 岗培 short
+  51 岸炮 short
+  18 崇美 short
+ 766 川大 short
+  15 川府 short
+ 587 川航 short
+2906 巡展 short
+ 393 巡讲 short
+   1 工产 short
+  25 工企 short
+ 770 工体 short
+  75 工厦 short
+ 985 工大 short
+   3 工属 short
+ 196 工总 short
+  23 工改 short
+ 633 工效 short
+2692 工时 short
+  35 工疗 short
+   4 工纠 short
+  77 工经 short
+ 375 工美 short
+   1 工调 short
+7107 巨资 short
+ 136 巴盟 short
+  64 巴航 short
+1415 市况 short
+  50 市办 short
+ 157 市务 short
+   1 市宫 short
+ 180 市经 short
+ 232 市队 short
+ 522 师专 short
+ 226 师友 short
+ 141 师培 short
+2649 师大 short
+ 422 师院 short
+   9 帮理 short
+ 159 帮贫 short
+   5 干教 short
+  53 干管 short
+ 457 平叛 short
+ 477 平摊 short
+   1 幼专 short
+ 189 幼托 short
+   1 广协 short
+ 325 广府 short
+  23 广涉 short
+  39 应化 short
+ 283 庭期 short
+  23 建协 short
+ 417 建商 short
+ 506 建外 short
+2710 建工 short
+18628 建材 short
+  44 建照 short
+ 514 建管 short
+   4 建署 short
+ 150 建陶 short
+7999 开行 short
+1670 引智 short
+4544 引资 short
+  69 强迁 short
+4799 强震 short
+  19 录干 short
+ 517 彩印 short
+  80 彩卷 short
+   3 彩影 short
+  18 彩报 short
+ 325 彩照 short
+ 353 彩超 short
+1252 影业 short
+  29 影圈 short
+ 764 影带 short
+4308 影星 short
+  91 影本 short
+1740 影评 short
+  18 影赛 short
+  21 影馆 short
+  51 征期 short
+ 684 律协 short
+  52 律考 short
+  62 心搏 short
+ 344 心梗 short
+ 160 心防 short
+ 629 总台 short
+ 688 息率 short
+ 253 意航 short
+   2 戏研 short
+ 307 成教 short
+  14 成棒 short
+ 364 成飞 short
+ 304 战训 short
+ 933 户政 short
+  16 房津 short
+  17 手协 short
+  32 手拖 short
+ 605 打私 short
+ 561 打防 short
+1423 执纪 short
+2923 扩招 short
+  17 扩校 short
+  80 扩灌 short
+  21 扩红 short
+  83 扩销 short
+3980 扫盲 short
+  69 扬大 short
+ 678 扶残 short
+  20 批价 short
+   7 批供 short
+ 116 批建 short
+3322 批捕 short
+ 373 技协 short
+8008 技改 short
+2017 技校 short
+  10 技联 short
+ 535 投建 short
+1068 投运 short
+15439 抗战 short
+   1 抗改 short
+  50 抛股 short
+   7 护产 short
+ 314 护校 short
+ 275 护鸟 short
+1164 报备 short
+ 914 抬价 short
+  70 抽佣 short
+39854 拉美 short
+ 721 拒付 short
+  88 拒批 short
+1962 拒收 short
+  34 拖厂 short
+  22 拘审 short
+  61 招委 short
+  82 招干 short
+  32 招教 short
+  98 招选 short
+ 591 招飞 short
+ 273 拥吻 short
+ 273 拥塞 short
+  85 拳协 short
+   2 拳总 short
+ 397 拳赛 short
+  62 损农 short
+  16 损减 short
+ 112 换俘 short
+   5 掌珠 short
+  54 掌理 short
+ 653 排协 short
+ 645 排管 short
+ 167 排联 short
+ 436 探空 short
+  46 控亏 short
+   2 控会 short
+ 204 控区 short
+  59 控污 short
+ 187 控温 short
+ 224 控申 short
+ 100 控购 short
+ 224 推普 short
+  94 握别 short
+4623 援藏 short
+  49 搜毒 short
+1189 搜证 short
+  19 携械 short
+ 384 摄协 short
+1995 摘金 short
+  71 摩协 short
+1236 摩步 short
+  10 摩联 short
+  31 摩配 short
+  28 擅设 short
+  25 支乡 short
+2385 支书 short
+   1 支扩 short
+   6 支现 short
+ 670 支边 short
+  75 支铁 short
+ 236 收审 short
+  37 收教 short
+   8 收证 short
+   6 改危 short
+  60 放私 short
+7544 放贷 short
+ 306 政争 short
+ 383 政团 short
+  28 政圈 short
+4604 政工 short
+  10 政技 short
+   4 政指 short
+1947 政改 short
+ 180 政校 short
+  28 政训 short
+ 877 政院 short
+ 325 救孤 short
+  58 教办 short
+ 133 教卫 short
+  46 教参 short
+   4 教德 short
+  68 教文 short
+6194 教研 short
+ 244 教院 short
+  71 数显 short
+ 189 整党 short
+  66 整纪 short
+1928 文保 short
+2059 文娱 short
+ 892 文摘 short
+   2 文改 short
+6467 文教 short
+   4 文班 short
+   6 料耗 short
+1631 断交 short
+ 134 新例 short
+  10 新协 short
+3038 新地 short
+4700 新航 short
+  41 方尺 short
+12694 施压 short
+   5 施才 short
+ 205 施袭 short
+   9 旅专 short
+1264 旅团 short
+ 601 旅展 short
+2111 无照 short
+  12 日俘 short
+ 332 日皇 short
+1706 日航 short
+   5 日贷 short
+  22 日铁 short
+ 645 日银 short
+1164 早教 short
+  19 时控 short
+  20 时流 short
+6416 时空 short
+3820 时评 short
+7525 时限 short
+  48 昆腔 short
+ 146 星战 short
+ 351 星箭 short
+   9 春招 short
+ 348 春管 short
+  73 春考 short
+   3 显外 short
+ 379 显效 short
+  15 晤商 short
+   7 普中 short
+ 948 普九 short
+  75 普六 short
+  19 普内 short
+  20 普初 short
+  39 普客 short
+ 659 普工 short
+ 318 普教 short
+  13 普种 short
+  32 普获 short
+  62 普训 short
+ 297 普高 short
+  33 景瓷 short
+ 259 智残 short
+ 594 暨大 short
+ 127 曲联 short
+1338 月入 short
+3257 月均 short
+ 192 朝军 short
+ 381 期市 short
+ 471 机修 short
+   3 机校 short
+  33 机译 short
+  21 机院 short
+ 222 村企 short
+   1 村助 short
+15410 村委 short
+ 125 杜诗 short
+  21 杞忧 short
+  60 杭大 short
+  23 林型 short
+ 256 林大 short
+  46 林校 short
+  80 枪匪 short
+ 514 标售 short
+  42 标样 short
+ 836 标煤 short
+  22 校建 short
+   7 校护 short
+ 195 校纪 short
+ 213 桥联 short
+ 146 检法 short
+  68 棉产 short
+  17 棉办 short
+  43 棉检 short
+  39 棉站 short
+ 275 棉织 short
+  70 棒协 short
+1309 森工 short
+ 617 森警 short
+ 197 森防 short
+1403 植保 short
+   9 植化 short
+ 110 植检 short
+ 922 植棉 short
+ 165 楼按 short
+  44 横联 short
+  88 欧币 short
+  24 欧市 short
+  56 欧行 short
+ 677 欧陆 short
+  15 欧鳗 short
+1803 正选 short
+  50 步校 short
+  25 步炮 short
+ 485 武协 short
+5185 武大 short
+   5 武委 short
+  29 武星 short
+ 568 武联 short
+  24 残协 short
+ 239 残部 short
+  30 毛著 short
+ 217 毛选 short
+3054 民乐 short
+   9 民促 short
+ 618 民初 short
+ 935 民委 short
+  98 民庭 short
+  18 民改 short
+  24 民曲 short
+ 217 民诉 short
+ 292 民谚 short
+ 180 民贸 short
+  89 民院 short
+  11 氧割 short
+ 812 水保 short
+4724 水运 short
+ 312 汉译 short
+ 729 汤杯 short
+ 382 汽摩 short
+ 140 汽渡 short
+ 205 汽贸 short
+1015 汽配 short
+  16 沈后 short
+ 441 沈大 short
+ 370 沈铁 short
+ 342 沙俄 short
+   3 沪办 short
+  32 河界 short
+ 339 油国 short
+ 871 油市 short
+  44 油建 short
+ 907 治保 short
+ 101 治则 short
+ 156 治太 short
+   2 治整 short
+3752 治污 short
+1552 治淮 short
+  25 治贪 short
+ 462 治黄 short
+ 120 泌乳 short
+1494 波幅 short
+ 376 泳协 short
+ 278 泳手 short
+  51 泳技 short
+ 111 泳联 short
+ 295 津城 short
+  60 津沽 short
+   1 津百 short
+  18 派红 short
+ 608 流脑 short
+   5 流资 short
+  17 济铁 short
+2038 浙大 short
+  17 浙昆 short
+   1 海俱 short
+  39 海司 short
+  51 海校 short
+  71 海模 short
+ 188 海测 short
+ 112 海科 short
+  20 海练 short
+ 947 海缆 short
+   9 海院 short
+  13 消联 short
+  13 涉政 short
+  89 涉老 short
+ 223 深大 short
+  46 深弹 short
+  41 深房 short
+  50 清债 short
+ 167 清大 short
+   1 清档 short
+  50 清财 short
+  10 渔技 short
+  42 渔捞 short
+ 331 温控 short
+19101 港人 short
+2517 港大 short
+ 719 港姐 short
+ 335 港客 short
+2864 港岛 short
+8853 港府 short
+ 110 港报 short
+ 280 港片 short
+ 271 港监 short
+15406 港股 short
+ 198 港警 short
+ 147 游将 short
+   7 湿控 short
+ 303 滞港 short
+ 732 滥权 short
+  52 演词 short
+ 292 潜亏 short
+  44 澳姐 short
+ 885 激辩 short
+ 265 炮团 short
+  21 炮指 short
+  48 炮校 short
+1488 烈属 short
+ 153 热作 short
+ 167 热工 short
+  16 煤科 short
+ 351 煤质 short
+  86 燕大 short
+  31 版协 short
+  37 牌告 short
+1097 牙防 short
+ 697 物探 short
+ 436 物耗 short
+17003 特使 short
+10870 特困 short
+ 586 特委 short
+1194 特批 short
+ 328 特支 short
+ 656 特训 short
+1055 特需 short
+   1 犯属 short
+  70 狱务 short
+  50 玉烟 short
+140918 环保 short
+7125 环卫 short
+ 209 环发 short
+  14 环情 short
+ 435 现值 short
+1524 现况 short
+  74 现势 short
+ 175 玻纤 short
+  55 珠影 short
+   9 班厦 short
+   1 球卡 short
+ 163 瑞航 short
+ 585 瑞郎 short
+  11 瓶啤 short
+5993 生化 short
+ 133 生资 short
+ 821 田管 short
+ 210 甲减 short
+  29 申装 short
+1625 电业 short
+  16 电修 short
+ 926 电大 short
+ 211 电建 short
+  86 电感 short
+ 858 电教 short
+ 246 电算 short
+ 187 电联 short
+  61 电镜 short
+  11 电院 short
+ 856 男乒 short
+19025 男单 short
+8235 男双 short
+ 532 男曲 short
+  42 男板 short
+ 959 男网 short
+ 485 男花 short
+  69 画艺 short
+1301 留美 short
+  22 痕检 short
+   2 登联 short
+1562 监委 short
+  17 监检 short
+  33 监销 short
+ 138 盒带 short
+  24 盲协 short
+ 279 盲校 short
+ 173 盲流 short
+  52 直客 short
+ 105 直资 short
+  90 省医 short
+10910 督查 short
+2228 知青 short
+  46 短网 short
+ 144 矿大 short
+70892 研发 short
+  11 研审 short
+ 412 研考 short
+  62 硕导 short
+  77 磨耗 short
+25364 社保 short
+  72 社党 short
+  47 社店 short
+ 553 社教 short
+  44 社盟 short
+11476 社科 short
+ 538 社署 short
+3022 社群 short
+  31 社青 short
+2310 票选 short
+  51 祭仪 short
+  80 禁产 short
+  54 禁映 short
+2724 禁用 short
+  13 禁登 short
+  31 禁销 short
+  75 福铁 short
+1709 私企 short
+ 653 私宅 short
+ 277 私烟 short
+  24 私物 short
+  22 私财 short
+ 150 科仪 short
+3823 科协 short
+ 113 科国 short
+132269 科研 short
+6371 科考 short
+ 110 科艺 short
+7783 税制 short
+  15 税干 short
+  12 税检 short
+  85 税警 short
+  34 空司 short
+1907 空战 short
+ 350 空政 short
+2690 空港 short
+  58 空爆 short
+   4 空距 short
+8753 空运 short
+ 413 突审 short
+  45 立审 short
+   5 立局 short
+ 738 童军 short
+1265 童装 short
+11627 筹资 short
+ 214 管养 short
+ 198 管城 short
+10127 管委 short
+2452 管护 short
+ 184 管输 short
+2804 篮协 short
+ 255 篮总 short
+  99 篮联 short
+ 244 篮赛 short
+   5 粪管 short
+8763 粮价 short
+ 215 粮援 short
+  13 粮播 short
+ 530 粮改 short
+ 216 粮经 short
+ 127 粮菜 short
+  61 粮贸 short
+ 173 精研 short
+  37 索费 short
+5820 纠风 short
+   2 红属 short
+ 512 红高 short
+  60 纪监 short
+   6 纯善 short
+ 913 纳指 short
+ 122 纺企 short
+ 623 纺机 short
+ 886 组工 short
+ 529 组派 short
+2579 组训 short
+  48 组设 short
+  11 绍酒 short
+4790 经合 short
+1399 经委 short
+1580 经建 short
+   7 经技 short
+ 522 经援 short
+ 123 经改 short
+  91 经研 short
+1583 经管 short
+ 503 经院 short
+  30 结防 short
+ 119 统供 short
+ 792 统分 short
+7517 统战 short
+ 491 统招 short
+  39 统整 short
+ 154 统检 short
+ 102 统测 short
+  69 统算 short
+ 827 统管 short
+  11 绥署 short
+ 509 续任 short
+  66 续演 short
+   4 续贬 short
+  10 续降 short
+ 288 维园 short
+1125 维港 short
+  75 综保 short
+ 273 绿带 short
+  67 编务 short
+ 127 编采 short
+ 435 网协 short
+ 150 网膜 short
+ 111 罗政 short
+   7 罪因 short
+ 624 美协 short
+ 617 美展 short
+ 420 美工 short
+   6 美校 short
+ 125 美编 short
+ 311 美航 short
+ 971 美院 short
+ 258 群工 short
+ 152 群文 short
+  28 群管 short
+ 557 羽协 short
+ 263 羽总 short
+  33 老协 short
+ 738 考纪 short
+ 258 考纲 short
+   5 考规 short
+   9 耶教 short
+  74 聋校 short
+ 211 职中 short
+  60 职大 short
+  46 职安 short
+ 702 职总 short
+  11 职改 short
+1076 职校 short
+2119 职棒 short
+  17 职灾 short
+   2 职评 short
+ 834 职高 short
+1044 联保 short
+ 570 联共 short
+ 211 联招 short
+ 124 联校 short
+ 110 联汇 short
+ 787 联航 short
+ 305 联试 short
+ 172 联贷 short
+ 286 聚赌 short
+  57 肌注 short
+44257 股价 short
+ 160 股值 short
+ 156 育乐 short
+ 114 胆石 short
+ 124 胸透 short
+   6 能委 short
+14418 能耗 short
+ 219 脊灰 short
+  95 脑体 short
+15965 脱贫 short
+3015 脱险 short
+  24 腰穿 short
+  94 自协 short
+24051 自民 short
+  44 自研 short
+ 238 自防 short
+ 120 舞协 short
+   5 舞师 short
+  51 舞星 short
+  89 舞校 short
+1745 舞美 short
+  49 航图 short
+ 516 航校 short
+13803 航母 short
+  10 航联 short
+ 109 航院 short
+  78 舰院 short
+1224 艰困 short
+  12 艺创 short
+   2 艺协 short
+  99 艺大 short
+ 106 艺展 short
+ 975 艺文 short
+ 359 艺校 short
+   2 艺院 short
+ 195 节市 short
+2112 节支 short
+16847 节水 short
+  90 节汇 short
+2596 节电 short
+  15 节耗 short
+  73 节资 short
+  29 花协 short
+1541 花市 short
+ 249 苏杭 short
+ 407 苏绣 short
+  13 苦研 short
+1944 英航 short
+ 437 荣军 short
+  20 药化 short
+5534 药监 short
+  84 莎剧 short
+3202 莫大 short
+  77 菊展 short
+  38 菌痢 short
+ 382 菲航 short
+5516 营收 short
+ 221 葬仪 short
+1282 蔬果 short
+2088 虫草 short
+ 858 血检 short
+ 606 血防 short
+ 122 行止 short
+ 168 行管 short
+ 342 街办 short
+  13 街委 short
+  26 街居 short
+ 199 街总 short
+  25 补校 short
+ 611 补税 short
+   2 表抗 short
+1922 袭警 short
+ 236 裂伤 short
+ 198 西画 short
+ 136 西航 short
+1135 西语 short
+ 555 要角 short
+  53 要项 short
+ 953 观展 short
+2941 观赛 short
+1491 规管 short
+  51 视协 short
+  48 解纷 short
+ 233 触法 short
+ 413 警号 short
+ 637 警校 short
+2566 警署 short
+  10 计免 short
+   6 计办 short
+9396 计生 short
+  12 订颁 short
+ 953 议联 short
+  26 设陷 short
+ 941 访京 short
+  12 访摄 short
+ 345 访查 short
+ 119 访演 short
+1711 评优 short
+1231 评先 short
+  12 评文 short
+  37 评模 short
+  24 评职 short
+  75 诉案 short
+ 140 译协 short
+ 538 话机 short
+ 131 语委 short
+   2 语工 short
+ 143 语训 short
+ 480 读博 short
+ 127 调温 short
+55041 调研 short
+ 130 调资 short
+ 200 财困 short
+9236 财年 short
+  19 财校 short
+ 267 财相 short
+1826 财金 short
+13950 财长 short
+ 299 责编 short
+ 235 败因 short
+ 345 货代 short
+  63 货检 short
+  26 货管 short
+ 919 质保 short
+ 139 质控 short
+   1 质标 short
+4952 质监 short
+  53 贪案 short
+ 157 贪贿 short
+ 204 购股 short
+2093 贸工 short
+   5 费负 short
+ 621 赛地 short
+ 478 赛项 short
+  62 赛题 short
+ 786 赤几 short
+ 814 超模 short
+4589 越战 short
+32310 足协 short
+ 264 足校 short
+4703 跌势 short
+ 527 路局 short
+  20 路警 short
+ 167 跳雪 short
+ 883 车况 short
+23076 车市 short
+2213 车管 short
+  11 转风 short
+  83 轮涨 short
+ 182 软网 short
+ 577 轻卡 short
+  15 轻汽 short
+  11 轻轿 short
+1149 边城 short
+6276 边检 short
+5341 边贸 short
+  46 辽吉 short
+ 102 辽大 short
+1728 辽沈 short
+ 105 迎检 short
+ 831 运毒 short
+1354 运管 short
+1624 运能 short
+  13 运贸 short
+ 289 运距 short
+  36 运邮 short
+6849 还贷 short
+  53 远教 short
+2160 违宪 short
+  94 违诺 short
+  58 退管 short
+  31 退约 short
+  87 速测 short
+10591 速滑 short
+ 320 速算 short
+  34 道协 short
+ 652 邮储 short
+  16 邮协 short
+   3 邮工 short
+ 437 邮市 short
+ 310 邮费 short
+ 191 邮运 short
+ 375 酒钢 short
+ 694 采供 short
+ 108 采标 short
+1406 重审 short
+ 331 重教 short
+ 210 重百 short
+13011 金价 short
+ 770 金市 short
+ 163 金贸 short
+2628 金饰 short
+  20 针麻 short
+  21 钓协 short
+ 202 钢研 short
+  20 钢院 short
+1990 钱江 short
+  42 铁中 short
+  11 铁总 short
+  54 铅排 short
+   2 银系 short
+ 191 销势 short
+ 210 锡盟 short
+  20 镇反 short
+  28 长委 short
+ 532 长影 short
+   8 长服 short
+   5 长汽 short
+  87 长管 short
+ 798 长航 short
+ 792 长话 short
+ 198 长输 short
+  45 间选 short
+ 161 防保 short
+ 943 防台 short
+ 429 防指 short
+  29 防疟 short
+ 278 防贪 short
+8576 阿盟 short
+ 146 阿航 short
+ 399 阿语 short
+2911 附中 short
+ 652 附小 short
+1015 附院 short
+ 105 陆架 short
+  13 陆校 short
+   5 陆积 short
+1781 陆航 short
+  34 降损 short
+  15 陕公 short
+  30 陶研 short
+1608 陶艺 short
+  47 雕艺 short
+ 353 雪联 short
+  30 青保 short
+ 110 青协 short
+   6 青妇 short
+1103 青工 short
+ 319 青训 short
+  49 静息 short
+  25 静点 short
+3945 非统 short
+1274 非行 short
+ 222 韩商 short
+  41 韩食 short
+ 190 音协 short
+ 593 音效 short
+   2 音教 short
+ 129 顾委 short
+13165 领馆 short
+ 586 飞安 short
+   3 飞运 short
+   8 食协 short
+ 752 食油 short
+  17 食监 short
+  63 餐旅 short
+   8 餐营 short
+  79 饮服 short
+ 174 首体 short
+  59 首图 short
+  32 首拍 short
+ 309 首旅 short
+3062 首演 short
+2081 马岛 short
+ 588 马盟 short
+3312 马约 short
+ 366 马航 short
+1378 驾机 short
+3638 驾照 short
+ 629 高专 short
+ 622 高工 short
+ 245 高师 short
+ 434 高干 short
+1292 高息 short
+  14 高护 short
+2197 高检 short
+ 282 高知 short
+17715 高铁 short
+6923 高院 short
+   8 鲁博 short
+ 222 鲁艺 short
+  22 鲜蔬 short
+  46 黄带 short
+ 769 黄陵 short
+  52 彩色B超 long
+4919 书法家 long
+25900 众议院 long
+ 794 修道院 long
+  82 农转居 long
+ 162 利息率 long
+ 466 动力源 long
+ 489 医疗界 long
+28478 参议院 long
+  68 大年龄 long
+1487 大陆架 long
+  59 天津城 long
+3950 嫌疑犯 long
+6304 客流量 long
+1255 尤伯杯 long
+3950 展览馆 long
+1517 建筑商 long
+2205 录影带 long
+  33 征收期 long
+4366 承包商 long
+3061 控制区 long
+ 217 撕裂伤 long
+ 104 文科班 long
+1501 新条例 long
+5516 旅行团 long
+ 247 无牌照 long
+  26 昆山腔 long
+ 398 林学院 long
+3410 标准煤 long
+ 804 棉纺织 long
+  11 欧洲鳗 long
+ 275 海岸炮 long
+  42 演说词 long
+1663 炮兵团 long
+ 301 球员卡 long
+1963 电影业 long
+ 234 电影圈 long
+  61 电影馆 long
+1677 电话机 long
+1528 立法局 long
+ 399 童子军 long
+10718 第十届 long
+2275 篮球赛 long
+  95 绍兴酒 long
+  11 耶稣教 long
+  25 联盟体 long
+  76 航空图 long
+1041 航空港 long
+ 209 西洋画 long
+1655 视网膜 long
+ 629 警察署 long
+1875 诉讼案 long
+  60 财政相 long
+1895 钱塘江 long
+8466 铁路局 long
+1582 银河系 long
+5770 领事馆 long
+10630 香港人 long
+ 415 香港岛 long
+1621 黄帝陵 long
+ 128 一战后 short
+  31 一机厂 short
+ 170 一机部 short
+  12 一棉厂 short
+  71 一炼钢 short
+  28 一附中 short
+  83 七机部 short
+1969 七运会 short
+  42 三机部 short
+  65 上交会 short
+1851 上交所 short
+  97 上师大 short
+  30 下议员 short
+ 359 世俱杯 short
+ 118 世俱赛 short
+  80 世经所 short
+ 105 世羽赛 short
+ 285 世运会 short
+43907 世锦赛 short
+3244 世青赛 short
+2057 业委会 short
+5843 个体户 short
+  29 个调税 short
+ 182 中东社 short
+  52 中心馆 short
+4867 中纪委 short
+ 245 中评委 short
+  22 中财委 short
+ 231 中运会 short
+ 109 临委会 short
+1550 临管会 short
+   6 主研人 short
+  65 二医大 short
+  54 二十中 short
+  26 二商局 short
+  96 二机部 short
+ 101 二炼钢 short
+  99 二轻局 short
+ 378 五一节 short
+  35 五四三 short
+ 125 五城会 short
+  51 亚举联 short
+ 253 亚俱杯 short
+5006 亚冬会 short
+ 163 亚排联 short
+  33 亚武联 short
+  29 亚田联 short
+  11 亚网联 short
+  20 亚羽联 short
+5528 亚锦赛 short
+ 858 亚青赛 short
+  19 交咨会 short
+ 605 交通量 short
+ 350 产加销 short
+  69 人劳局 short
+ 284 人口所 short
+  11 人教司 short
+ 168 人教社 short
+  19 仓管员 short
+   9 代总长 short
+  31 企管处 short
+  25 企管部 short
+ 373 伊通社 short
+  80 体改司 short
+ 130 作代会 short
+7351 俄联邦 short
+  59 保监处 short
+ 613 儿基会 short
+ 265 光机所 short
+  28 光电所 short
+1072 全代会 short
+ 188 全教会 short
+ 162 公平会 short
+  83 公惩会 short
+ 249 公用局 short
+  22 六机部 short
+ 118 六运会 short
+  68 共享税 short
+ 479 关工委 short
+1775 军代表 short
+  31 军停会 short
+ 199 军管会 short
+  23 军转干 short
+  35 军需所 short
+ 450 农函大 short
+  93 农工委 short
+ 169 农广校 short
+  60 农技协 short
+  47 农用电 short
+  18 农研室 short
+  19 农研所 short
+   7 农职校 short
+ 281 农调队 short
+ 236 农高会 short
+  78 冬交会 short
+  23 冶金所 short
+ 130 刑警局 short
+ 240 制博会 short
+  11 前委会 short
+1836 副主委 short
+  66 加榴炮 short
+ 123 动物所 short
+  16 助审员 short
+  17 劳保所 short
+  47 劳技课 short
+2085 北师大 short
+  24 区计委 short
+  67 医委会 short
+  93 医科院 short
+  12 医管会 short
+  72 十五中 short
+ 301 华师大 short
+2503 南共体 short
+  14 南农大 short
+  18 南华会 short
+  13 南工团 short
+ 549 厂商会 short
+  26 叙通社 short
+  69 古丝路 short
+  93 史语所 short
+ 734 合同工 short
+ 128 哈军工 short
+ 308 哈医大 short
+1442 商交所 short
+1058 商标权 short
+ 135 四城会 short
+  15 四机部 short
+2394 国开行 short
+  10 国新社 short
+3708 国税局 short
+ 200 国统区 short
+  28 地导弹 short
+  68 地球所 short
+ 302 地矿局 short
+  22 地科院 short
+  34 城工部 short
+  95 城管办 short
+ 199 城调队 short
+ 426 基民党 short
+ 319 基社盟 short
+  37 墨通社 short
+  47 声学所 short
+ 120 夏奥会 short
+ 414 外文局 short
+2280 外汇局 short
+11183 外经贸 short
+  21 外联处 short
+ 168 外联部 short
+ 396 外贸部 short
+  22 大三生 short
+  54 大体协 short
+  22 天影厂 short
+ 195 天民党 short
+ 249 妇代会 short
+ 496 妇女会 short
+ 132 妇委会 short
+  29 妇工委 short
+  56 妇救会 short
+  20 学代会 short
+ 167 学工部 short
+ 168 学平险 short
+  28 安保员 short
+ 333 安保部 short
+  51 安医大 short
+ 310 安委办 short
+ 489 安莎社 short
+ 127 实控线 short
+ 155 宣教部 short
+  28 家教会 short
+  86 家计会 short
+  45 少儿社 short
+ 161 尤杯赛 short
+9336 居委会 short
+ 101 展交会 short
+ 190 展洽会 short
+ 159 工业所 short
+ 480 工博会 short
+ 340 工展会 short
+ 262 工研院 short
+ 342 市交委 short
+ 160 市商委 short
+ 496 市容委 short
+  98 市运会 short
+ 270 年运量 short
+ 454 广电部 short
+ 212 广管局 short
+  38 库管员 short
+  83 应化所 short
+  11 建机厂 short
+1081 开发署 short
+ 441 心内科 short
+ 306 心外科 short
+6103 总工会 short
+  24 戏文系 short
+  28 技物所 short
+2675 投洽会 short
+ 308 政研室 short
+  97 教科所 short
+ 292 教科院 short
+  18 教统会 short
+  87 教联会 short
+ 141 数学所 short
+   6 文卫体 short
+  17 文工会 short
+  54 文管办 short
+2484 文艺界 short
+4326 无人机 short
+  81 无核国 short
+4247 日用品 short
+   8 日经联 short
+ 374 时事社 short
+  24 昆虫所 short
+  25 智能所 short
+  43 曲作家 short
+  32 有机所 short
+2346 朝中社 short
+  15 未保委 short
+  17 机械委 short
+ 114 机电署 short
+ 533 机电部 short
+  16 林机厂 short
+  11 林研所 short
+  89 林科所 short
+ 199 林科院 short
+ 270 林管局 short
+  57 校委会 short
+ 344 校董会 short
+  68 校运会 short
+  10 核研所 short
+  16 梅剧团 short
+ 226 植物所 short
+ 205 欧空局 short
+1218 欧航局 short
+  18 残奥运 short
+  66 残工委 short
+ 145 民宗委 short
+ 145 民族宫 short
+ 187 民管会 short
+ 274 民自党 short
+ 730 民运会 short
+  50 水电大 short
+  82 水科院 short
+  20 污控司 short
+ 188 汤杯赛 short
+ 314 汽修厂 short
+ 373 法学所 short
+1262 法工委 short
+  40 法改会 short
+  27 海委会 short
+  82 海洋所 short
+  26 海监局 short
+  58 消保会 short
+  26 消保法 short
+4950 深交所 short
+1915 港澳办 short
+  47 澳督府 short
+  12 激光所 short
+ 232 火电站 short
+  23 煤化所 short
+  19 煤机厂 short
+ 461 煤炭部 short
+  79 煤管局 short
+ 288 牡丹卡 short
+  69 物交会 short
+ 346 物理所 short
+ 131 特教班 short
+3111 环保部 short
+ 211 环委会 short
+  34 环科所 short
+  50 瓦检员 short
+ 118 生物所 short
+  34 电子局 short
+  44 白兰花 short
+ 121 直机关 short
+ 376 省防指 short
+ 167 短训班 short
+  43 石化厅 short
+  16 矿机厂 short
+  90 矿管局 short
+ 488 社保费 short
+  17 社劳青 short
+  48 社科司 short
+  50 社科系 short
+  10 科委会 short
+   2 科技社 short
+2997 科考队 short
+ 166 空压机 short
+  21 红中社 short
+  19 约通社 short
+ 112 纪委会 short
+ 979 纪检委 short
+ 257 纺织部 short
+  14 组宣部 short
+  25 组工会 short
+  35 经协办 short
+ 327 经团联 short
+  85 经济庭 short
+  15 经联会 short
+  39 经联社 short
+7678 经适房 short
+ 253 群艺馆 short
+  12 老体协 short
+  32 老慢支 short
+ 581 老龄委 short
+  55 职高生 short
+ 858 联交所 short
+1113 联储局 short
+1919 联委会 short
+  95 联汇制 short
+  40 自动线 short
+ 141 自控力 short
+8631 自贸区 short
+1366 花博会 short
+ 118 药物所 short
+ 120 菲央行 short
+ 103 葡共体 short
+ 144 蒙通社 short
+ 302 行政庭 short
+ 135 裁委会 short
+   7 西农大 short
+ 100 西工大 short
+  99 规土局 short
+  72 解阵党 short
+ 106 计生户 short
+ 268 计经委 short
+  21 计财司 short
+  86 计财处 short
+  24 计财部 short
+  65 计量局 short
+3888 证交所 short
+  58 证交税 short
+  40 证管办 short
+ 113 语言所 short
+  70 调解会 short
+ 407 财委会 short
+1487 财经委 short
+   8 质管部 short
+  63 软交会 short
+  86 软件所 short
+3935 边检站 short
+  37 过境税 short
+  23 运管费 short
+  33 近物所 short
+  18 退管会 short
+ 110 遗传所 short
+ 539 金交所 short
+  52 金属所 short
+4421 金管局 short
+ 309 铁一局 short
+  70 铁一院 short
+  70 铁三局 short
+  94 铁三院 short
+  57 铁二院 short
+ 158 铁五局 short
+  94 铁四局 short
+  83 铁四院 short
+  16 长二丙 short
+ 167 长城卡 short
+   2 长话线 short
+ 255 长防林 short
+  16 防总办 short
+   1 院党办 short
+  74 集游法 short
+  22 青企协 short
+ 161 青少部 short
+  50 青工部 short
+  36 青干班 short
+  18 青运史 short
+  28 非工统 short
+  23 领海权 short
+1282 飞行队 short
+ 195 首师大 short
+  67 高公局 short
+  15 高教委 short
+  50 高研班 short
+ 114 高能所 short
+ 245 黄委会 short
+  31 一寸照片 long
+ 339 一等秘书 long
+1664 上海工业 long
+ 230 下放权力 long
+ 695 下跌趋势 long
+5801 专业人才 long
+ 502 专员公署 long
+ 869 专科学校 long
+ 189 专职干部 long
+3495 专门负责 long
+ 184 专项储备 long
+  35 专项控制 long
+ 733 世界局势 long
+5208 世界贸易 long
+22857 世界银行 long
+ 139 业余学校 long
+9625 丝绸之路 long
+  86 严厉斥责 long
+11979 严格控制 long
+3666 严格管理 long
+8680 严肃处理 long
+  83 严肃处罚 long
+1695 个人贷款 long
+9913 中央委员 long
+ 356 中央控制 long
+18020 中央银行 long
+5507 中山大学 long
+ 402 临时建筑 long
+  19 临时快车 long
+  73 临时房屋 long
+ 912 临时管理 long
+ 337 主任秘书 long
+  82 主要保险 long
+42403 主要原因 long
+ 259 主要控制 long
+ 698 举办展览 long
+ 563 举重协会 long
+30465 义务教育 long
+ 216 乙型脑炎 long
+ 281 乡村建设 long
+  37 乡村邮递 long
+ 165 书法比赛 long
+1844 书法艺术 long
+ 144 二等秘书 long
+1075 云南大学 long
+ 135 五金交电 long
+ 214 亚洲小姐 long
+1137 亚洲青年 long
+ 159 交换俘虏 long
+1742 交通大学 long
+1301 交通流量 long
+7286 交通银行 long
+ 124 人体模型 long
+8746 人口普查 long
+16348 人民医院 long
+1766 人民武装 long
+ 867 人民防空 long
+ 578 从事商业 long
+3224 价格改革 long
+ 104 企业事务 long
+ 388 企业财产 long
+ 216 企业银行 long
+ 517 伏季休渔 long
+  64 优先分配 long
+  16 会晤协商 long
+  45 体育医疗 long
+2313 体育协会 long
+ 368 体育娱乐 long
+ 383 体育学校 long
+2360 体育学院 long
+2315 体育工作 long
+1852 体育彩票 long
+4604 体育赛事 long
+1093 佛教协会 long
+ 965 作战训练 long
+1012 佳木斯市 long
+  17 例行检验 long
+  25 侗族人民 long
+ 504 供应市场 long
+  58 侦察技术 long
+  20 侦查处理 long
+  34 俄国家队 long
+ 112 保护财产 long
+ 408 保护鸟类 long
+ 110 保育教育 long
+ 793 信托投资 long
+2771 修改宪法 long
+  82 修订法律 long
+ 172 债券利息 long
+ 114 债务信用 long
+  23 停止捕捞 long
+ 125 停止播放 long
+1129 停止销售 long
+ 108 停车检查 long
+1942 健康检查 long
+ 953 偿还贷款 long
+  18 储蓄种类 long
+ 206 儿童服装 long
+ 713 儿童艺术 long
+ 176 免予起诉 long
+  93 兑换外汇 long
+ 756 党务工作 long
+1332 党的历史 long
+18411 党的建设 long
+1936 党的纪律 long
+ 200 全身麻醉 long
+10832 公共交通 long
+2208 公共关系 long
+1028 公共厕所 long
+ 347 公共房屋 long
+ 335 公共道德 long
+2387 公办学校 long
+ 771 公开审判 long
+1398 公开宣判 long
+  66 公开逮捕 long
+  16 公民意愿 long
+3708 公民投票 long
+ 318 公路铁路 long
+ 177 兰州铁路 long
+ 500 共同保护 long
+2622 共同建设 long
+ 215 共同治理 long
+  88 共同筹集 long
+ 873 共同管理 long
+9396 共同繁荣 long
+ 169 内部刊物 long
+ 181 内部处理 long
+ 736 内部审计 long
+1979 内部控制 long
+ 260 内部潜力 long
+ 536 军事体育 long
+5224 军事力量 long
+10033 军事基地 long
+ 977 军事情报 long
+1483 军事援助 long
+ 462 军事机密 long
+ 292 军事管制 long
+15990 军事训练 long
+  30 军人婚姻 long
+ 697 军备控制 long
+ 154 军官学校 long
+ 255 军火贸易 long
+ 811 军队干部 long
+  23 农业中学 long
+2501 农业保险 long
+  59 农业化学 long
+2741 农业大学 long
+  50 农业学院 long
+  91 农业广播 long
+  69 农业成本 long
+5755 农业技术 long
+ 968 农业投资 long
+ 430 农业改革 long
+ 438 农业用地 long
+  69 农业用电 long
+ 710 农业科学 long
+2046 农业经济 long
+ 932 农业贷款 long
+ 292 农村用电 long
+ 355 农村电话 long
+ 320 农民住房 long
+1623 农民运动 long
+1053 冬虫夏草 long
+  76 冰川时期 long
+ 251 冰球协会 long
+  51 冰镇啤酒 long
+ 231 减少亏损 long
+ 101 减少资本 long
+ 164 减税让利 long
+  72 出版协会 long
+  12 击剑学校 long
+ 189 函授大学 long
+7480 分别获得 long
+  26 分泌乳汁 long
+  96 切除子宫 long
+ 663 刑事侦查 long
+7193 刑事拘留 long
+10414 刑事案件 long
+2140 刑事法庭 long
+ 226 刑事辩护 long
+1055 刑满释放 long
+  16 创新建议 long
+ 581 初等教育 long
+  29 初级小学 long
+ 216 判处监禁 long
+  22 利用废物 long
+ 440 制造过程 long
+1599 刻苦钻研 long
+ 264 剩余资金 long
+ 146 劣质商品 long
+ 409 动物检疫 long
+  57 助理编辑 long
+1264 劳动保护 long
+  64 劳动卫生 long
+ 311 劳动改造 long
+1137 劳动教养 long
+ 534 劳动服务 long
+6417 劳动模范 long
+  78 劳动防护 long
+ 215 勒索赎金 long
+  29 化学废物 long
+5677 化学武器 long
+28525 北京大学 long
+  10 北方昆曲 long
+ 258 医学协会 long
+2555 医学研究 long
+  36 医生助理 long
+2199 医疗技术 long
+5925 医科大学 long
+ 677 协助处理 long
+ 174 协助寻找 long
+  50 协助拍摄 long
+1824 协助调查 long
+4574 南京大学 long
+ 124 南洋华侨 long
+ 607 卫星照片 long
+ 301 卫生学校 long
+ 953 卫生技术 long
+  91 历史展览 long
+ 118 历史著作 long
+4145 厦门大学 long
+  60 厨房卫生 long
+  14 去年今年 long
+ 398 县级干部 long
+6678 参加会议 long
+  86 参加拍摄 long
+ 200 参加旅游 long
+1305 参加演出 long
+  49 参加编写 long
+1414 参加训练 long
+ 159 参加试验 long
+ 110 参加赌博 long
+ 944 参观展览 long
+3155 参观访问 long
+4634 友好协会 long
+ 154 反对和平 long
+ 728 反对战争 long
+3260 发放贷款 long
+4149 发行股票 long
+ 299 古代历史 long
+3157 台湾企业 long
+24411 台湾同胞 long
+2937 台湾大学 long
+2975 台湾学生 long
+ 694 台湾旅客 long
+ 835 台湾股市 long
+  40 司机训练 long
+ 697 司法救助 long
+2228 吉林大学 long
+  35 启发引导 long
+1656 和平条约 long
+5475 和平谈判 long
+ 549 品种改良 long
+ 449 商业信誉 long
+ 129 商业电台 long
+ 302 商业经济 long
+1863 商业贷款 long
+  83 商业运输 long
+46782 商业银行 long
+ 118 商品展览 long
+ 540 商品检验 long
+1666 商品流通 long
+ 249 善男信女 long
+3076 四川大学 long
+  31 四川政府 long
+  66 困兽犹斗 long
+  95 围攻殴打 long
+ 686 国内资本 long
+1057 国内销售 long
+ 913 国家基础 long
+ 528 国家控制 long
+9454 国家标准 long
+ 790 国家补贴 long
+53266 国有企业 long
+17257 国际贸易 long
+1812 土地价格 long
+1323 土地改革 long
+ 126 地下埋藏 long
+ 970 地球科学 long
+1613 地质勘查 long
+1008 地质矿产 long
+ 170 坚持拒绝 long
+ 157 垒球协会 long
+ 717 城市工作 long
+ 622 城市巴士 long
+13434 城市建设 long
+ 665 城市改造 long
+5710 城市管理 long
+ 408 城市郊区 long
+ 659 城市雕塑 long
+ 591 培养教育 long
+  75 基层骨干 long
+8219 基本建设 long
+  83 基本材料 long
+ 164 基本训练 long
+ 151 塑料编织 long
+  11 墙壁装饰 long
+ 683 增加幅度 long
+  53 增加干部 long
+  82 增加招生 long
+ 462 增加支出 long
+3481 增加收入 long
+1244 增加税收 long
+ 182 增加编制 long
+ 279 增加销售 long
+8382 增长幅度 long
+25248 增长速度 long
+ 419 墨西哥市 long
+  80 夏季训练 long
+2688 外交事务 long
+ 693 外交秘书 long
+3526 外国军队 long
+ 123 外国影片 long
+  24 外国香烟 long
+1036 外层空间 long
+1420 外部需求 long
+5041 多种经营 long
+1660 大学本科 long
+ 243 天津塘沽 long
+  50 天津百货 long
+  62 失去记忆 long
+ 265 失败原因 long
+ 453 女子中学 long
+2976 女子举重 long
+3408 女子单打 long
+1986 女子双打 long
+2938 女子团体 long
+ 697 女子垒球 long
+ 268 女子学校 long
+1853 女子柔道 long
+ 435 女子游泳 long
+ 474 女子监狱 long
+1140 女子花剑 long
+ 140 女子超级 long
+3648 女子足球 long
+ 242 妇女协会 long
+  71 妇女委员 long
+ 197 妇科检查 long
+ 318 委托培养 long
+ 330 委托管理 long
+ 290 婉言拒绝 long
+ 114 孔子教育 long
+  17 季度检查 long
+ 287 学习用具 long
+1368 学校建设 long
+  13 学校护士 long
+  35 学校纪律 long
+  43 学生名额 long
+1134 学生运动 long
+  23 守卫边疆 long
+5760 安全保卫 long
+ 496 安全控制 long
+5915 安全检查 long
+ 195 安葬仪式 long
+  27 安静休息 long
+  30 宋代瓷器 long
+ 120 完全中学 long
+ 137 完全封锁 long
+ 315 完全小学 long
+  90 官僚习气 long
+3366 定期存款 long
+ 437 实施袭击 long
+3497 实际操作 long
+2318 实际效果 long
+1799 实验小学 long
+  11 审理执行 long
+ 181 审理期限 long
+ 734 审理案件 long
+ 415 宣传引导 long
+10522 宣传教育 long
+3645 家庭教育 long
+1246 家庭服务 long
+1549 家庭财产 long
+2124 对外宣传 long
+4592 对外经济 long
+17333 对外贸易 long
+1200 对外销售 long
+  53 射击距离 long
+ 166 小型巴士 long
+  23 少年体育 long
+ 763 少年足球 long
+ 367 尤伯杯赛 long
+  15 尸体表面 long
+ 414 尸体解剖 long
+ 177 尿样检查 long
+ 196 尿路感染 long
+10703 局部地区 long
+ 156 局部麻醉 long
+  29 届龄退休 long
+1098 岗位培训 long
+ 600 巡回展出 long
+ 368 巡回演讲 long
+14628 工业企业 long
+ 140 工业大厦 long
+1822 工业大学 long
+1376 工业总会 long
+11557 工业生产 long
+5175 工业经济 long
+  41 工人纠察 long
+4297 工作效率 long
+6862 工作时间 long
+ 243 工资调整 long
+2260 巨额资金 long
+  40 市代表队 long
+ 311 市场业务 long
+1151 市场状况 long
+66595 市场经济 long
+  17 市运动会 long
+8066 师范大学 long
+2567 师范学院 long
+ 854 师资培训 long
+  52 帮助料理 long
+  70 干线管道 long
+3535 干部教育 long
+  66 平均分摊 long
+ 253 平息叛乱 long
+1553 平方英尺 long
+  79 年运输量 long
+  46 幼儿入托 long
+ 385 广告协会 long
+  80 广州政府 long
+ 106 广泛涉及 long
+ 208 应用化学 long
+ 138 建国门外 long
+ 121 建筑协会 long
+4546 建筑工程 long
+  26 建筑执照 long
+4788 建筑材料 long
+ 138 建筑管理 long
+ 272 建筑陶瓷 long
+ 695 建设实施 long
+2326 开发银行 long
+ 108 开庭日期 long
+1776 引进资金 long
+  12 强制迁移 long
+7417 强烈地震 long
+  39 录用干部 long
+ 183 彩色印刷 long
+  28 彩色报纸 long
+  84 彩色摄影 long
+ 593 彩色照片 long
+  94 彩色胶卷 long
+1887 律师协会 long
+  30 律师考试 long
+ 485 心理防线 long
+1627 心肌梗塞 long
+  25 心脏搏动 long
+1055 快速检测 long
+  42 快速计算 long
+ 107 总服务台 long
+1112 恢复健康 long
+ 322 惩治贪污 long
+  76 戏剧研究 long
+ 118 戏剧评论 long
+2249 成人教育 long
+  11 成人棒球 long
+ 207 成都飞机 long
+ 868 战备训练 long
+ 234 户籍政策 long
+  79 房屋津贴 long
+ 193 手球协会 long
+ 185 执行纪律 long
+ 162 扩大学校 long
+ 375 扩大招生 long
+  40 扩大红军 long
+ 473 扩大销售 long
+ 491 扫除文盲 long
+ 324 扬州大学 long
+ 668 批准建设 long
+  48 批准购买 long
+3386 批准逮捕 long
+3692 批发价格 long
+  25 批量供应 long
+1459 技工学校 long
+ 797 技术协会 long
+17424 技术改造 long
+2971 投入运行 long
+2023 投票选举 long
+4681 投资建设 long
+  11 抗拒改造 long
+12822 抗日战争 long
+ 640 抛售股票 long
+ 108 护士学校 long
+ 294 抬高价格 long
+  38 抽取佣金 long
+8142 拉丁美洲 long
+ 452 拒绝批准 long
+ 259 拒绝接收 long
+ 291 拒绝支付 long
+ 178 拘留审查 long
+  34 招聘干部 long
+ 181 招聘教师 long
+  26 招聘选拔 long
+  42 拥挤堵塞 long
+ 578 拳击协会 long
+  23 拳击总会 long
+1177 拳击比赛 long
+  81 持枪匪徒 long
+ 125 挂牌公告 long
+ 804 损失减少 long
+ 362 掌上明珠 long
+  66 掌握管理 long
+ 307 排水管道 long
+ 472 排球协会 long
+  55 探测太空 long
+ 499 接受委托 long
+2890 接受教育 long
+ 706 接受检阅 long
+  11 控制亏损 long
+  84 控制会议 long
+  14 控制检查 long
+ 452 控制污染 long
+  65 控制温度 long
+  13 控制购买 long
+ 306 控告申诉 long
+  12 推崇美国 long
+ 180 握手告别 long
+  21 搜查毒品 long
+ 439 搜集证据 long
+  29 携带枪械 long
+ 186 摄影技术 long
+ 626 摄影比赛 long
+2651 摆脱贫困 long
+ 474 摘取金牌 long
+ 103 擅自设置 long
+  81 支取现金 long
+  55 支援家乡 long
+ 948 支援西藏 long
+  75 支援边疆 long
+1626 支部书记 long
+ 128 收容审查 long
+ 302 收容教育 long
+ 443 收集证据 long
+  98 改造危房 long
+  49 放纵走私 long
+1070 政治团体 long
+  11 政治圈子 long
+ 165 政治学校 long
+ 428 政治学院 long
+1595 政治斗争 long
+  27 政治训练 long
+  60 救助孤儿 long
+ 602 教学研究 long
+2622 教育学院 long
+6036 数字显示 long
+  43 整顿党风 long
+  42 整顿纪律 long
+2750 文化娱乐 long
+6581 文化教育 long
+ 209 文字改革 long
+17571 文物保护 long
+ 507 文章摘要 long
+1893 新鲜蔬菜 long
+5984 施加压力 long
+ 326 施展才能 long
+  65 旅游展览 long
+ 941 日本天皇 long
+  70 日本战俘 long
+  23 日本贷款 long
+ 120 日本铁路 long
+2371 日本银行 long
+ 551 早期教育 long
+ 649 时事评论 long
+2020 时代潮流 long
+ 279 时间控制 long
+ 956 时间限制 long
+ 636 星球大战 long
+  70 春季招生 long
+  16 春季考试 long
+ 292 显微外科 long
+ 838 显著效果 long
+  59 普及培训 long
+ 692 普通中学 long
+  12 普通内科 long
+ 137 普通初中 long
+1770 普通工人 long
+ 500 普通教育 long
+  25 普遍接种 long
+ 135 普遍获得 long
+ 306 智力残疾 long
+2166 暨南大学 long
+ 441 朝鲜军队 long
+8446 期货市场 long
+ 139 机器翻译 long
+  90 机械修理 long
+  30 机械学校 long
+ 190 机械学院 long
+  78 材料消耗 long
+1137 村办企业 long
+  36 村长助理 long
+  42 杜甫的诗 long
+  24 杞人之忧 long
+ 313 杭州大学 long
+ 559 林业大学 long
+  31 林业学校 long
+  55 标价出售 long
+  31 标准样品 long
+ 609 检举揭发 long
+  35 棉花检验 long
+1767 棉花生产 long
+ 233 棒球协会 long
+ 306 森林工业 long
+  31 森林类型 long
+ 184 森林警察 long
+  57 森林防护 long
+ 610 植物保护 long
+  90 植物化学 long
+ 626 植物检疫 long
+ 160 楚河汉界 long
+ 142 楼宇按揭 long
+ 540 横向联合 long
+ 533 欧洲之行 long
+2482 欧洲大陆 long
+3473 欧洲市场 long
+ 442 正式选举 long
+ 158 步兵学校 long
+  66 武打明星 long
+ 730 武术协会 long
+5548 武汉大学 long
+  65 残余部队 long
+ 650 每月平均 long
+1000 每月收入 long
+ 692 比赛地点 long
+8829 比赛项目 long
+6958 民主改革 long
+ 361 民事法庭 long
+3786 民事诉讼 long
+ 343 民国初年 long
+1057 民族学院 long
+ 206 民族贸易 long
+1697 民族音乐 long
+  60 民间乐曲 long
+  52 民间谚语 long
+  14 氧气切割 long
+5916 水土保持 long
+ 906 水路运输 long
+  73 汉语翻译 long
+1282 汤姆斯杯 long
+8705 汽车市场 long
+  57 汽车轮渡 long
+1522 汽车配件 long
+ 109 沈阳大学 long
+  85 沙皇俄国 long
+ 141 油田建设 long
+ 404 治安保卫 long
+ 286 治理太湖 long
+ 886 治理污染 long
+ 326 治理淮河 long
+ 282 治理黄河 long
+ 149 治疗原则 long
+1328 波动幅度 long
+ 188 派发红利 long
+6633 流动资金 long
+5636 浙江大学 long
+ 252 海上训练 long
+1857 海关人员 long
+ 315 海关检查 long
+ 140 海军学校 long
+ 557 海底电缆 long
+  55 海洋测量 long
+ 640 海洋科学 long
+1339 消防大队 long
+1346 消防总队 long
+1038 涉及政治 long
+  51 深圳住房 long
+1078 深圳大学 long
+ 148 深水炸弹 long
+  72 清理债务 long
+  11 清理档案 long
+   6 清理财产 long
+  50 渔业技术 long
+ 148 渔业捕捞 long
+ 315 温度控制 long
+  90 港务监督 long
+ 169 游泳健将 long
+1121 游泳协会 long
+  64 游泳技术 long
+1692 游泳选手 long
+  26 湿度控制 long
+  53 滞留香港 long
+6301 滥用职权 long
+  42 潜在亏损 long
+ 151 澳门小姐 long
+ 148 激烈争辩 long
+  98 炮兵学校 long
+ 314 烈士家属 long
+ 363 热带作物 long
+  53 热能工程 long
+  41 煤炭科学 long
+  87 煤炭质量 long
+ 470 燕京大学 long
+ 129 牙病防治 long
+ 133 物资消耗 long
+ 182 特别批准 long
+  61 特别支部 long
+ 153 特别训练 long
+1630 特殊困难 long
+1005 特殊需要 long
+  63 犯人家属 long
+  82 犯罪原因 long
+43171 环境保护 long
+4427 环境卫生 long
+ 119 环境情况 long
+ 149 现实价值 long
+  15 现实形势 long
+2364 现实情况 long
+ 518 玻璃纤维 long
+5852 瑞士法郎 long
+  66 瓶装啤酒 long
+1255 生产供应 long
+21225 生产能力 long
+8562 生产资料 long
+ 181 生产需求 long
+1091 生物化学 long
+1521 田间管理 long
+ 126 申报备案 long
+  86 申请安装 long
+2036 电力工业 long
+1381 电力建设 long
+ 202 电化教学 long
+  70 电子感应 long
+  51 电子计算 long
+ 500 电影剧本 long
+ 739 电影明星 long
+ 211 电影评论 long
+  16 电机修理 long
+3976 男子单打 long
+2220 男子双打 long
+1565 男子网球 long
+1271 男子花剑 long
+ 453 留学美国 long
+  36 痕迹检验 long
+  35 白玉兰花 long
+  39 监狱事务 long
+17552 监督检查 long
+ 154 监督销毁 long
+ 108 盲人协会 long
+ 115 盲人学校 long
+  82 盲目流动 long
+ 990 直属机关 long
+ 126 直接资助 long
+ 452 省立医院 long
+ 536 知识青年 long
+ 195 短式网球 long
+3234 石油市场 long
+  43 矿业大学 long
+  13 研究审查 long
+8105 研究开发 long
+  11 磨损消耗 long
+ 931 社会改革 long
+1178 社会教育 long
+10117 社会科学 long
+1364 社会群体 long
+  45 社会联盟 long
+ 419 社会青年 long
+ 202 祭奠仪式 long
+2258 禁止使用 long
+  42 禁止刊登 long
+  22 禁止放映 long
+ 771 禁止生产 long
+ 540 禁止销售 long
+ 128 福州铁路 long
+1175 私人住宅 long
+ 451 私人物品 long
+ 617 私人财产 long
+  97 私立小学 long
+14034 私营企业 long
+ 254 种植棉花 long
+  93 科威特国 long
+ 788 科学仪器 long
+13335 科学研究 long
+4152 科学考察 long
+ 274 秘密报告 long
+ 558 税务干部 long
+  45 税务警察 long
+1308 税收制度 long
+ 124 税收检查 long
+ 421 空中作战 long
+ 213 空中爆炸 long
+  96 空中距离 long
+  72 突击审讯 long
+ 430 立案审查 long
+  29 竞赛题目 long
+2037 第一产业 long
+  82 第一纵队 long
+  15 第七纵队 long
+15262 第三产业 long
+3240 第二产业 long
+  12 第二商业 long
+5670 筹集资金 long
+ 195 管理城市 long
+ 331 管道输送 long
+ 852 篮球协会 long
+  17 粪便管理 long
+4855 粮食价格 long
+1669 粮食援助 long
+1255 粮食播种 long
+  34 粮食经济 long
+ 243 粮食贸易 long
+ 202 精心研究 long
+  17 索取费用 long
+  24 红军家属 long
+ 380 红色高棉 long
+ 107 纪律监督 long
+  60 纯朴善良 long
+1988 纺织企业 long
+ 758 纺织机械 long
+8502 组织工作 long
+ 171 组织派遣 long
+ 787 组织训练 long
+ 104 组织设立 long
+44184 经济合作 long
+3212 经济学院 long
+40565 经济建设 long
+3676 经济援助 long
+6444 经济研究 long
+4870 经济管理 long
+ 440 结婚年龄 long
+ 969 绘画艺术 long
+ 144 统一供应 long
+ 242 统一分配 long
+7565 统一战线 long
+ 335 统一招生 long
+ 120 统一整合 long
+ 349 统一核算 long
+  89 统一检查 long
+ 108 统一测试 long
+5078 统一管理 long
+  56 绥靖公署 long
+2695 继续下降 long
+  85 继续演出 long
+1108 继续留任 long
+ 272 继续贬值 long
+ 384 综合保险 long
+  44 绿化地带 long
+  57 编辑业务 long
+  15 编辑采访 long
+1916 网球协会 long
+ 172 美术学校 long
+1123 美术学院 long
+  63 美术工作 long
+ 119 美术编辑 long
+4073 群众工作 long
+  21 群众管理 long
+1410 考试大纲 long
+ 211 考试纪律 long
+  66 考试规则 long
+ 331 聋哑学校 long
+ 704 职业中学 long
+  24 职业初中 long
+3455 职业学校 long
+ 672 职业棒球 long
+  28 职业灾害 long
+ 728 职业高中 long
+ 152 职工大学 long
+ 428 职工家属 long
+ 345 职工总会 long
+  62 职称改革 long
+ 955 职称评定 long
+ 170 联合保险 long
+  26 联合学校 long
+ 228 联合招生 long
+  35 联合试验 long
+  90 联合贷款 long
+ 526 联系汇率 long
+ 671 聚众赌博 long
+ 161 肌肉注射 long
+ 302 股票价值 long
+4806 股票价格 long
+  89 胆囊结石 long
+  24 胸部透视 long
+3645 能源消耗 long
+1529 脱离危险 long
+  14 腰椎穿刺 long
+3752 自由民主 long
+2277 自行研制 long
+  71 自身防范 long
+ 295 舞台美术 long
+ 292 舞蹈学校 long
+  92 舞蹈教师 long
+  29 舞蹈明星 long
+  30 航海学院 long
+ 498 航海模型 long
+ 242 航空学校 long
+ 310 航空学院 long
+5838 航空母舰 long
+7079 航空运输 long
+ 706 舰艇学院 long
+1223 艰难困苦 long
+2986 艺术创作 long
+ 341 艺术大学 long
+ 823 艺术学校 long
+2083 艺术学院 long
+ 799 艺术展览 long
+ 582 艺术文化 long
+ 958 节日市场 long
+ 157 节约外汇 long
+ 704 节约开支 long
+2212 节约用水 long
+ 675 节约用电 long
+  59 节约能耗 long
+ 953 节约资金 long
+ 114 花卉协会 long
+ 480 花卉市场 long
+  82 苏州刺绣 long
+  74 荣誉军人 long
+ 786 药品监督 long
+  72 药物化学 long
+   6 菊花展览 long
+9566 营业收入 long
+2051 著名导演 long
+1067 蔬菜水果 long
+ 251 血液检测 long
+ 479 行为举止 long
+14074 行政管理 long
+ 313 街坊总会 long
+ 143 街道居民 long
+ 257 补习学校 long
+ 119 补交税款 long
+ 285 袭击警察 long
+2948 西班牙语 long
+3394 观看比赛 long
+ 898 规划管理 long
+ 147 解决纷争 long
+ 110 解剖检验 long
+3930 解放军报 long
+ 901 触犯法律 long
+ 272 警察学校 long
+  98 警示信号 long
+ 870 计划免疫 long
+23243 计划生育 long
+ 688 议员联盟 long
+  57 设置陷阱 long
+  26 设计陷害 long
+1556 访问北京 long
+1291 访问演出 long
+  63 访问调查 long
+ 140 评定职称 long
+3092 评论文章 long
+ 295 评选优秀 long
+ 322 评选先进 long
+  11 评选模范 long
+ 226 词曲作家 long
+ 231 语言训练 long
+ 182 调整工资 long
+14578 调查研究 long
+ 100 调节温度 long
+1982 财政困难 long
+  30 财政学校 long
+7264 财政年度 long
+1517 财政金融 long
+2557 责任编辑 long
+  73 货物检验 long
+1192 质量保证 long
+2133 质量控制 long
+3165 质量标准 long
+5321 质量监督 long
+ 361 贪污案件 long
+ 761 购买股票 long
+ 610 费用负担 long
+ 616 走私香烟 long
+ 233 超级模特 long
+1121 越南战争 long
+2859 足球协会 long
+1104 足球学校 long
+1588 跳台滑雪 long
+10811 身体健康 long
+ 168 身体语言 long
+  98 车辆状况 long
+1063 车辆管理 long
+1338 转变作风 long
+ 212 轮番上涨 long
+ 514 软式网球 long
+ 804 轻型卡车 long
+ 578 轻型汽车 long
+  16 轻型轿车 long
+1508 边境城市 long
+3150 边境贸易 long
+1591 边防检查 long
+  17 辽宁吉林 long
+ 547 辽宁大学 long
+ 386 辽宁沈阳 long
+  16 过境关税 long
+  77 迎接检查 long
+ 665 运输管理 long
+2271 运输能力 long
+  39 运输贸易 long
+ 150 运输距离 long
+ 269 运送毒品 long
+  20 运送邮件 long
+1334 违反宪法 long
+ 108 违反承诺 long
+  89 退出条约 long
+2040 速度滑冰 long
+ 377 道教协会 long
+2008 邮政储蓄 long
+  48 邮政工会 long
+ 164 邮政资费 long
+  46 邮政运输 long
+ 103 邮票市场 long
+  29 酒吧女郎 long
+ 132 采访拍摄 long
+ 173 采购供应 long
+ 138 重庆百货 long
+ 551 重新审查 long
+3960 重要角色 long
+1115 重要项目 long
+1217 重视教育 long
+  40 针刺麻醉 long
+  96 钓鱼协会 long
+ 136 钢铁学院 long
+ 160 钢铁研究 long
+  48 铁路中学 long
+ 197 铁路警察 long
+  18 铅字排版 long
+ 421 销售形势 long
+  59 销毁文件 long
+ 614 长期服用 long
+ 248 长期管理 long
+ 922 长江航运 long
+2365 长途电话 long
+ 358 长途运输 long
+ 353 间接选举 long
+ 403 防御台风 long
+ 139 防止贪污 long
+ 314 防治疟疾 long
+2342 阿拉伯语 long
+ 693 附属中学 long
+4061 附属医院 long
+ 293 附属小学 long
+  47 陆军学校 long
+ 637 陆地面积 long
+  28 降低损耗 long
+ 207 陕北公学 long
+ 648 陶瓷艺术 long
+  80 随军妓女 long
+ 281 集邮协会 long
+ 328 雕刻艺术 long
+  97 青少年部 long
+ 493 青年协会 long
+  99 青年培训 long
+ 228 青年妇女 long
+ 472 青年工人 long
+  35 静脉点滴 long
+ 108 韩国商人 long
+ 126 韩国食品 long
+ 654 音乐教育 long
+ 105 音乐治疗 long
+  89 音乐评论 long
+ 304 音响效果 long
+ 942 预防保健 long
+ 155 领海主权 long
+  48 飞机运输 long
+2362 飞行安全 long
+1090 食品市场 long
+   8 餐车经营 long
+ 178 餐饮旅游 long
+ 961 饮食服务 long
+1406 首场演出 long
+ 153 首次拍卖 long
+  91 首都旅游 long
+5127 香港大学 long
+ 151 香港客商 long
+ 310 香港小姐 long
+ 102 香港影片 long
+ 301 香港报纸 long
+2231 香港政府 long
+5139 香港股市 long
+ 482 香港警察 long
+ 994 驾驶执照 long
+ 503 驾驶飞机 long
+ 262 高等师范 long
+1762 高级干部 long
+  38 高级护士 long
+9795 高速铁路 long
+ 438 高额利息 long
+4271 黄金价格 long
+2756 黄金市场 long
+  39 黄金贸易 long
+ 607 黄金首饰 long
+ 486 万国邮联 short
+2015 上海交大 short
+  20 上远公司 short
+8571 世卫组织 short
+  43 世界工联 short
+2106 中东和谈 short
+ 539 中央美院 short
+  18 二十三中 short
+  29 二十二中 short
+1804 二次大战 short
+  37 亚洲手联 short
+4629 交管部门 short
+ 734 人口老化 short
+  61 人道立场 short
+ 583 住房改革 short
+ 105 保定军校 short
+2221 全国青联 short
+  31 公汽公司 short
+ 117 军转工作 short
+  46 农信联社 short
+ 271 农发基金 short
+ 227 刑事技术 short
+ 103 刑释人员 short
+1481 劳动人口 short
+1274 劳动市场 short
+1154 北京人艺 short
+ 150 北京体院 short
+  52 北平艺专 short
+  69 北方交大 short
+ 636 华东师大 short
+ 110 南太地区 short
+  22 原子能所 short
+ 394 台湾两岸 short
+1172 合作企业 short
+3334 国家民委 short
+ 176 国家经委 short
+ 655 国家语委 short
+5029 国家防总 short
+  25 国际世协 short
+ 847 国际举联 short
+ 814 国际体联 short
+  76 国际共运 short
+ 189 国际冰联 short
+ 183 国际垒联 short
+ 102 国际手联 short
+ 495 国际拳联 short
+  61 国际柔联 short
+1198 国际棋联 short
+  54 国际箭联 short
+ 746 国际网联 short
+2020 国际羽联 short
+  94 国际航联 short
+  70 国际赛联 short
+  57 国际铁联 short
+ 300 国际马联 short
+1277 地空导弹 short
+ 974 大众传媒 short
+ 135 工业废物 short
+ 370 工发组织 short
+5085 巴解组织 short
+  55 巴黎公约 short
+  52 延安鲁艺 short
+  75 建安公司 short
+ 189 开发协会 short
+  72 微生物所 short
+  12 投信公司 short
+  34 机器人所 short
+  51 杭州艺专 short
+ 255 欧华联会 short
+ 166 民爆器材 short
+  63 汽运公司 short
+ 485 环发大会 short
+ 188 电子科大 short
+ 190 祖国战线 short
+ 133 空地导弹 short
+ 615 经货联盟 short
+ 663 联柬机构 short
+  54 船舶证书 short
+  26 行人专区 short
+  83 西北师大 short
+ 348 西南交大 short
+ 102 西安体院 short
+  92 车险公司 short
+  68 金杯公司 short
+  15 铁十一局 short
+  24 铁十五局 short
+  39 铁十六局 short
+  12 长发公司 short
+1464 非公经济 short
+ 347 香港工联 short
+   3 香港教联 short
+2517 马列主义 short
+ 421 上海京剧院 long
+1191 上海博物馆 long
+ 198 上海昆剧团 long
+  84 上海港务局 long
+ 512 上海电视台 long
+1632 上海铁路局 long
+ 364 下议院议员 long
+  98 世界语协会 long
+ 437 世界运动会 long
+10519 世界锦标赛 long
+1403 业主委员会 long
+13202 个人所得税 long
+ 317 个人演唱会 long
+7098 个体工商户 long
+1192 中东通讯社 long
+  87 中原野战军 long
+  71 中心图书馆 long
+ 530 临时委员会 long
+   6 主要研究人 long
+  43 举重联合会 long
+ 129 义务消防队 long
+8164 乌鲁木齐市 long
+ 414 乒乓球协会 long
+ 109 乒乓球总会 long
+ 247 亚洲乒乓球 long
+1441 亚洲锦标赛 long
+ 399 交通委员会 long
+  73 人事劳动局 long
+  80 人事教育司 long
+ 199 人口研究所 long
+3691 人口老龄化 long
+ 832 人民委员会 long
+ 123 仓库保管员 long
+  75 仓库管理员 long
+  50 企业办公室 long
+ 643 企业家协会 long
+  32 企业管理处 long
+  13 企业管理部 long
+  93 优点和长处 long
+  36 体制改革司 long
+ 235 俄罗斯商人 long
+8616 俄罗斯联邦 long
+2496 保加利亚队 long
+  26 储蓄和贷款 long
+ 301 克什克腾旗 long
+8556 全国委员会 long
+ 287 公用事业局 long
+ 347 军事检察院 long
+  53 农业办公室 long
+  55 农民自卫军 long
+  47 冬季交易会 long
+  41 冰球联合会 long
+  88 冶金研究所 long
+ 265 刑事警察局 long
+ 180 创作和演出 long
+  77 制作和播出 long
+  27 制订并颁布 long
+ 126 前敌委员会 long
+1027 前线指挥部 long
+4807 副主任委员 long
+  15 加农榴弹炮 long
+  36 加拿大小姐 long
+ 269 动物研究所 long
+ 192 助理审判员 long
+ 490 助理研究员 long
+6816 劳动力市场 long
+  12 劳动和技术 long
+  37 劳动技术课 long
+  66 劳工联合会 long
+ 810 北京展览馆 long
+2135 医务工作者 long
+ 444 医学委员会 long
+ 247 医学科学院 long
+  23 南下工作团 long
+2113 南斯拉夫队 long
+3785 博士生导师 long
+ 376 博物馆协会 long
+  57 卫星和火箭 long
+23715 印度尼西亚 long
+ 889 县人民政府 long
+ 440 叙利亚军队 long
+ 320 司局级干部 long
+ 160 合同制工人 long
+4343 呼和浩特市 long
+ 419 商业服务业 long
+ 422 商品交易所 long
+ 705 商标专用权 long
+1251 国家税务局 long
+  67 国际新闻社 long
+ 900 土耳其军队 long
+ 471 地对地导弹 long
+1121 地对空导弹 long
+  65 地质矿产局 long
+  16 城市工作部 long
+  32 城市调查队 long
+  44 声学研究所 long
+  23 声音和画面 long
+  43 外交部次官 long
+ 902 外国语学院 long
+ 759 外汇管理局 long
+ 207 妇女委员会 long
+  19 妇女救国会 long
+ 182 姓名和地址 long
+  59 学校董事会 long
+  72 学校运动会 long
+  82 学生工作部 long
+ 472 学生联合会 long
+ 101 安全保卫部 long
+ 139 安莎通讯社 long
+ 913 实际控制线 long
+  23 宣传教育部 long
+  90 宪兵和警察 long
+  25 对外联络处 long
+  72 对外联络部 long
+ 133 对外贸易部 long
+ 101 射击联合会 long
+1157 小儿麻痹症 long
+ 166 尼赫鲁大学 long
+1576 居民委员会 long
+ 101 展览交易会 long
+  45 展览洽谈会 long
+ 513 工业博览会 long
+ 241 工业展览会 long
+ 118 工业研究院 long
+  55 工人疗养院 long
+  18 工厂和学校 long
+ 403 工艺美术品 long
+ 265 市委办公室 long
+ 146 帮助贫困户 long
+  61 建筑机械厂 long
+ 213 心血管内科 long
+ 176 心血管外科 long
+  13 戏剧文学系 long
+ 706 手扶拖拉机 long
+ 142 打击和防范 long
+  97 扶助残疾人 long
+  36 技巧联合会 long
+ 583 投资洽谈会 long
+ 294 招生委员会 long
+  54 拥抱和亲吻 long
+  62 排球联合会 long
+ 806 推广普通话 long
+ 610 摄影家协会 long
+ 501 摩托化步兵 long
+  68 摩托车协会 long
+ 115 摩托车配件 long
+  70 支气管扩张 long
+  38 政治和技术 long
+ 717 政治指导员 long
+ 834 政策研究室 long
+  87 教育办公室 long
+ 457 教育和卫生 long
+ 725 教育和文化 long
+ 263 数学研究所 long
+ 318 文学艺术界 long
+ 747 新鸿基地产 long
+ 149 时事通讯社 long
+ 925 时间和空间 long
+  47 昆虫研究所 long
+ 124 景德镇瓷器 long
+   3 智能研究所 long
+ 225 机电工程署 long
+3317 村民委员会 long
+  42 林业机械厂 long
+  50 林业研究所 long
+  55 林业科学院 long
+ 102 林业管理局 long
+  45 标准计量局 long
+ 180 校务委员会 long
+  49 核能研究所 long
+ 128 桥牌联合会 long
+  16 梅兰芳剧团 long
+  11 棉花办公室 long
+  53 棉花收购站 long
+ 518 植物研究所 long
+ 189 欧洲空间局 long
+2213 欧洲航天局 long
+  20 步兵和炮兵 long
+   4 武术委员会 long
+ 377 武术联合会 long
+ 271 毛泽东著作 long
+ 645 毛泽东选集 long
+  27 民主促进会 long
+ 251 民主自由党 long
+  57 污染控制司 long
+ 273 汤姆斯杯赛 long
+ 311 汽车修理厂 long
+1175 汽车摩托车 long
+ 742 沈阳铁路局 long
+ 113 治理和整顿 long
+ 429 法学研究所 long
+ 504 济南铁路局 long
+  71 浙江昆剧团 long
+ 507 海军司令部 long
+  28 海员俱乐部 long
+ 696 海洋研究所 long
+  27 涉及老年人 long
+ 235 游泳联合会 long
+ 244 滑雪联合会 long
+  10 澳门总督府 long
+ 174 火力发电站 long
+  27 炮兵指挥部 long
+ 146 煤炭工业部 long
+ 104 煤炭管理局 long
+  39 煤矿机械厂 long
+ 131 牡丹信用卡 long
+ 650 物理研究所 long
+  48 物资交易会 long
+2572 特别委员会 long
+  52 特殊教育班 long
+1787 环境与发展 long
+4339 环境保护部 long
+  14 瓦斯检测员 long
+2703 生产和销售 long
+ 556 生物研究所 long
+  45 电子工业局 long
+ 309 电子显微镜 long
+ 460 男子乒乓球 long
+ 556 男子曲棍球 long
+  13 登山联合会 long
+   7 监察和检察 long
+ 840 监察委员会 long
+  31 盒式录音带 long
+ 164 短期培训班 long
+ 877 石油出口国 long
+  70 矿山机器厂 long
+ 278 硕士生导师 long
+2166 社会保险费 long
+3460 社会民主党 long
+  34 社会科学司 long
+ 127 社会科学系 long
+ 133 科学和艺术 long
+ 874 科学考察队 long
+ 607 空军司令部 long
+ 304 空军政治部 long
+ 264 空对地导弹 long
+ 121 空气压缩机 long
+  11 第一冶炼厂 long
+ 124 第一幼儿园 long
+  12 第一机械厂 long
+  67 第一炼钢厂 long
+  26 第二十中学 long
+  18 第二商业局 long
+  95 第二炼钢厂 long
+  37 第十五中学 long
+ 411 管理和保护 long
+  33 管理和养护 long
+7603 管理委员会 long
+ 223 篮球联合会 long
+ 128 粮食和蔬菜 long
+ 107 约旦通讯社 long
+1863 纪律委员会 long
+ 202 纺织工业部 long
+   9 组织宣传部 long
+   9 组织工作会 long
+  92 细菌性痢疾 long
+ 364 经济与技术 long
+2420 经济委员会 long
+ 175 经济审判庭 long
+ 192 经济联合会 long
+  61 经济联合社 long
+13192 经济适用房 long
+ 557 结核病防治 long
+ 976 维多利亚港 long
+ 510 美术家协会 long
+ 356 群众艺术馆 long
+ 909 羽毛球协会 long
+  33 老师和朋友 long
+ 128 老年人协会 long
+ 190 联合共产党 long
+1700 联合委员会 long
+ 250 联邦储备局 long
+ 198 能源委员会 long
+1627 脊髓灰质炎 long
+  62 自动生产线 long
+  27 自我控制力 long
+9754 自由贸易区 long
+  99 舞蹈家协会 long
+   7 航空联合会 long
+ 217 艺术家协会 long
+ 637 花卉博览会 long
+  30 苏州和杭州 long
+ 332 药物研究所 long
+ 912 莫斯科大学 long
+  24 蒙古通讯社 long
+  97 行人专用区 long
+ 153 行政审判庭 long
+4821 街道办事处 long
+  12 街道委员会 long
+ 646 裁判委员会 long
+  33 规划土地局 long
+1085 解放军代表 long
+ 111 解放阵线党 long
+ 104 计划办公室 long
+ 103 计划生育户 long
+  20 计划财务司 long
+  32 计划财务处 long
+  29 计划财务部 long
+5608 证券交易所 long
+  53 证券交易税 long
+ 126 语言研究所 long
+ 766 财政委员会 long
+2268 财政部部长 long
+  24 质量管理部 long
+  25 贪污和受贿 long
+ 168 贸易和工业 long
+1478 赤道几内亚 long
+  20 软件交易会 long
+  63 软件研究所 long
+1791 边防检查站 long
+  42 运输管理费 long
+  60 远距离教育 long
+ 173 遗传研究所 long
+  66 金属研究所 long
+  57 金融交易所 long
+  65 铁路总工会 long
+1155 锡林郭勒盟 long
+  47 镇压反革命 long
+  40 长城信用卡 long
+ 161 长征二号丙 long
+ 166 长江防护林 long
+   9 长途电话线 long
+ 997 陆军航空兵 long
+  19 陶行知研究 long
+ 141 集会游行法 long
+ 216 青少年保护 long
+  39 青年工作部 long
+  19 青年运动史 long
+ 197 非公有经济 long
+ 217 音乐家协会 long
+2264 顾问委员会 long
+ 957 飞行服务队 long
+1404 食用植物油 long
+ 772 首都体育馆 long
+ 275 首都图书馆 long
+  19 香港建筑署 long
+  46 驻沪办事处 long
+4709 高级工程师 long
+  97 高级研讨班 long
+ 190 鲁迅博物馆 long
+  19 黄色录像带 long
+  81 人口普查办 short
+  57 农发基金会 short
+1305 国家体改委 short
+ 228 国家商检局 short
+1042 国家工商局 short
+ 691 国家计生委 short
+  29 国际计生联 short
+  14 少儿基金会 short
+ 248 拉美经委会 short
+  78 教科文卫委 short
+  23 文体广电局 short
+  13 环保科研所 short
+ 371 万国邮政联盟 long
+ 527 上呼吸道感染 long
+3540 上海交通大学 long
+ 679 上海师范大学 long
+ 436 上海戏剧学院 long
+  15 上海柴油机厂 long
+ 634 上海航空公司 long
+ 156 上海芭蕾舞团 long
+ 896 上海财经大学 long
+ 554 上海音乐学院 long
+ 107 世界俱乐部杯 long
+  20 世界俱乐部赛 long
+19645 世界卫生组织 long
+ 915 东方航空公司 long
+ 888 东风汽车公司 long
+ 284 中东和平谈判 long
+ 462 中央戏剧学院 long
+ 897 中央直属机关 long
+1244 中央美术学院 long
+  22 中央航空公司 long
+ 574 中央芭蕾舞团 long
+ 525 中学生运动会 long
+12862 中级人民法院 long
+ 390 临时旅客列车 long
+  34 乒乓球联合会 long
+  73 亚洲俱乐部杯 long
+2424 交通管理部门 long
+18135 人民代表大会 long
+  55 人道主义立场 long
+  22 代理总参谋长 long
+ 805 伊拉克通讯社 long
+ 280 伊斯兰教协会 long
+2165 住房制度改革 long
+  24 作家代表大会 long
+  57 保卫中国同盟 long
+  11 保定军官学校 long
+  72 保险业监理处 long
+  53 免予刑事处分 long
+9562 全国代表大会 long
+  49 全国劳动大会 long
+ 140 八路军办事处 long
+ 199 公共汽车公司 long
+  20 共产党的军队 long
+ 878 军队转业干部 long
+  63 农业函授大学 long
+  11 农业技术协会 long
+2277 农业生产资料 long
+ 206 农村信用联社 long
+  52 农村发展基金 long
+  54 农村职业学校 long
+  30 出版社和书店 long
+ 185 刑事科学技术 long
+ 450 刑满释放人员 long
+ 503 劳动年龄人口 long
+  13 化脓性脑膜炎 long
+1580 北京体育大学 long
+ 117 北京体育学院 long
+5215 北京师范大学 long
+  53 北京师范学院 long
+ 803 北京邮电大学 long
+ 189 北方交通大学 long
+   1 区计划委员会 long
+  38 医院管理学会 long
+1680 华东师范大学 long
+ 297 南京农业大学 long
+ 904 南京师范大学 long
+ 265 南京艺术学院 long
+ 297 南太平洋地区 long
+ 174 原子能研究所 long
+ 345 反对帝国主义 long
+ 100 反对殖民主义 long
+ 416 叙利亚通讯社 long
+ 191 古代丝绸之路 long
+1467 台湾海峡两岸 long
+ 215 台湾清华大学 long
+1989 哥伦比亚大学 long
+  10 唐山铁道学院 long
+ 276 四川航空公司 long
+4894 国家开发银行 long
+ 145 国民党统治区 long
+ 306 国际开发协会 long
+ 108 国际旅客列车 long
+ 872 国际清算银行 long
+1039 国际电信联盟 long
+ 138 地球物理勘探 long
+ 642 基督教民主党 long
+  39 墨西哥通讯社 long
+ 385 外国航空公司 long
+1046 大亚湾核电站 long
+ 196 大众传播媒介 long
+  39 天主教民主党 long
+ 112 太原钢铁公司 long
+1122 奥林匹克体育 long
+  43 奥林匹克学校 long
+ 226 女子乒乓球队 long
+  48 女子师范学校 long
+ 490 女子曲棍球队 long
+ 240 女子跳台跳水 long
+  76 女子跳板跳水 long
+ 137 妇女代表大会 long
+1518 委员会办公室 long
+ 207 学习成绩优异 long
+  37 学生代表大会 long
+  39 学生平安保险 long
+ 136 安全保卫人员 long
+ 238 安徽医科大学 long
+  45 安阳钢铁公司 long
+2437 对外经济贸易 long
+ 818 尼泊尔共产党 long
+ 383 工业固体废物 long
+ 307 工资制度改革 long
+  33 市交通委员会 long
+   9 市商业委员会 long
+  21 市工人文化宫 long
+ 161 师范专科学校 long
+ 485 广播电视大学 long
+  44 建筑安装公司 long
+ 600 引进国外智力 long
+ 169 微生物研究所 long
+10512 思想政治工作 long
+ 768 恢复外交关系 long
+ 157 打击走私活动 long
+ 210 扩大灌溉面积 long
+  74 投资信托公司 long
+  34 拖拉机制造厂 long
+  69 招收飞行学员 long
+ 430 损害农民利益 long
+  33 摩托车联合会 long
+  50 支援铁路建设 long
+ 764 攻读博士学位 long
+4193 政治体制改革 long
+  22 教学参考资料 long
+ 366 教师职业道德 long
+  25 文化卫生体育 long
+ 394 断绝外交关系 long
+  13 旅游专科学校 long
+1119 无人驾驶飞机 long
+ 430 无核武器国家 long
+ 558 日常生活用品 long
+ 630 日本航空公司 long
+ 128 春季田间管理 long
+ 166 普通旅客列车 long
+  44 普通高级中学 long
+  48 曲棍球联合会 long
+  85 机器人研究所 long
+  83 检察院和法院 long
+  13 欧洲国家货币 long
+  55 民用爆破器材 long
+  64 水利电力大学 long
+  76 汽车保险公司 long
+  74 汽车贸易公司 long
+ 211 汽车运输公司 long
+ 443 泛美航空公司 long
+  81 消费者保护法 long
+  49 消费者联合会 long
+3579 特命全权大使 long
+ 163 瑞士航空公司 long
+  42 生产加工销售 long
+ 120 电子工程学院 long
+ 568 电子科技大学 long
+  99 男子跳板跳水 long
+ 233 直通旅客列车 long
+ 118 省防汛指挥部 long
+2876 社会养老保险 long
+ 309 科学技术协会 long
+  42 第一棉纺织厂 long
+  17 第一附属中学 long
+  11 第七建筑公司 long
+  14 第三棉纺织厂 long
+  11 第二十三中学 long
+  17 第二十二中学 long
+  36 第二棉纺织厂 long
+  14 第二轻工业局 long
+7670 经济体制改革 long
+ 476 罗马尼亚政府 long
+ 142 美术作品展览 long
+  58 群众文化艺术 long
+ 152 职业安全健康 long
+  32 职业高中学生 long
+ 495 联合航空公司 long
+ 432 联系汇率制度 long
+  33 船舶检验证书 long
+1269 英国航空公司 long
+ 103 莎士比亚戏剧 long
+ 206 血吸虫病防治 long
+ 135 西北农业大学 long
+ 606 西北工业大学 long
+ 260 西北师范大学 long
+ 515 西北航空公司 long
+ 442 西南交通大学 long
+  82 西安体育学院 long
+ 442 语言文字工作 long
+  86 货物运输代理 long
+  18 货物运输管理 long
+  20 退休职工管理 long
+  75 酒泉钢铁公司 long
+   6 院党委办公室 long
+ 941 非洲开发银行 long
+1919 非洲统一组织 long
+  40 食品工业协会 long
+ 883 首都师范大学 long
+  36 香港篮球总会 long
+ 988 高等专科学校 long
+2347 高级人民法院 long
+ 452 高级知识分子 long
+  79 中央工艺美院 short
+ 863 国际民航组织 short
+  25 上海商品交易会 long
+3441 上海证券交易所 long
+  51 世界工会联合会 long
+ 415 世界经济研究所 long
+ 653 世界青年锦标赛 long
+ 729 东南亚国家协会 long
+ 169 个人收入调节税 long
+3192 中华全国总工会 long
+ 785 临时管理委员会 long
+  35 云南玉溪卷烟厂 long
+ 165 五一国际劳动节 long
+  20 五讲四美三热爱 long
+  68 亚洲举重联合会 long
+ 655 亚洲冬季运动会 long
+  19 亚洲手球联合会 long
+  53 亚洲排球联合会 long
+  57 亚洲武术联合会 long
+  71 亚洲田径联合会 long
+  10 亚洲网球联合会 long
+ 118 亚洲青年锦标赛 long
+  18 交通咨询委员会 long
+ 507 人民教育出版社 long
+ 232 人民美术出版社 long
+ 529 人民调解委员会 long
+  71 伊拉克航空公司 long
+ 132 伊斯兰拯救阵线 long
+ 169 俄罗斯航空公司 long
+  28 保加利亚共产党 long
+  19 儿童少年基金会 long
+  27 光电技术研究所 long
+ 118 公平交易委员会 long
+  21 共产主义者联盟 long
+ 147 兵器工业总公司 long
+ 346 再生障碍性贫血 long
+  55 军事管制委员会 long
+ 107 军需装备研究所 long
+  55 农业科学研究所 long
+  62 农村工作委员会 long
+  66 农村政策研究室 long
+  51 农民合同制工人 long
+ 208 加拿大航空公司 long
+ 542 北京工人体育场 long
+ 495 北京民族文化宫 long
+ 178 北京电影制片厂 long
+  88 历史语言研究所 long
+ 460 哈尔滨医科大学 long
+ 491 国家经济委员会 long
+  38 国际世界语协会 long
+ 250 国际举重联合会 long
+ 484 国际体操联合会 long
+ 129 国际冰球联合会 long
+  43 国际垒球联合会 long
+  51 国际射箭联合会 long
+  79 国际手球联合会 long
+  88 国际柔道联合会 long
+ 273 国际网球联合会 long
+ 198 国际象棋联合会 long
+ 185 国际赛艇联合会 long
+ 268 国际马术联合会 long
+  48 图书馆和博物馆 long
+ 455 地球物理研究所 long
+  12 地质科学研究院 long
+  14 城市管理办公室 long
+ 114 基督教社会联盟 long
+  55 大学三年级学生 long
+ 280 大学生体育协会 long
+  70 天津电影制片厂 long
+  41 妇女工作委员会 long
+  81 家庭教育研究会 long
+ 243 少年儿童出版社 long
+  46 少年儿童基金会 long
+ 539 少数民族运动会 long
+ 437 工业经济研究所 long
+ 100 市容管理委员会 long
+  51 市辖区人民政府 long
+ 774 广播电影电视部 long
+  90 应用化学研究所 long
+ 136 意大利航空公司 long
+  50 慢性萎缩性胃炎 long
+  97 技术物理研究所 long
+ 367 教育科学研究所 long
+ 188 教育科学研究院 long
+  37 文化工作委员会 long
+ 770 新加坡航空公司 long
+ 453 新闻工作者协会 long
+11229 最高人民检察院 long
+ 127 有机化学研究所 long
+2783 朝鲜中央通讯社 long
+  18 机械工业委员会 long
+  91 机械电子工业部 long
+  33 林业科学研究所 long
+ 113 残疾人体育协会 long
+ 121 民主管理委员会 long
+ 247 民族事务委员会 long
+  72 民族宗教委员会 long
+  37 沈阳军区后勤部 long
+ 426 法制工作委员会 long
+  23 海上安全监督局 long
+  41 消费者保护协会 long
+2591 深圳证券交易所 long
+ 972 港澳事务办公室 long
+  13 激光技术研究所 long
+  28 煤炭化学研究所 long
+ 253 环境保护委员会 long
+  99 环境科学研究所 long
+  36 珠江电影制片厂 long
+  54 甲状腺功能减退 long
+ 265 电视艺术家协会 long
+  13 石油化学工业厅 long
+  66 矿产资源管理局 long
+ 537 研究生入学考试 long
+ 150 科学技术出版社 long
+  81 科学研究委员会 long
+  59 第一机械工业部 long
+  45 第七机械工业部 long
+  34 第三机械工业部 long
+   6 第二外国语学院 long
+  57 第二机械工业部 long
+5644 第二次世界大战 long
+ 157 第二汽车制造厂 long
+  24 第六机械工业部 long
+  32 第四机械工业部 long
+  28 红色中华通讯社 long
+1499 纪律检查委员会 long
+  29 经济协作办公室 long
+  63 翻译工作者协会 long
+  84 老年人体育协会 long
+ 412 老龄工作委员会 long
+ 326 自行车运动协会 long
+ 161 菲律宾中央银行 long
+ 168 菲律宾航空公司 long
+ 208 葡语国家共同体 long
+  44 计划经济委员会 long
+  25 证券管理办公室 long
+1264 财政经济委员会 long
+  94 近代物理研究所 long
+ 211 长春电影制片厂 long
+1096 长江水利委员会 long
+3114 防汛抗旱指挥部 long
+2832 阿拉伯国家联盟 long
+  65 阿根廷航空公司 long
+ 215 青年企业家协会 long
+  32 青年干部培训班 long
+1263 香港中华总商会 long
+  12 香港南华体育会 long
+ 309 香港工会联合会 long
+ 118 香港社会福利署 long
+  34 香港羽毛球总会 long
+ 529 香港联合交易所 long
+1511 香港金融管理局 long
+2870 马克思列宁主义 long
+ 590 马尔维纳斯群岛 long
+  82 高等教育委员会 long
+ 206 高能物理研究所 long
+ 270 高速公路管理局 long
+  26 鲁迅艺术文学院 long
+1042 黄河水利委员会 long
+2209 海湾合作委员会 short
+  82 上海华东师范大学 long
+ 307 上海第二医科大学 long
+  51 上海远洋运输公司 long
+ 567 世界羽毛球锦标赛 long
+ 122 中外合作经营企业 long
+  13 中央和地方共享税 long
+ 212 中央工艺美术学院 long
+  87 乙型肝炎表面抗原 long
+  19 亚洲羽毛球联合会 long
+1089 全国教育工作会议 long
+  36 公务员惩戒委员会 long
+ 104 农业广播电视学校 long
+  34 化学事故应急救援 long
+  63 化学奥林匹克竞赛 long
+ 371 北京人民艺术剧院 long
+  64 北京电视艺术中心 long
+  14 北平艺术专科学校 long
+ 104 吉林化学工业公司 long
+ 191 国际共产主义运动 long
+ 153 国际民用航空组织 long
+ 215 国际羽毛球联合会 long
+2118 巴勒斯坦解放组织 long
+  22 巴基斯坦航空公司 long
+  13 幼儿师范专科学校 long
+  37 延安鲁迅艺术学院 long
+  15 杭州艺术专科学校 long
+  64 欧洲经济货币联盟 long
+ 107 残疾人工作委员会 long
+ 126 流行性脑脊髓膜炎 long
+ 173 第一次世界大战后 long
+ 258 第七届全国运动会 long
+  24 第五届城市运动会 long
+  34 第六届全国运动会 long
+  55 第四届城市运动会 long
+  79 粮食购销体制改革 long
+ 757 纠正行业不正之风 long
+4161 纳斯达克综合指数 long
+  11 老年慢性支气管炎 long
+3615 联合国开发计划署 long
+  34 落实知识分子政策 long
+ 135 装备制造业博览会 long
+  65 铁道部第一工程局 long
+  74 铁道部第三工程局 long
+  37 铁道部第五工程局 long
+  60 铁道部第四工程局 long
+  55 非洲工会统一组织 long
+  54 食品卫生监督检验 long
+ 103 香港维多利亚公园 long
+ 791 马斯特里赫特条约 long
+ 120 马来西亚航空公司 long
+ 683 中华全国青年联合会 long
+1691 中央纪律检查委员会 long
+  21 中央财政经济委员会 long
+  76 光学精密机械研究所 long
+ 100 农村社会经济调查队 long
+  13 劳动保护科学研究所 long
+1368 南部非洲发展共同体 long
+ 110 哈尔滨军事工程学院 long
+ 917 国家工商行政管理局 long
+ 475 国家民族事务委员会 long
+ 303 国家计划生育委员会 long
+  16 国民党中央评议委员 long
+  98 国际业余拳击联合会 long
+ 132 国际农业发展基金会 long
+  11 国际航空运动联合会 long
+  56 国际计划生育联合会 long
+  51 国际铁人三项联合会 long
+ 133 夏季奥林匹克运动会 long
+  63 外文出版发行事业局 long
+  89 政府间海洋学委员会 long
+  12 文化体育广播电视局 long
+  36 文化市场管理办公室 long
+ 323 日本经济团体联合会 long
+  12 日本经营者团体联盟 long
+ 192 普及九年制义务教育 long
+  24 普及六年制义务教育 long
+  55 朝鲜军事停战委员会 long
+  83 未成年人保护委员会 long
+ 154 残疾人奥林匹克运动 long
+ 114 水利水电科学研究院 long
+  15 环境保护科学研究所 long
+ 647 联合国工业发展组织 long
+  20 脑力劳动和体力劳动 long
+  89 语言文字工作委员会 long
+  23 退休职工管理委员会 long
+  11 铁道部第十一工程局 long
+  12 铁道部第十五工程局 long
+  21 铁道部第十六工程局 long
+ 171 长春第一汽车制造厂 long
+  50 防汛总指挥部办公室 long
+ 215 阿拉伯马格里布联盟 long
+ 479 香港中华厂商联合会 long
+  24 香港家庭计划指导会 long
+  23 香港广播事务管理局 long
+ 194 香港教育工作者联会 long
+  15 香港教育统筹委员会 long
+  18 香港法律改革委员会 long
+  78 保护工业产权巴黎公约 long
+ 758 关心下一代工作委员会 long
+ 276 军队转业干部安置工作 long
+  22 国家进出口商品检验局 long
+1877 国家防汛抗旱总指挥部 long
+ 271 安全生产委员会办公室 long
+  13 社会主义劳动青年同盟 long
+  99 祖国统一民主主义战线 long
+ 514 联合国环境与发展大会 long
+  14 金杯通用汽车有限公司 long
+  65 铁道部第一勘测设计院 long
+  47 铁道部第三勘测设计院 long
+  31 铁道部第二勘测设计院 long
+  35 铁道部第四勘测设计院 long
+  12 香港教育工作者联合会 long
+  15 中华人民共和国宪法草案 long
+  99 人口普查领导小组办公室 long
+  30 内蒙古自治区巴彦淖尔盟 long
+  82 农业高新科技成果博览会 long
+ 170 国家经济体制改革委员会 long
+ 271 国家语言文字工作委员会 long
+ 277 教育科学文化卫生委员会 long
+ 109 欧洲华侨华人社团联合会 long
+  35 班达拉奈克国际会议大厦 long
+ 173 恢复关贸总协定缔约国地位 long
+ 247 海湾阿拉伯国家合作委员会 long
+ 927 争取安哥拉彻底独立全国联盟 long
+ 182 拉丁美洲和加勒比经济委员会 long
+ 129 联合国驻柬埔寨临时权力机构 long
+ 118 采用国际标准和国外先进标准 long
+  12 长江经济联合发展股份有限公司 long

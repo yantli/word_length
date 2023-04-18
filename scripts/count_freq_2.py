@@ -52,14 +52,14 @@ def find_context(string, line_num):
 def string_to_csv(string, line_num):
     context_list = find_context(string, line_num)
     # with open('context_2.csv', 'a', newline='') as csvf:
-    with open('context_cluecommunity.csv', 'a', newline='') as csvf:
+    with open('/Users/yanting/Desktop/word_length/data/context_cluecommunity.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerows(context_list)
 
     return 
 
 # creating a dict to store short-long word pairs
-with open('abbr_list_full.txt', 'r', encoding = 'utf-8') as f:
+with open('/Users/yanting/Desktop/word_length/abbr_dict/abbr_list_full.txt', 'r', encoding = 'utf-8') as f:
     lines = f.readlines()
 
 abbr_dict = {}
@@ -86,7 +86,7 @@ words_list = short_words + long_words
 regex = '('+'|'.join(words_list)+')'
 
 # looking for short/long words in the text    
-with open('/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/cluecommunity.txt', 'r', encoding = 'utf-8') as f:
+with open('/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/community_test.txt', 'r', encoding = 'utf-8') as f:
     line_num = 0
     while True:
         string = f.readline()

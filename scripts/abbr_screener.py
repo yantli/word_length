@@ -44,8 +44,8 @@ def create_abbr_dict():
 # taking in a txt file with word counts of each target word
 # generating a list of tuples for each short or long form that consists of:
 # 1) word count 2) the word itself, and 3) whether it's a short or long form 
-def create_abbr_freq(file):
-    with open(file, 'r', encoding = 'utf-8') as f:
+def create_abbr_freq(freq_file):
+    with open(freq_file, 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
 
         word_counts = []
@@ -118,30 +118,44 @@ def single_token_checker():
 def update_abbr_dict(freq_file, min_ratio, max_ratio):
     summary_list = abbr_pair_checker(freq_file)[4]
     abbr_dict = create_abbr_dict()
-    new_abbr_dict = abbr_dict.copy()
     # summary = (short_word, short_count, long_word, long_count, ratio)
     keys = [summary[0] for summary in summary_list if summary[1] > 10 if summary[3] > 10 if min_ratio < summary[4] < max_ratio]
     
     useless_keys = [key for key in abbr_dict.keys() if key not in keys]
     problematic_short = ['上图', '乔峰', '二毛', '优品', '公益', 
-                         '共市', '印报', '吐纳', '工装', '成府', 
-                         '探子', '效颦', '棒喝', '海货', '精油',
-                         '蚁防', '西大', '领台', '县府', '中大', 
-                         '人大', '国标', 
-                         '港人', '包商', '票选', '密报', '裂伤',
-                         '报备', '外贸', '放贷', '影评', '要角', 
-                         '内销', '葬仪', '十届', '金市', '金价', 
-                         '内资', '名导', '开发协会', '港警',
-                         '剧评', '脱贫', '港岛', '空港', '车市',
-                         '港大', '赛地', '军报', '三产', '办展', 
-                         '亚青赛', '军代表', '植棉', '外宣', '油市',
-                         '产需', '还贷', '加幅', '中央美院', 
-                         '港客', '雪联', '复关', '读博', '计生户', 
-                         '川大', '产供', '护鸟', '尤杯赛', '汤杯赛']
-    useless_keys += problematic_short
+                        '共市', '印报', '吐纳', '工装', '成府', 
+                        '探子', '西大', '县府', '中大', '人大', 
+                        '国标', '留美', '电联', '孤寡', '家教'] 
 
-    for key in useless_keys:
-        del new_abbr_dict[key]
+    # short_in_long =    ['效颦', '棒喝', '海货', '精油', '复关',
+    #                     '蚁防', '领台', '升幅', '阪神', '读博',
+    #                     '港人', '包商', '票选', '密报', '裂伤',
+    #                     '报备', '外贸', '放贷', '影评', '要角', 
+    #                     '内销', '葬仪', '十届', '金市', '金价', 
+    #                     '内资', '名导', '开发协会', '港警',
+    #                     '剧评', '脱贫', '港岛', '空港', '车市',
+    #                     '港大', '赛地', '军报', '三产', '办展', 
+    #                     '军代表', '植棉', '外宣', '油市',
+    #                     '产需', '还贷', '加幅', '港客', '雪联',   
+    #                     '川大', '产供', '护鸟', 
+    #                     '受教', '空运', '二产', '一监', '电站',
+    #                     '寸照', '史著', '一产', '鲜蔬', 
+    #                     '陆架', '养教', '防保', '儿麻', '体模',
+    #                     '校建', '民警', '乐评', '弹速',
+    #                     '体语', '影带', '融政', '摄制', '余资',
+    #                     '港商', '差旅', '像带', '泳技', '校企',
+    #                     '地价', '外销', '路警', '计陷', '影业',
+    #                     '持平', '话机', '息率', '耗能', '泳协',
+    #                     '泌乳', '关检', '观展', '速生', '影技',
+    #                     '要项', '名记', '影圈', '津城',
+                        
+    #                     '中央美院', '计生户', '尤杯赛', '汤杯赛',]
+    useless_keys += problematic_short
+    
+    new_abbr_dict = {}
+    for key, value in abbr_dict.items():
+        if key not in useless_keys:
+            new_abbr_dict[key] = value
     
     return new_abbr_dict
 
@@ -197,8 +211,8 @@ def write_throw_out_list():
         f.writelines('\n'.join(unseen_short))
 
 # write remaining pairs into a .txt
-def write_new_dict():
-    with open('new_abbr_dict.txt', 'w', encoding = 'utf-8') as output_f:
+def write_new_dict(dict_file):
+    with open(dict_file, 'w', encoding = 'utf-8') as output_f:
         new_abbr_dict = update_abbr_dict(0.1, 10)
         for short, long in new_abbr_dict.items():
             pair = [short, long]
