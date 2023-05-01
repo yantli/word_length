@@ -26,7 +26,7 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_lineclue10.csv")
+data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_oldpairfilled2-200.csv")
 
 
 # data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 
@@ -61,20 +61,61 @@ mean(t_test_data$short)
 t_test_data %>% mutate(above_zero = (long - short)>0) %>%
   ggplot(aes(x=reorder(concept, (long - short), mean), y= long - short, label = concept, color=above_zero)) +
   geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 3) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
-  geom_hline(yintercept = 0) + scale_x_discrete(expand = c(0.05, 0.05)) + scale_y_discrete(expand = c(0.13, 0)) +
+  geom_hline(yintercept = 0) + scale_x_discrete(expand = c(0.02, 0.05)) + 
+  scale_y_discrete(expand = c(1, 0)) + 
+  #ylim(-6,6) +
   theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" ))
+
+# plotting according to the review:
+t_test_data %>% 
+  mutate(diff = long - short) %>% mutate(above_zero = (long - short) > 0) %>%
+  group_by(concept) %>%
+  pivot_longer(cols = c("long", "short"), names_to = "form", values_to = "surprisal")  %>%
+  ggplot(aes(x = reorder(concept, diff, mean), y = surprisal, color = form, group = interaction(concept, form))) +
+  geom_point(size = 3) +
+  geom_line(aes(group = interaction(concept, above_zero)), size = 0.5, color = "black") +
+  theme_classic() +
+  labs(y = "Surprisal", x = 'Concept') +
+  scale_color_manual(values = c("blue", "red")) +
+  theme(axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  scale_x_discrete(labels = function(x) t_test_data$concept[match(x, t_test_data$concept)])
+
+# try to add a vertical line
+diffline <- t_test_data %>% 
+  mutate(diff = long - short) %>% mutate(above_zero = if_else(diff > 0, "above 0", "below 0")) %>% mutate(long_sur = long) %>% 
+  group_by(concept) %>%
+  pivot_longer(cols = c("long", "short"), names_to = "form", values_to = "surprisal")  %>% arrange(long_sur)
+
+diffline %>%
+  ggplot(aes(x = reorder(concept, long_sur, mean), y = surprisal, group = concept)) +
+  geom_point(aes(shape = form), size = 3) + 
+  geom_line(aes(color = above_zero), size = 0.5) + 
+  scale_shape_manual(values = c(16, 1)) +
+  scale_color_manual(values = c("blue", "red")) +
+#  geom_vline(xintercept = diffline$concept[which.max(diffline$diff > 0)]) + 
+  theme_classic() +
+  labs(y = "Surprisal", x = 'Concept (represented by the short forms)', color = "Surprisal difference \n (long - short)", shape = "Word form") +
+  theme(axis.ticks.x = element_blank(), axis.text.x = element_text(angle = 90, hjust = 1)) + 
+  scale_x_discrete(labels = function(x) diffline$concept[match(x, diffline$concept)])
+
+
+
+
+
+
+
 
 t_test_data %>% mutate(above_zero = (long - short)>0) %>% filter(above_zero == TRUE)
 
 t_test_data %>% mutate(above_zero = (long - short)>0) %>%
   ggplot(aes(x=reorder(concept, (long - short), mean), y= long - short, label = concept, color=above_zero)) +
-  geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 14) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
+  geom_point(size=3) + geom_text(angle = -45, hjust = 1.5, size = 3) + theme_classic() + labs(y="Difference in surprisal", x = 'Concept') + 
   geom_hline(yintercept = 0) + theme(axis.ticks.x=element_blank(), axis.text.x=element_blank()) + guides(color=F) + scale_color_manual(values=c("red","blue" )) +
-  theme(axis.text.y = element_text(size = 50),
-        axis.title.x = element_text(size = 50),
-        axis.title.y = element_text(size = 50))
-ggsave("diff_plot.jpeg", scale = 4, width = 14, height = 2, units = c("cm"))
-geom_text_repel(nudge_x = -1.4, nudge_y = 1, segment.alpha = 0, angle = -45, size = 10)
+  theme(axis.text.y = element_text(size = 20),
+        axis.title.x = element_text(size = 20),
+        axis.title.y = element_text(size = 20))
+#ggsave("diff_plot.jpeg", scale = 4, width = 14, height = 2, units = c("cm"))
+#geom_text_repel(nudge_x = -1.4, nudge_y = 1, segment.alpha = 0, angle = -45, size = 1)
 
 # plotting the word pairs against their surprisals and link each pair with a line. 
 # Ideally we wish the slopes are mostly negative, i.e. going downward.
@@ -139,10 +180,6 @@ t_test_data <- means %>% select(-target_word, -target_word_logprob) %>% spread(w
 t.test(t_test_data$long, t_test_data$short, paired = TRUE)
 
 # =================================================================================
-
-
-
-
 
 
 # creating the mean_logprob_table containing 

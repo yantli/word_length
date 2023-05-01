@@ -209,5 +209,5 @@ def save_context(file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/abbr_dict_120count.txt', 100, '/Users/yanting/Desktop/word_length/data/context_cleaned.csv', '/Users/yanting/Desktop/word_length/data/context_120count.csv')
-    randomized_context_picker('/Users/yanting/Desktop/word_length/data/context_120count.csv', 120, '/Users/yanting/Desktop/word_length/data/context_24000_set3pairs.csv')
+    # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/abbr_dict_120count.txt', 200, '/Users/yanting/Desktop/word_length/data/context_cleaned.csv', '/Users/yanting/Desktop/word_length/data/context_120count200pairs.csv')
+    randomized_context_picker('/Users/yanting/Desktop/word_length/data/context_120count200pairs.csv', 120, '/Users/yanting/Desktop/word_length/data/context_48000_set4pairs.csv')
