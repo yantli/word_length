@@ -14,10 +14,6 @@ from transformers import (
 tokenizer = AutoTokenizer.from_pretrained("rfutrell/gpt2_wiki40b_zh-cn")
 model = AutoModelWithLMHead.from_pretrained("rfutrell/gpt2_wiki40b_zh-cn")
 
-dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
-context_file_path = '/Users/yanting/Desktop/word_length/data/context_test.csv'
-prob_file_path = '/Users/yanting/Desktop/word_length/probs/test_prob.csv'
-
 # load the new_abbr_dict
 def load_abbr_dict(dict_path):
     with open(dict_path, 'r', encoding = 'utf-8') as f:
@@ -38,8 +34,8 @@ def row_size_standardizer(row):
     post_context = row[3]
     line_num = row[4]
 
-    if len(pre_context) > 10:
-        new_pre_context = pre_context[-10:]
+    if len(pre_context) > 200:
+        new_pre_context = pre_context[-200:]
     else:
         new_pre_context = pre_context
     if len(post_context) > 50:
@@ -63,8 +59,8 @@ def get_alternate_word(dict_path, target_form, target_word):
 
     return alternate_word
 
-def alternate_row_creater(row):
-    alternate_word = get_alternate_word(row[1], row[0])
+def alternate_row_creater(dict_path, row):
+    alternate_word = get_alternate_word(dict_path, row[1], row[0])
     if row[1] == 'short':
         alternate_form = 'long'
     else:
@@ -85,9 +81,9 @@ def get_tokens(target_word, row):
     target_tokens = [int(token) for token in target_tokens_str.split()]
 
     pre_context = row[2]
-    pre_context_tokens = tokenizer.encode(pre_context)[:-2]
+    pre_context_tokens = tokenizer.encode(pre_context)
     post_context = row[3]
-    up_to_target_tokens = tokenizer.encode(pre_context + target_word)[:-1]  # getting rid of the [264] at the end
+    up_to_target_tokens = tokenizer.encode(pre_context + target_word)
 
     sent = pre_context + target_word + post_context
     sent_tokens = tokenizer.encode(sent)
@@ -106,8 +102,8 @@ def stable_tokenization_checker2(target_word, row):
     # return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in up_to_target_tokens])
     return target_tokens == sent_tokens[len(pre_context_tokens):(len(pre_context_tokens)+len(target_tokens))]
 
-def context_pair_tokenization_checker(target_word, row):
-    alt_row = alternate_row_creater(row)
+def context_pair_tokenization_checker(dict_path, target_word, row):
+    alt_row = alternate_row_creater(dict_path, row)
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alt_row[0], alt_row)
 
@@ -143,12 +139,13 @@ def clean_rows(rows):
         index += 2 
     index_to_throw = sorted(index_to_throw, reverse = True)
 
-def save_prob(output, prob_file_path):
-    with open(prob_file_path, 'a', newline='') as csvf:
+def save_prob(output, prob_file):
+    prob_file = '/Users/yanting/Desktop/word_length/probs/test_prob.csv'
+    with open(prob_file, 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
-def line_by_line(context_file):
+def line_by_line(context_file, dict_path):
     with open(context_file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
@@ -156,13 +153,13 @@ def line_by_line(context_file):
             target_word = row[0]
             target_form = row[1]
             line_num = row[4]
-            alternate_word = get_alternate_word(target_form, target_word)
+            alternate_word = get_alternate_word(dict_path, target_form, target_word)
             
             # if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
-            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, row) and context_pair_tokenization_checker(dict_path, target_word, row):
                 logprob = cal_prob(target_word, row)
                 # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
-                alternate_logprob = cal_prob(alternate_word, alternate_row_creater(row))
+                alternate_logprob = cal_prob(alternate_word, alternate_row_creater(dict_path, row))
                 # print(alternate_logprob)
                 # add them up by torch.logaddexp before the .item()
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
@@ -174,6 +171,8 @@ def line_by_line(context_file):
                 # print(output)
             
 if __name__ == "__main__":
-    line_by_line(context_file_path)
+    context_file = '/Users/yanting/Desktop/word_length/data/context_test.csv'
+    dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
+    line_by_line(context_file, dict_path)
     # cal_in_batch('test_context.csv')
     

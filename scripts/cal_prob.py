@@ -81,7 +81,7 @@ def get_tokens(target_word, row):
     target_tokens = [int(token) for token in target_tokens_str.split()]
 
     pre_context = row[2]
-    pre_context_tokens = tokenizer.encode(pre_context)[:-2]
+    pre_context_tokens = tokenizer.encode(pre_context)[:-2] # getting rid of the [4, 3] at the end
     post_context = row[3]
     up_to_target_tokens = tokenizer.encode(pre_context + target_word)[:-2]  # getting rid of the [4, 3] at the end
 
