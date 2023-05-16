@@ -26,7 +26,7 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_oldpairfilled2-200.csv")
+data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_rclue2tok.csv")
 
 
 # data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 

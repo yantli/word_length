@@ -25,7 +25,7 @@ def read_in_file(file):
                 rows.append(row)
     for row in rows:
         new_row = new_row_generator(row)
-        save_prob('/Users/yanting/Desktop/word_length/probs/prob_lineoldpairsupp2-200.csv', new_row)
+        save_prob('/Users/yanting/Desktop/word_length/probs/prob_rclue2tok.csv', new_row)
 
 
 def new_row_generator(row):
@@ -39,7 +39,7 @@ def new_row_generator(row):
 
 def concept_generator(target_word, target_form):
     # abbr_dict = load_abbr_dict('/Users/yanting/Desktop/word_length/abbr_dict/cleaned_abbr_dict_by_ratio_tok.txt')
-    abbr_dict = load_abbr_dict('/Users/yanting/Desktop/word_length/abbr_dict/abbr_dict_100count.txt')
+    abbr_dict = load_abbr_dict('/Users/yanting/Desktop/word_length/abbr_dict/clue_dict_100count.txt')
     if target_form == 'short':
         concept = target_word
     else:
@@ -55,4 +55,4 @@ def save_prob(output_file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    read_in_file('/Users/yanting/Desktop/word_length/probs/prob_line_oldpairsupp2-200.csv')
+    read_in_file('/Users/yanting/Desktop/word_length/probs/prob_r_clue2tok.csv')

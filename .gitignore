@@ -1,6 +1,7 @@
 corpora/
 data/
 probs/
+ngrams/
 program.prof
 *.csv
 *.jpeg

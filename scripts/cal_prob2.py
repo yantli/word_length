@@ -140,12 +140,11 @@ def clean_rows(rows):
     index_to_throw = sorted(index_to_throw, reverse = True)
 
 def save_prob(output, prob_file):
-    prob_file = '/Users/yanting/Desktop/word_length/probs/test_prob.csv'
     with open(prob_file, 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
-def line_by_line(context_file, dict_path):
+def line_by_line(context_file, dict_path, prob_file):
     with open(context_file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
@@ -165,7 +164,7 @@ def line_by_line(context_file, dict_path):
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
                 print(output)
-                save_prob(output)
+                save_prob(output, prob_file)
             else:
                 output = target_word, target_form, line_num
                 # print(output)
@@ -173,6 +172,7 @@ def line_by_line(context_file, dict_path):
 if __name__ == "__main__":
     context_file = '/Users/yanting/Desktop/word_length/data/context_test.csv'
     dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
-    line_by_line(context_file, dict_path)
+    prob_file = '/Users/yanting/Desktop/word_length/probs/test_prob.csv'
+    line_by_line(context_file, dict_path, prob_file)
     # cal_in_batch('test_context.csv')
     
