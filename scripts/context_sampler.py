@@ -15,8 +15,6 @@ from transformers import (
 tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
 model = AutoModelWithLMHead.from_pretrained("TsinghuaAI/CPM-Generate")
 
-new_abbr_dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/clue_new_abbr_dict.txt'
-
 problematic_short = ['上图', '乔峰', '二毛', '优品', '公益', 
                     '共市', '印报', '吐纳', '工装', '成府', 
                     '探子', '西大', '县府', '中大', '人大', 
@@ -47,8 +45,8 @@ problematic_short = ['上图', '乔峰', '二毛', '优品', '公益',
     #                     '中央美院', '计生户', '尤杯赛', '汤杯赛',]
 
 # loading the new abbr dict we relied on to clean the context
-def load_dict(file):
-    with open(file, 'r', encoding = 'utf-8') as f:
+def load_dict(dict_file):
+    with open(dict_file, 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
     abbr_dict = {}
     for i in range(len(lines)):
@@ -73,8 +71,8 @@ def dict_in_context(dict_file, context_file):
 
 # generating a list of tuples for each short or long form that consists of:
 # 1) word count 2) the word itself, and 3) whether it's a short or long form 
-def abbr_freq_ratio_counter(file):
-    with open(file, 'r', encoding = 'utf-8') as f:
+def abbr_freq_ratio_counter(freq_file, dict_file):
+    with open(freq_file, 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
 
         word_counts = []
@@ -85,7 +83,7 @@ def abbr_freq_ratio_counter(file):
     # in word_counts, item[0] is the count, item[1] is the word, item[2] is whether it's long or short
     shortlist = [item[1] for item in word_counts if item[2] == 'short']
     longlist = [item[1] for item in word_counts if item[2] == 'long']
-    abbr_dict = load_dict(new_abbr_dict_path)
+    abbr_dict = load_dict(dict_file)
     short_list = []
     long_list = []
     for short, long in abbr_dict.items():
@@ -110,9 +108,9 @@ def abbr_freq_ratio_counter(file):
     
     return summary_list
 
-def abbr_screener_by_ratio(min_count, min_ratio, max_ratio):
-    summary_list = abbr_freq_ratio_counter('/Users/yanting/Desktop/word_length/abbr_dict/clue_cleaned_freq.txt')
-    cleaned_abbr_dict = dict_in_context(new_abbr_dict_path, '/Users/yanting/Desktop/word_length/data/cluecomm_context_cleaned.csv')
+def abbr_screener_by_ratio(freq_file, dict_file, context_file, min_count, min_ratio, max_ratio):
+    summary_list = abbr_freq_ratio_counter(freq_file, dict_file)
+    cleaned_abbr_dict = dict_in_context(dict_file, context_file)
     cleaned_abbr_dict_by_ratio = cleaned_abbr_dict.copy()
     # summary = (short_word, short_count, long_word, long_count, ratio)
     keys = [summary[0] for summary in summary_list if summary[1] > min_count if summary[3] > min_count if min_ratio < summary[4] < max_ratio]
@@ -209,5 +207,8 @@ def save_context(file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/abbr_dict_120count.txt', 200, '/Users/yanting/Desktop/word_length/data/context_cleaned.csv', '/Users/yanting/Desktop/word_length/data/context_120count200pairs.csv')
-    randomized_context_picker('/Users/yanting/Desktop/word_length/data/context_120count200pairs.csv', 120, '/Users/yanting/Desktop/word_length/data/context_48000_set4pairs.csv')
+    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_new_abbr_dict.txt'
+    freq_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_cleaned_freq.txt'
+    context_file = '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_cleaned.csv'
+    # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_120count.txt', 122, context_file, '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_120count122pairs.csv')
+    randomized_context_picker('/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_120count122pairs.csv', 120, '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_29280.csv')

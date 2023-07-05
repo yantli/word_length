@@ -1,44 +1,64 @@
 # Take all abbr pairs and build a new dict with:
 # 1) pairs with both short and long appeared in all contexts found by count_freq_2.py
 # 2) pairs with short freq > 10, long freq > 10, and with 0.1 < long_short_ratio < 10
+# 3) pairs without tokenization artifact (i.e. the "8" in front of the token)
 
 # Yanting Li
 # 12/13/2022
 
 import re
 import csv
+from transformers import (
+    TextGenerationPipeline, 
+    AutoTokenizer, 
+    AutoModelWithLMHead
+)
+
+tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
+model = AutoModelWithLMHead.from_pretrained("TsinghuaAI/CPM-Generate")
 
 # generating the dict containing all short-long word pairs
-def create_abbr_dict():
-    with open('/Users/yanting/Desktop/word_length/abbr_dict/abbr_list_full.txt', 'r', encoding = 'utf-8') as f:
-        lines = f.readlines()
+def create_abbr_dict(dict_file):
+    if dict_file == '/Users/yanting/Desktop/word_length/abbr_dict/abbr_dict_full.txt':
+        with open(dict_file, 'r', encoding = 'utf-8') as f:
+            lines = f.readlines()
 
-    abbr_dict = {}
-    for i in range(len(lines)):
-        if lines[i].startswith('n'):
-            continue
-        else:
-            pair = lines[i].split(": ")
-            short = pair[0]
-            long = ''.join([i.strip() for i in re.split('/[a-z]+', pair[1].strip())])
-            if short in abbr_dict.keys():
-                del abbr_dict[short]
+        abbr_dict = {}
+        for i in range(len(lines)):
+            if lines[i].startswith('n'):
+                continue
             else:
-                abbr_dict[short] = long
+                pair = lines[i].split(": ")
+                short = pair[0]
+                long = ''.join([i.strip() for i in re.split('/[a-z]+', pair[1].strip())])
+                if short in abbr_dict.keys():
+                    del abbr_dict[short]
+                else:
+                    abbr_dict[short] = long
 
-    # deleting short forms that share the same long form:
-    seen = set()
-    duplicated = []
-    for short in abbr_dict.keys():
-        if abbr_dict[short] in seen:
-            duplicated.append(abbr_dict[short])
-        else:
-            seen.add(abbr_dict[short])
-    key_to_be_deleted = [short for short in abbr_dict.keys() if abbr_dict[short] in duplicated]
-    
-    for short in key_to_be_deleted:
-        del abbr_dict[short] 
-    
+        # deleting short forms that share the same long form:
+        seen = set()
+        duplicated = []
+        for short in abbr_dict.keys():
+            if abbr_dict[short] in seen:
+                duplicated.append(abbr_dict[short])
+            else:
+                seen.add(abbr_dict[short])
+        key_to_be_deleted = [short for short in abbr_dict.keys() if abbr_dict[short] in duplicated]
+        
+        for short in key_to_be_deleted:
+            del abbr_dict[short] 
+
+    else:
+        with open(dict_file, 'r', encoding = 'utf-8') as f:
+            lines = f.readlines()
+        abbr_dict = {}
+        for i in range(len(lines)):
+            pair = lines[i].split()
+            short = pair[0]
+            long = pair[1]
+            abbr_dict[short] = long
+
     return abbr_dict
 
 # taking in a txt file with word counts of each target word
@@ -56,8 +76,8 @@ def create_abbr_freq(freq_file):
     return word_counts
         
 # checking whether both short and long form of a concept showed up in the text:
-def abbr_pair_checker(freq_file):
-    abbr_dict = create_abbr_dict()
+def abbr_pair_checker(dict_file, freq_file):
+    abbr_dict = create_abbr_dict(dict_file)
     word_counts = create_abbr_freq(freq_file)
 
     # in word_counts, item[0] is the count, item[1] is the word, item[2] is whether it's long or short
@@ -100,24 +120,24 @@ def find_unpaired_words():
     return unpaired_short, unpaired_long
 
 # check if short forms are treated as one single token (by jieba)
-def single_token_checker():
-    full_short_list, full_long_list, short_word_list, long_word_list, summary_list = abbr_pair_checker()
-    short_tokens = short_word_list.copy()
-    with open('all_tokenized.txt', 'r', encoding = 'utf-8') as f:
-        while True:
-            string = f.readline()
-            if not string:
-                break;
-            else:
-                for token in short_tokens:
-                    if token in string:
-                        short_tokens.remove(token)
-    return short_tokens
+# def single_token_checker():
+#     full_short_list, full_long_list, short_word_list, long_word_list, summary_list = abbr_pair_checker()
+#     short_tokens = short_word_list.copy()
+#     with open('all_tokenized.txt', 'r', encoding = 'utf-8') as f:
+#         while True:
+#             string = f.readline()
+#             if not string:
+#                 break;
+#             else:
+#                 for token in short_tokens:
+#                     if token in string:
+#                         short_tokens.remove(token)
+#     return short_tokens
 
 # generating a new dict without the unpaired words:
-def update_abbr_dict(freq_file, min_ratio, max_ratio):
-    summary_list = abbr_pair_checker(freq_file)[4]
-    abbr_dict = create_abbr_dict()
+def update_abbr_dict(dict_file, freq_file, min_ratio, max_ratio):
+    summary_list = abbr_pair_checker(dict_file, freq_file)[4]
+    abbr_dict = create_abbr_dict(dict_file)
     # summary = (short_word, short_count, long_word, long_count, ratio)
     keys = [summary[0] for summary in summary_list if summary[1] > 10 if summary[3] > 10 if min_ratio < summary[4] < max_ratio]
     
@@ -152,6 +172,10 @@ def update_abbr_dict(freq_file, min_ratio, max_ratio):
     #                     '中央美院', '计生户', '尤杯赛', '汤杯赛',]
     useless_keys += problematic_short
     
+    for key in abbr_dict.keys():
+        if tokenizer.encode(key)[0] == 8 or tokenizer.encode(abbr_dict.get(key))[0] == 8:
+            useless_keys.append(key)
+
     new_abbr_dict = {}
     for key, value in abbr_dict.items():
         if key not in useless_keys:
@@ -188,6 +212,7 @@ def update_abbr_dict(freq_file, min_ratio, max_ratio):
     
 #     return new_abbr_dict
 
+
 # writing the list of words to be thrown out into a .txt file:
 def write_throw_out_list():
     unpaired_short, unpaired_long = find_unpaired_words()
@@ -221,6 +246,7 @@ def write_new_dict(dict_file, dict):
 if __name__ == "__main__":
     # write_paired_abbr_freq()
     # write_throw_out_list()
-    freq_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_freq.txt'
-    new_abbr_dict = update_abbr_dict(freq_file, 0.1, 10)
-    write_new_dict('/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_dict_by_ratio.txt', new_abbr_dict)
+    original_abbr_dict = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_new_abbr_dict.txt'
+    freq_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_cleaned_freq.txt'
+    new_abbr_dict = update_abbr_dict(original_abbr_dict, freq_file, 0.1, 10)
+    write_new_dict('/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_cleaned_dict_by_ratio.txt', new_abbr_dict)
