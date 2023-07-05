@@ -30,7 +30,8 @@ import csv
 #                 long_context_list.append(tuple)
 #     return 
 
-def find_context(string, line_num):
+# the "topic" argument only applies to cluecommunity texts
+def find_context(string, line_num, topic):
     context_list = []
     target_words = re.findall(regex, string)
     target_word_idx = [m.start() for m in re.finditer(regex, string)]
@@ -44,54 +45,69 @@ def find_context(string, line_num):
                 i = target_word_idx[num]
                 pre = string[:i].strip()
                 post = string[(i + len(target_word)):].strip()
-                tuple = (target_word, word_length, pre, post, line_num)
+                tuple = (target_word, word_length, pre, post, line_num, topic)
                 context_list.append(tuple)
     return context_list
     
 # writing all contexts found in one news into a .csv file
-def string_to_csv(string, line_num):
-    context_list = find_context(string, line_num)
+# the "topic" argument only applies to cluecommunity texts
+def string_to_csv(string, line_num, topic):
+    context_list = find_context(string, line_num, topic)
     # with open('context_2.csv', 'a', newline='') as csvf:
-    with open('/Users/yanting/Desktop/word_length/data/context_cluecommunity.csv', 'a', newline='') as csvf:
+    with open('/Users/yanting/Desktop/word_length/data/context_cluecommunity_w_topic.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerows(context_list)
 
     return 
 
 # creating a dict to store short-long word pairs
-with open('/Users/yanting/Desktop/word_length/abbr_dict/abbr_list_full.txt', 'r', encoding = 'utf-8') as f:
-    lines = f.readlines()
+def creating_abbr_dict():
+    with open('/Users/yanting/Desktop/word_length/abbr_dict/abbr_list_full.txt', 'r', encoding = 'utf-8') as f:
+        lines = f.readlines()
 
-abbr_dict = {}
-for i in range(len(lines)):
-    if lines[i].startswith('n'):
-        continue
-    else:
-        pair = lines[i].split(": ")
-        short = pair[0]
-        longlist = [i.strip() for i in re.split('/[a-z]+', pair[1].strip())]
-        long = ''.join(longlist)
-        if short in abbr_dict.keys():
-            with open('abbr_list_overlap.txt', 'a', encoding = 'utf-8') as f:
-                f.write(short + '\t' + long + '\t' + abbr_dict[short] + '\n')
-            del abbr_dict[short]
+    abbr_dict = {}
+    for i in range(len(lines)):
+        if lines[i].startswith('n'):
+            continue
         else:
-            abbr_dict[short] = long
-# the dictionary contains 7455 pairs
+            pair = lines[i].split(": ")
+            short = pair[0]
+            longlist = [i.strip() for i in re.split('/[a-z]+', pair[1].strip())]
+            long = ''.join(longlist)
+            if short in abbr_dict.keys():
+                with open('abbr_list_overlap.txt', 'a', encoding = 'utf-8') as f:
+                    f.write(short + '\t' + long + '\t' + abbr_dict[short] + '\n')
+                del abbr_dict[short]
+            else:
+                abbr_dict[short] = long
+    return abbr_dict
+    # the dictionary contains 7455 pairs
 
-# putting all words in the dict into a giant regex
-short_words = [key for key in abbr_dict.keys()]
-long_words = [value for value in abbr_dict.values()]
-words_list = short_words + long_words
-regex = '('+'|'.join(words_list)+')'
+if __name__ == "__main__":
+    abbr_dict = creating_abbr_dict()
+    # putting all words in the dict into a giant regex
+    short_words = [key for key in abbr_dict.keys()]
+    long_words = [value for value in abbr_dict.values()]
+    words_list = short_words + long_words
+    regex = '('+'|'.join(words_list)+')'
 
-# looking for short/long words in the text    
-with open('/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/community_test.txt', 'r', encoding = 'utf-8') as f:
-    line_num = 0
-    while True:
-        string = f.readline()
-        if not string:
-            break;
-        line_num += 1
-        string_to_csv(string, line_num)
+    # looking for short/long words in the text - when the input is a .txt file
+    # with open('/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/communitytest.txt', 'r', encoding = 'utf-8') as f:
+    #     line_num = 0
+    #     while True:
+    #         string = f.readline()
+    #         if not string:
+    #             break;
+    #         line_num += 1
+    #         string_to_csv(string, line_num)
+
+    # looking for short/long words in the text - when the input is a .csv file
+    with open('/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/community_w_topic.csv', 'r', encoding = 'utf-8') as f:
+        filereader = csv.reader(f, delimiter = ',')
+        for i, row in enumerate(filereader, start=1):
+            topic = row[0]
+            title = row[1]
+            content = row[2]
+            string = title + content
+            string_to_csv(string, i, topic)
 

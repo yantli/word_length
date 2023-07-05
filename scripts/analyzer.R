@@ -26,8 +26,15 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_rclue2tok.csv")
+data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_trigramclue117.csv")
 
+################# 
+#for dealing with clue data only:
+data <- data %>% group_by(target_word, concept, word_form) %>% filter(n() >= 50) %>% ungroup()
+# this is to only look at data overlapping with the old pairs
+oldpairs <- c('空运','和谈','国有企业','成飞','央行','男网','中央银行','汽车市场','管理委员会','中东和谈','石油市场','东协','专业人才','巴勒斯坦解放组织','外销','东南亚国家协会','网球协会','粮食援助','粮援','新加坡航空公司','油市','高级干部','修宪','国内资本','特别委员会','驾照','和平谈判','越战','修改宪法','男子网球','公平交易委员会','专才','报备','新航','飞安','西北航空公司','驾驶执照','中东和平谈判','飞行安全','网协','海缆','海底电缆','环境卫生','体育协会','高干','国际电信联盟','空中作战','管委','国家标准','时空','国企','学生运动','实际控制线','轻型卡车','越南战争','马列主义','补税','人口老化','股票价值','学运','科学仪器','吉大','空战','航空运输','童子军','童军','巴解组织','县府','政治体制改革','金市','女子柔道','内资','世界运动会','股值','财政年度','地价','无人驾驶飞机','土地价格','武大','游泳健将','深大','宣教','对外销售','运输能力','政改','男子曲棍球','童装','环卫','体协','公平会','展览馆','农科','防止贪污','电联','时间和空间','深圳证券交易所','农业科学','监委','高知','车市','无人机','国标','黄金市场','展馆','宣传教育','护校','监察委员会','运输管理','羽毛球协会','投入运行','财年','护士学校','运能','公路铁路','成人教育','西航','早期教育','美术学院','武汉大学','黄河水利委员会','心血管外科','运管','知识青年','亚冬会','科考队','成都飞机','扩招','黄委会','人口老龄化','深交所','参赌','参加赌博','直属机关','工美','马克思列宁主义','政策研究室','军事体育','知青','深圳大学','军体','县人民政府','实控线','吉林大学','牡丹信用卡','女柔','美院','工艺美术品','补交税款','联交所','高级知识分子','男子花剑','男花','欧洲航天局','香港联合交易所','尤伯杯','投运','防贪','扩大招生','男曲','亚洲冬季运动会','世俱杯','申报备案','心内科','纠风','科仪','公铁','帮贫','血吸虫病防治','血防','成教','纠正行业不正之风','科学考察队','沈阳铁路局','游将','早教','心外科','心血管内科','牡丹卡','羽协','沈铁','直机关','儿童服装','特委','专干','尤杯','轻卡','欧航局','世界俱乐部杯','武术协会','武协','政研室','打私','专职干部','打击走私活动','世运会','桥牌联合会','桥联','帮助贫困户','展览交易会','展交会')
+data <- data[data$target_word %in% oldpairs,]
+#################
 
 # data %>% group_by(target_word, concept, word_form) %>% summarize(disj_logprob=mean(disj_logprob), target_word_logprob=mean(target_word_logprob)) %>% ungroup() %>% 
 #   ggplot(aes(x=word_form, y=target_word_logprob, label=target_word, group=concept)) + geom_line() + geom_text() + theme_classic()
@@ -52,6 +59,14 @@ t_test_data <- means %>% select(-target_word, -target_word_surprisal) %>% spread
 t.test(t_test_data$long, t_test_data$short, paired = TRUE)
 mean(t_test_data$long)
 mean(t_test_data$short)
+################# 
+# same step as above but for dealing with clue data only:
+t_test_data <- means %>% select(-target_word, -target_word_surprisal) %>% spread(word_form, concept_surprisal)
+t_test_data <- na.omit(t_test_data)
+t.test(t_test_data$long, t_test_data$short, paired = TRUE)
+mean(t_test_data$long)
+mean(t_test_data$short)
+#################
 
 # plotting the difference in surprisal
 # t_test_data %>% mutate(above_zero = (-long + short)>0) %>%
@@ -133,12 +148,19 @@ ggplot(plotdata, aes(x=word_form, y=concept_surprisal, label=target_word, group=
 disj <- data %>% select(-target_word, -target_word_logprob, -line_num) %>% mutate(surprisal = -disj_logprob) %>% mutate(is_short = ifelse(word_form == 'short', 0, 1))
 disj$word_form <- as.factor(disj$word_form)
 
+################# 
+# one more step for dealing with clue data only:
+disj <- disj[disj$concept %in% t_test_data$concept,]
+#################
+
 #mixed_ml <- glmer(if_short ~ 1 + disj_logprob + (1 + disj_logprob|concept), data = concept_disj_table, family = binomial)
 # summary(mixed_ml)
 mixed_ml2 <- glmer(word_form ~ 1 + surprisal + (1 + surprisal|concept), data = disj, family = binomial)
 mixed_ml2 <- glmer(is_short ~ 1 + surprisal + (1 + surprisal|concept), data = disj, family = binomial)
 summary(mixed_ml2)
 
+mixed_ml3 <- glm(is_short ~ 1 + surprisal, data = disj, family = binomial)
+summary(mixed_ml3)
 # ============================================================================================
 
 # Fisher's method

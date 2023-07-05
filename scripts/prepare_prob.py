@@ -16,30 +16,29 @@ def load_abbr_dict(dict_file):
     
     return abbr_dict
     
-def read_in_file(file):
+def read_in_file(input_file, output_file):
     rows = []
-    with open(file, 'r', encoding = 'utf-8') as f:
+    with open(input_file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
             if len(row) == 5:
                 rows.append(row)
     for row in rows:
         new_row = new_row_generator(row)
-        save_prob('/Users/yanting/Desktop/word_length/probs/prob_rclue2tok.csv', new_row)
+        save_prob(output_file, new_row)
 
 
 def new_row_generator(row):
     # row = [target_word, target_form, logprob.item(), disjunction_logprob, line_num]
     target_word = row[0]
     target_form = row[1]
-    concept = concept_generator(target_word, target_form)    
+    concept = concept_generator(dict_file, target_word, target_form)    
     row.insert(1, concept)
 
     return row
 
-def concept_generator(target_word, target_form):
-    # abbr_dict = load_abbr_dict('/Users/yanting/Desktop/word_length/abbr_dict/cleaned_abbr_dict_by_ratio_tok.txt')
-    abbr_dict = load_abbr_dict('/Users/yanting/Desktop/word_length/abbr_dict/clue_dict_100count.txt')
+def concept_generator(dict_file, target_word, target_form):
+    abbr_dict = load_abbr_dict(dict_file)
     if target_form == 'short':
         concept = target_word
     else:
@@ -55,4 +54,7 @@ def save_prob(output_file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    read_in_file('/Users/yanting/Desktop/word_length/probs/prob_r_clue2tok.csv')
+    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_new_abbr_dict.txt'
+    input_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_clue117.csv'
+    output_file = '/Users/yanting/Desktop/word_length/probs/prob_trigramclue117.csv'
+    read_in_file(input_file, output_file)

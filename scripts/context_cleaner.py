@@ -20,8 +20,8 @@ tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
 model = AutoModelWithLMHead.from_pretrained("TsinghuaAI/CPM-Generate")
 
 # load the designated dictionary
-def load_abbr_dict(file):
-    with open(file, 'r', encoding = 'utf-8') as f:
+def load_abbr_dict(dict_file):
+    with open(dict_file, 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
     abbr_dict = {}
     for i in range(len(lines)):
@@ -32,15 +32,16 @@ def load_abbr_dict(file):
     return abbr_dict
 
 # completing 1), return True if we should keep the line
-def screener_one(target_word, row):
+def screener_one(dict_file, target_word, row):
     # new_abbr_dict = update_abbr_dict(0.1, 10)
-    abbr_dict = load_abbr_dict('new_abbr_dict.txt')
+    abbr_dict = load_abbr_dict(dict_file)
     target_word = row[0]
     return target_word in abbr_dict.keys() or target_word in abbr_dict.values()
        
-# completing 2), return True if we should keep the line
+# completing 2), return True if we should keep the line. 
+# The len(row) == 5 should be changed to len(row) == 6 if we are dealing with cluecomm_w_topic contexts
 def screener_two(row):
-    return len(row) == 5 and len(row[2].strip('！？｡。＃＄％＆＇（）()＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞“”" ')) > 0 and len(row[3].strip('！？｡。＃＄％＆＇（）()＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞“”" ')) > 0
+    return len(row) == 6 and len(row[2].strip('！？｡。＃＄％＆＇（）()＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞“”" ')) > 0 and len(row[3].strip('！？｡。＃＄％＆＇（）()＊＋，－／：；＜＝＞＠［＼］＾＿｀｛｜｝～｟｠｢｣､、〃》「」『』【】〔〕〖〗〘〙〚〛〜〝〞“”" ')) > 0
 
 # getting the token(s) of 1) the target word, 2) the tokens of the whole story up to the target word and 3) the tokens of the whole sentence
 def get_tokens(target_word, row):
@@ -71,20 +72,24 @@ def screener_three(target_word, row):
     target_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     return ' '.join([str(x) for x in target_tokens]) in ' '.join([str(x) for x in sent_tokens])
         
-def save_context(row):
-    with open('context_cleaned.csv', 'a', newline='') as csvf:
+def save_context(cleaned_file, row):
+    with open(cleaned_file, 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    with open('context_2.csv', 'r', encoding = 'utf-8') as f:
+    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_new_abbr_dict.txt'
+    # context_file = '/Users/yanting/Desktop/word_length/data/context_2.csv'
+    context_file = '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context.csv'
+    cleaned_file = '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_cleaned.csv'
+    with open(context_file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
             target_word = row[0]
             target_form = row[1]
-            line_num = row[4]
-            if screener_one(target_word, row) and screener_two(row):
+            if screener_one(dict_file, target_word, row) and screener_two(row):
                 if screener_three(target_word, row):
-                    save_context(row)
+                    save_context(cleaned_file, row)
+                    print(row)
 
             

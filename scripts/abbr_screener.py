@@ -211,10 +211,9 @@ def write_throw_out_list():
         f.writelines('\n'.join(unseen_short))
 
 # write remaining pairs into a .txt
-def write_new_dict(dict_file):
+def write_new_dict(dict_file, dict):
     with open(dict_file, 'w', encoding = 'utf-8') as output_f:
-        new_abbr_dict = update_abbr_dict(0.1, 10)
-        for short, long in new_abbr_dict.items():
+        for short, long in dict.items():
             pair = [short, long]
             output_f.writelines('\t'.join(pair))
             output_f.writelines('\n')
@@ -222,5 +221,6 @@ def write_new_dict(dict_file):
 if __name__ == "__main__":
     # write_paired_abbr_freq()
     # write_throw_out_list()
-    # new_abbr_dict = update_abbr_dict(0.1, 10)
-    write_new_dict()
+    freq_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_freq.txt'
+    new_abbr_dict = update_abbr_dict(freq_file, 0.1, 10)
+    write_new_dict('/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_dict_by_ratio.txt', new_abbr_dict)

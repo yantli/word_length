@@ -247,7 +247,7 @@ def line_by_line(file):
             
             # if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
             if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
-                logprob = cal_prob(target_word, row)
+                logprob = cal_prob(row)
                 # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
                 alternate_logprob = cal_prob(alternate_word, alternate_row_creater(row))
                 # print(alternate_logprob)

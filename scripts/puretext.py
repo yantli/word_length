@@ -11,12 +11,13 @@
 
 import jieba
 import json
-import re
+import csv
 from transformers import (
     TextGenerationPipeline, 
     AutoTokenizer, 
     AutoModelWithLMHead
 )
+tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
 
 # from os import listdir
 # from os.path import isfile, join
@@ -53,13 +54,26 @@ def save_jieba_tokenized_text(newlines):
         output_f.writelines(newlines)
 
 # this is for the cluecorpus
-def read_in_json_file(input_file, output_file):
+def read_in_json_file(input_file):
+# def read_in_json_file(input_file, output_file):
+    full_lines = []
     with open(input_file, 'r') as f:
         for line in f:
             object = json.loads(line)
+            topic = object.get('topic')
+            title = object.get('title')
             content = object.get('content')
-            save_pure_text(output_file, content)
+            full_line = (topic, title, content)
+            full_lines.append(full_line)
+            # full_line = "这是一段来自网络论坛的讨论。讨论的话题是" + topic + "：" + title + content
+            # save_pure_text(output_file, full_line)
+    return full_lines
 
+# this is for saving the cluecorpus into a .csv file with topic, title and content seperated by comma
+def save_to_csv(output_file, full_lines):
+    with open(output_file, 'a', newline='') as csvf:
+        writer = csv.writer(csvf, delimiter = ',')
+        writer.writerows(full_lines)
 
 # this is for re-tokenize cmn corpus using cpm as the tokenizer
 def text_to_tokenized_text(input_file, output_file):
@@ -70,7 +84,6 @@ def text_to_tokenized_text(input_file, output_file):
             save_tokenized_text(output_file, tokenized_line)
         
 def cpm_tokenizer(line):
-    tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
     tokens = tokenizer.encode(line)
     toktext = [tokenizer.decode(token) for token in tokens][:-2]
     tokenized_line = ' '.join(toktext)
@@ -86,8 +99,8 @@ if __name__ == "__main__":
     # save_pure_text(read_in_news('zbnall.txt'))
     # save_jieba_tokenized_text(read_in_news('zbnall.txt'))
 
-    # path_to_json_file = '/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/web_text_zh_train.json'
-    # output = '/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/cluecommunity.txt'
-    # read_in_json_file(path_to_json_file, output)
-
-    text_to_tokenized_text('/Users/yanting/Desktop/word_length/data/cmnpure_training.txt', '/Users/yanting/Desktop/word_length/ngrams/cmn_tokentized_by_cpm.txt')
+    path_to_json_file = '/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/web_text_zh_train.json'
+    output_file = '/Users/yanting/Desktop/word_length/corpora/cluecorpus/community_text/community_with_topic.csv'
+    full_lines = read_in_json_file(path_to_json_file)
+    save_to_csv(output_file, full_lines)
+    # text_to_tokenized_text('/home/yanting/word_length/data/cmnpure_training.txt', '/home/yanting/word_length/ngrams/cmn_tokentized_by_cpm.txt')
