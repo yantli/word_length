@@ -207,8 +207,8 @@ def save_context(file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_new_abbr_dict.txt'
-    freq_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_cleaned_freq.txt'
-    context_file = '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_cleaned.csv'
-    # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_120count.txt', 122, context_file, '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_120count122pairs.csv')
-    randomized_context_picker('/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_120count122pairs.csv', 120, '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_29280.csv')
+    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
+    freq_file = '/Users/yanting/Desktop/word_length/abbr_dict/cleaned_abbr_freq.txt'
+    context_file = '/Users/yanting/Desktop/word_length/data/context_cleaned.csv'
+    # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/equal_toklen_dict.txt', 77, context_file, '/Users/yanting/Desktop/word_length/data/context_equaltoklen_pairs.csv')
+    randomized_context_picker('/Users/yanting/Desktop/word_length/data/context_equaltoklen_pairs.csv', 100, '/Users/yanting/Desktop/word_length/data/context_equaltoklenpairs100entry.csv')

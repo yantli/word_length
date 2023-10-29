@@ -26,7 +26,7 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_trigramclue117.csv")
+data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_lineequaltoklen200.csv")
 
 ################# 
 #for dealing with clue data only:

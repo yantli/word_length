@@ -54,7 +54,7 @@ def save_prob(output_file, row):
         writer.writerow(tuple(row))
 
 if __name__ == "__main__":
-    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_new_abbr_dict.txt'
-    input_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_clue117.csv'
-    output_file = '/Users/yanting/Desktop/word_length/probs/prob_trigramclue117.csv'
+    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
+    input_file = '/Users/yanting/Desktop/word_length/probs/prob_line_equaltoklen200.csv'
+    output_file = '/Users/yanting/Desktop/word_length/probs/prob_lineequaltoklen200.csv'
     read_in_file(input_file, output_file)

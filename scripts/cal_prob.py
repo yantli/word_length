@@ -27,21 +27,34 @@ def load_abbr_dict():
     return abbr_dict
 
 # making sure pre-context is within 200 characters, and post-context is within 50.
-def row_size_standardizer(row):
+def row_size_standardizer(row, add_prompt = 'false'):
     target_word = row[0]
     target_form = row[1]
     pre_context = row[2]
     post_context = row[3]
     line_num = row[4]
 
-    if len(pre_context) > 200:
-        new_pre_context = pre_context[-200:]
+    if add_prompt == 'false':
+        if len(pre_context) > 200:
+            new_pre_context = pre_context[-200:]
+        else:
+            new_pre_context = pre_context
+        if len(post_context) > 50:
+            new_post_context = post_context[:50]
+        else: 
+            new_post_context = post_context
+    
     else:
-        new_pre_context = pre_context
-    if len(post_context) > 50:
-        new_post_context = post_context[:50]
-    else: 
-        new_post_context = post_context
+        topic = row[5]
+        prompt = "这是一段来自网络论坛的讨论。讨论的话题是" + topic + "："
+        # if len(pre_context) > 200:
+        #     new_pre_context = prompt + pre_context[-200:]
+        # else:
+        new_pre_context = prompt + pre_context
+        if len(post_context) > 50:
+            new_post_context = post_context[:50]
+        else: 
+            new_post_context = post_context
 
     new_row = [target_word, target_form, new_pre_context, new_post_context, line_num]
 
@@ -243,11 +256,13 @@ def line_by_line(file):
             target_word = row[0]
             target_form = row[1]
             line_num = row[4]
+            # this is only for cluecomm_w_topic
+            topic = row[5]
             alternate_word = get_alternate_word(target_form, target_word)
             
             # if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
             if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
-                logprob = cal_prob(row)
+                logprob = cal_prob(target_word, row)
                 # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
                 alternate_logprob = cal_prob(alternate_word, alternate_row_creater(row))
                 # print(alternate_logprob)

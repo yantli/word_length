@@ -1,3 +1,4 @@
+scripts/trainlm
 corpora/
 data/
 probs/

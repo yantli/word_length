@@ -131,7 +131,7 @@ if __name__ == "__main__":
     # context_file = '/Users/yanting/Desktop/word_length/data/context_10000_freq_samples.csv'
     # dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
     # prob_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_oldpair.csv'
-    context_file = '/Users/yanting/Desktop/word_length/data/cluecomm_context_117count.csv'
-    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/clue_new_abbr_dict.txt'
-    prob_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_clue117.csv'
+    context_file = '/Users/yanting/Desktop/word_length/data/context_equaltoklenpairs100entry.csv'
+    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
+    prob_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_equaltoklen.csv'
     line_by_line(context_file, dict_file, prob_file)
