@@ -190,7 +190,7 @@ def clean_rows(rows):
     # max_length = max([len(row_token) for row_token in row_tokens])
 
 def save_prob(output):
-    with open('test_prob.csv', 'a', newline='') as csvf:
+    with open('/Users/yanting/Desktop/word_length/probs/prob_newpairs_long200.csv', 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
@@ -257,7 +257,7 @@ def line_by_line(file):
             target_form = row[1]
             line_num = row[4]
             # this is only for cluecomm_w_topic
-            topic = row[5]
+            # topic = row[5]
             alternate_word = get_alternate_word(target_form, target_word)
             
             # if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
@@ -276,7 +276,7 @@ def line_by_line(file):
                 # print(output)
             
 if __name__ == "__main__":
-    line_by_line('test_context.csv')
+    line_by_line('/Users/yanting/Desktop/word_length/data/context_newpairs50longentry.csv')
     # cal_in_batch('test_context.csv')
     
 # if __name__ == "__main__":

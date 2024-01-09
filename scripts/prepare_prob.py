@@ -55,6 +55,6 @@ def save_prob(output_file, row):
 
 if __name__ == "__main__":
     dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
-    input_file = '/Users/yanting/Desktop/word_length/probs/prob_line_equaltoklen200.csv'
-    output_file = '/Users/yanting/Desktop/word_length/probs/prob_lineequaltoklen200.csv'
+    input_file = '/Users/yanting/Desktop/word_length/probs/prob_fwiki_newpairs100.csv'
+    output_file = '/Users/yanting/Desktop/word_length/probs/prob_fwikinewpairs100.csv'
     read_in_file(input_file, output_file)

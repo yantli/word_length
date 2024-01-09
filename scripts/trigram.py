@@ -128,10 +128,10 @@ def line_by_line(context_file, dict_file, prob_file):
                 print(output)
 
 if __name__ == "__main__":
-    # context_file = '/Users/yanting/Desktop/word_length/data/context_10000_freq_samples.csv'
-    # dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
-    # prob_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_oldpair.csv'
-    context_file = '/Users/yanting/Desktop/word_length/data/context_equaltoklenpairs100entry.csv'
+    context_file = '/Users/yanting/Desktop/word_length/data/context_100newpairs_50longentry.csv'
     dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
-    prob_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_equaltoklen.csv'
+    prob_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_newpairs_longentry.csv'
+    # context_file = '/Users/yanting/Desktop/word_length/data/context_equaltoklenpairs100entry.csv'
+    # dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
+    # prob_file = '/Users/yanting/Desktop/word_length/probs/prob_trigram_equaltoklen.csv'
     line_by_line(context_file, dict_file, prob_file)

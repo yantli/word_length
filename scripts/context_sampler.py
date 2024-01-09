@@ -4,6 +4,7 @@
 
 import random
 import csv
+from xml.sax.handler import DTDHandler
 import numpy
 import torch
 from transformers import (
@@ -184,7 +185,7 @@ def context_screener(dict_file, num_to_select, context_file, output_file):
                 save_context(output_file, row)
 
 # randomly pick 5 contexts for each word, i.e. 10 for each pair, 1000 in total
-def randomized_context_picker(input_file, num_to_pick, output_file):
+def randomized_context_picker(input_file, num_to_pick, output_file, min_context_length = False):
     context_dict = {}
     with open(input_file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
@@ -196,7 +197,11 @@ def randomized_context_picker(input_file, num_to_pick, output_file):
                 context_dict[target_word] = [row]
 
     for key in context_dict:
-        group_of_items = context_dict.get(key)
+        if min_context_length:
+            allvalues = context_dict.get(key)
+            group_of_items = [value for value in allvalues if len(value[2])>= min_context_length]
+        else:
+            group_of_items = context_dict.get(key)
         list_of_random_context = random.sample(group_of_items, num_to_pick)
         for context in list_of_random_context:
             save_context(output_file, context)        
@@ -211,4 +216,4 @@ if __name__ == "__main__":
     freq_file = '/Users/yanting/Desktop/word_length/abbr_dict/cleaned_abbr_freq.txt'
     context_file = '/Users/yanting/Desktop/word_length/data/context_cleaned.csv'
     # context_screener('/Users/yanting/Desktop/word_length/abbr_dict/equal_toklen_dict.txt', 77, context_file, '/Users/yanting/Desktop/word_length/data/context_equaltoklen_pairs.csv')
-    randomized_context_picker('/Users/yanting/Desktop/word_length/data/context_equaltoklen_pairs.csv', 100, '/Users/yanting/Desktop/word_length/data/context_equaltoklenpairs100entry.csv')
+    randomized_context_picker('/Users/yanting/Desktop/word_length/data/context_100count_newpairs.csv', 50, '/Users/yanting/Desktop/word_length/data/context_newpairs50longentry.csv')

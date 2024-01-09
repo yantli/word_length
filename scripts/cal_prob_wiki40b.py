@@ -1,5 +1,5 @@
-# cal_prob using rfutrell/gpt2_wiki40b_zh-cn 
-# 04/24/2023
+# cal_prob using yantli/gpt2_wiki40b_zh-cn_forward
+# 11/13/2023
 
 import re
 import csv
@@ -11,8 +11,8 @@ from transformers import (
     AutoModelWithLMHead
 )
 
-tokenizer = AutoTokenizer.from_pretrained("rfutrell/gpt2_wiki40b_zh-cn/")
-model = AutoModelWithLMHead.from_pretrained("rfutrell/gpt2_wiki40b_zh-cn")
+tokenizer = AutoTokenizer.from_pretrained("yantli/forward_wiki40b_zh-cn")
+model = AutoModelWithLMHead.from_pretrained("yantli/forward_wiki40b_zh-cn")
 
 # load the new_abbr_dict
 def load_abbr_dict(dict_path):
@@ -170,9 +170,9 @@ def line_by_line(context_file, dict_path, prob_file):
                 # print(output)
             
 if __name__ == "__main__":
-    context_file = '/Users/yanting/Desktop/word_length/data/context_test.csv'
+    context_file = '/Users/yanting/Desktop/word_length/data/context_10000_freq_samples.csv'
     dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
-    prob_file = '/Users/yanting/Desktop/word_length/probs/test_prob.csv'
+    prob_file = '/Users/yanting/Desktop/word_length/probs/prob_fwiki_oldpairs200.csv'
     line_by_line(context_file, dict_path, prob_file)
     # cal_in_batch('test_context.csv')
     
