@@ -148,4 +148,3 @@ if __name__ == "__main__":
     dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
     prob_file = '/Users/yanting/Desktop/word_length/probs/prob_fwiki_oldpairs200.csv'
     line_by_line(context_file, dict_path, prob_file)
-    

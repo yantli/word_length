@@ -170,9 +170,9 @@ def line_by_line(context_file, dict_path, prob_file):
                 # print(output)
             
 if __name__ == "__main__":
-    context_file = '/Users/yanting/Desktop/word_length/data/context_test.csv'
-    dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
-    prob_file = '/Users/yanting/Desktop/word_length/probs/test_prob.csv'
+    context_file = '/Users/yanting/Desktop/word_length/data/cluecomm_w_topic_context_29280.csv'
+    dict_path = '/Users/yanting/Desktop/word_length/abbr_dict/clue_w_topic_new_abbr_dict.txt'
+    prob_file = '/Users/yanting/Desktop/word_length/probs/prob_r_cluewtnp200.csv'
     line_by_line(context_file, dict_path, prob_file)
     # cal_in_batch('test_context.csv')
     

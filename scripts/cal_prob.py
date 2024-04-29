@@ -15,8 +15,8 @@ tokenizer = AutoTokenizer.from_pretrained("TsinghuaAI/CPM-Generate")
 model = AutoModelWithLMHead.from_pretrained("TsinghuaAI/CPM-Generate")
 
 # load the new_abbr_dict
-def load_abbr_dict():
-    with open('/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt', 'r', encoding = 'utf-8') as f:
+def load_abbr_dict(dict_file):
+    with open(dict_file, 'r', encoding = 'utf-8') as f:
         lines = f.readlines()
     abbr_dict = {}
     for i in range(len(lines)):
@@ -35,10 +35,11 @@ def row_size_standardizer(row, add_prompt = 'false'):
     line_num = row[4]
 
     if add_prompt == 'false':
-        if len(pre_context) > 200:
-            new_pre_context = pre_context[-200:]
-        else:
-            new_pre_context = pre_context
+        # if len(pre_context) > 1024:
+        #     new_pre_context = pre_context[-1024:]
+        # else:
+        #     new_pre_context = pre_context
+        new_pre_context = pre_context
         if len(post_context) > 50:
             new_post_context = post_context[:50]
         else: 
@@ -61,8 +62,8 @@ def row_size_standardizer(row, add_prompt = 'false'):
     return new_row
 
 # get the alternate form
-def get_alternate_word(target_form, target_word):
-    abbr_dict = load_abbr_dict()
+def get_alternate_word(dict_file, target_form, target_word):
+    abbr_dict = load_abbr_dict(dict_file)
     if target_form == 'short':
         alternate_word = abbr_dict[target_word]
     else:
@@ -72,14 +73,14 @@ def get_alternate_word(target_form, target_word):
 
     return alternate_word
 
-def alternate_row_creater(row):
+def alternate_row_creater(row, add_prompt):
     alternate_word = get_alternate_word(row[1], row[0])
     if row[1] == 'short':
         alternate_form = 'long'
     else:
         alternate_form = 'short'
     alternate_row = [alternate_word, alternate_form, row[2], row[3], row[4]]
-    standardized_alternate_row = row_size_standardizer(alternate_row)
+    standardized_alternate_row = row_size_standardizer(alternate_row, add_prompt)
 
     return standardized_alternate_row
 
@@ -126,13 +127,22 @@ def context_pair_tokenization_checker(target_word, row):
 
     return up_to_target_tokens[:-len(target_tokens)] == alt_up_to_target_tokens[:-len(alt_target_tokens)]
 
+def context_len_determiner(target_word, row, alternate_word, alternate_row):
+    target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+    alt_target_tokens, alt_pre_context_tokens, alt_up_to_target_tokens, alt_sent_tokens = get_tokens(alternate_word, alternate_row)
+    if len(up_to_target_tokens) >= len(alt_up_to_target_tokens):
+        start = 1024 - len(target_tokens)
+    else:
+        start = 1024 - len(alt_target_tokens)
+    return start
+
 # calculating the probability of each short and long form in the context they appeared
-def cal_prob(target_word, row):
+def cal_prob(target_word, row, startidx=False):
     target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
     # tok_for_tensor = up_to_target_tokens[-(len(target_tokens)+2):]
     # result = model(torch.tensor(tok_for_tensor))
     # logprobs = torch.log_softmax(result.logits, -1)[:, tuple(tok_for_tensor[1:])].diag()
-    result = model(torch.tensor(up_to_target_tokens))
+    result = model(torch.tensor(up_to_target_tokens[-startidx:]))
     logprobs = torch.log_softmax(result.logits, -1)[:, tuple(up_to_target_tokens[1:])].diag()
     # find the indices of the encountered form:
     # ending_index = len(tok_for_tensor)-1
@@ -189,8 +199,8 @@ def clean_rows(rows):
 
     # max_length = max([len(row_token) for row_token in row_tokens])
 
-def save_prob(output):
-    with open('/Users/yanting/Desktop/word_length/probs/prob_newpairs_long200.csv', 'a', newline='') as csvf:
+def save_prob(prob_file, output):
+    with open(prob_file, 'a', newline='') as csvf:
         writer = csv.writer(csvf, delimiter = ',')
         writer.writerow(tuple(output))
 
@@ -247,22 +257,22 @@ def cal_in_batch(file):
         save_prob(output)        
         n += 2
 
-
-def line_by_line(file):
-    with open(file, 'r', encoding = 'utf-8') as f:
+def line_by_line(context_file, dict_file, prob_file, add_prompt = False):
+    with open(context_file, 'r', encoding = 'utf-8') as f:
         filereader = csv.reader(f, delimiter = ',')
         for row in filereader:
-            row = row_size_standardizer(row)
+            row = row_size_standardizer(row, add_prompt)
             target_word = row[0]
             target_form = row[1]
             line_num = row[4]
             # this is only for cluecomm_w_topic
             # topic = row[5]
-            alternate_word = get_alternate_word(target_form, target_word)
-            
+            alternate_word = get_alternate_word(dict_file, target_form, target_word)
+            alternate_row = alternate_row_creater(dict_file, row, add_prompt)
             # if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
-            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
-                logprob = cal_prob(target_word, row)
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, alternate_row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, alternate_row) and context_pair_tokenization_checker(dict_file, target_word, row):
+                startidx = context_len_determiner(target_word, row, alternate_word, alternate_row)
+                logprob = cal_prob(target_word, row, startidx)
                 # alternate_logprob = cal_alternate_prob(target_form, target_word, row)
                 alternate_logprob = cal_prob(alternate_word, alternate_row_creater(row))
                 # print(alternate_logprob)
@@ -270,13 +280,73 @@ def line_by_line(file):
                 disjunction_logprob = torch.logaddexp(logprob, alternate_logprob).item() 
                 output = target_word, target_form, logprob.item(), disjunction_logprob, line_num
                 print(output)
-                save_prob(output)
+                save_prob(prob_file, output)
             else:
                 output = target_word, target_form, line_num
                 # print(output)
+
+def find_tok_position(context_file, dict_file, position_file, add_prompt=False):
+    with open(context_file, 'r', encoding = 'utf-8') as f:
+        filereader = csv.reader(f, delimiter = ',')
+        for row in filereader:
+            row = row_size_standardizer(row, add_prompt)
+            target_word = row[0]
+            target_form = row[1]
+            line_num = row[4]
+            # this is only for cluecomm_w_topic
+            # topic = row[5]
+            alternate_word = get_alternate_word(dict_file, target_form, target_word)
+            alternate_row = alternate_row_creater(dict_file, row, add_prompt)
+            # if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, row) and context_pair_tokenization_checker(target_word, row):
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, alternate_row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, alternate_row) and context_pair_tokenization_checker(dict_file, target_word, row):
+                #startidx = context_len_determiner(target_word, row, alternate_word, alternate_row)
+                target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+                position = len(up_to_target_tokens) - len(target_tokens)
+                output = target_word, target_form, position, len(up_to_target_tokens), len(target_tokens), line_num
+                print(output)
+                save_prob(position_file, output)
+            else:
+                output = target_word, target_form, line_num
+                print(output)
+
+def find_char_position(context_file, dict_file, position_file, add_prompt=False):
+    with open(context_file, 'r', encoding = 'utf-8') as f:
+        filereader = csv.reader(f, delimiter = ',')
+        for row in filereader:
+            # don't cut the row short for this function
+            row = row_size_standardizer(row, add_prompt)
+            target_word = row[0]
+            target_form = row[1]
+            line_num = row[4]
+            # this is only for cluecomm_w_topic
+            # topic = row[5]
+            alternate_word = get_alternate_word(dict_file, target_form, target_word)
+            alternate_row = alternate_row_creater(dict_file, row, add_prompt)
+            if stable_tokenization_checker(target_word, row) and stable_tokenization_checker(alternate_word, alternate_row) and stable_tokenization_checker2(target_word, row) and stable_tokenization_checker2(alternate_word, alternate_row) and context_pair_tokenization_checker(dict_file, target_word, row):
+                # this is the target word position in CHARACTER in the WHOLE piece
+                char_position_full = len(row[2])
+                target_tokens, pre_context_tokens, up_to_target_tokens, sent_tokens = get_tokens(target_word, row)
+                # this is the target word position in TOKEN in the WHOLE piece
+                tok_position_full = len(up_to_target_tokens) - len(target_tokens)
+                startidx = context_len_determiner(target_word, row, alternate_word, alternate_row)[0]
+                # this is the target word position in CHARACTER in the part fed into the lm for surprisal calculation
+                char_position = len(tokenizer.decode(up_to_target_tokens[-(startidx+len(target_tokens)):]))-len(target_word)
+                # this is the target word position in TOKEN in the part fed into the lm for surprisal calculation
+                tok_position = len(up_to_target_tokens[-(startidx+len(target_tokens)):])-len(target_tokens)
+                output = target_word, target_form, char_position_full, tok_position_full, char_position, tok_position, line_num
+                print(output)
+                save_prob(position_file, output)
+            else:
+                output = target_word, target_form, line_num
+                print(output)
             
 if __name__ == "__main__":
-    line_by_line('/Users/yanting/Desktop/word_length/data/context_newpairs50longentry.csv')
+    dict_file = '/Users/yanting/Desktop/word_length/abbr_dict/new_abbr_dict.txt'
+    context_file = '/Users/yanting/Desktop/word_length/data/context_100newpairs_50longentry.csv'
+    prob_file = '/Users/yanting/Desktop/word_length/probs/prob_line_100newpairs_50longentry.csv'
+    position_file = '/Users/yanting/Desktop/word_length/probs/position_line_100newpairs_50longentry.csv'
+    #line_by_line(context_file, dict_file, prob_file, add_prompt = False)
+    find_char_position(context_file, dict_file, position_file, add_prompt=False)    
     # cal_in_batch('test_context.csv')
     
 # if __name__ == "__main__":

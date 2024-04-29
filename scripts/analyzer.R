@@ -11,6 +11,7 @@ library(lmerTest)
 library(ggplot2)
 library(poolr)
 library(ggrepel)
+library(broom)
 
 
 load_data <- function(file) {
@@ -26,7 +27,27 @@ load_data <- function(file) {
   return(logprob)
 }
 
-data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_fwikinewpairs100.csv")
+data <- load_data("/Users/yanting/Desktop/word_length/probs/prob_line100newpairslong1024.csv")
+
+load_fb_data <- function(file) {
+  logprob <- read_delim(file, locale=locale(encoding="UTF-8"), 
+                        col_names = c("target_word",
+                                      "concept",
+                                      "word_form",
+                                      "forward_target_form_logprob",
+                                      "forward_disj_logprob",
+                                      "backward_target_form_logprob",
+                                      "backward_disj_logprob",
+                                      "line_num"))
+  logprob$line_num <- as.factor(logprob$line_num)
+  logprob$word_form <- as.factor(logprob$word_form)
+  return(logprob)
+}
+
+fbdata <- load_fb_data("/Users/yanting/Desktop/word_length/probs/fb_prob_100newpairslong200.csv")
+fb_surprisal <- fbdata %>% select(-target_word, -forward_target_form_logprob, -backward_target_form_logprob, -line_num) %>% mutate(forward_surprisal = -forward_disj_logprob) %>% mutate(backward_surprisal = -backward_disj_logprob) %>% mutate(is_short = ifelse(word_form == 'short', 0, 1))
+mixed_mlfb <- glmer(is_short ~ 1 + forward_surprisal + backward_surprisal + (1 + forward_surprisal + backward_surprisal|concept), data = fb_surprisal, family = binomial)
+summary(mixed_mlfb)
 
 ################# 
 #for dealing with clue data only:
@@ -67,6 +88,12 @@ t.test(t_test_data$long, t_test_data$short, paired = TRUE)
 mean(t_test_data$long)
 mean(t_test_data$short)
 #################
+
+# to check which concepts changed the most:
+longcontext <- means %>% select(-target_word, -target_word_surprisal) %>% spread(word_form, concept_surprisal) %>% mutate(diff200 = long - short)
+shortcontext <- means %>% select(-target_word, -target_word_surprisal) %>% spread(word_form, concept_surprisal) %>% mutate(diff10 = long - short)
+firstmerge <- merge(longcontext, shortcontext, by="concept") %>% mutate(change = diff200 - diff10)
+
 
 # plotting the difference in surprisal
 # t_test_data %>% mutate(above_zero = (-long + short)>0) %>%
@@ -162,6 +189,81 @@ summary(mixed_ml2)
 mixed_ml3 <- glm(is_short ~ 1 + surprisal, data = disj, family = binomial)
 summary(mixed_ml3)
 # ============================================================================================
+
+# looking at token position
+load_probpos_data <- function(file) {
+  logprob <- read_delim(file, locale=locale(encoding="UTF-8"), 
+                        col_names = c("target_word",
+                                      "concept",
+                                      "word_form",
+                                      "target_word_logprob",
+                                      "disj_logprob",
+                                      "char_position_full",
+                                      "tok_position_full",
+                                      "char_position_fed",
+                                      "tok_position_fed",
+                                      "line_num"))
+  logprob$line_num <- as.factor(logprob$line_num)
+  logprob$word_form <- as.factor(logprob$word_form)
+  return(logprob)
+}
+
+probpos <- load_probpos_data("/Users/yanting/Desktop/word_length/probs/probpos_line100newpairslong1024.csv")
+probpos <- load_probpos_data("/Users/yanting/Desktop/word_length/probs/probpos_lineoldpairs1024.csv")
+probpos <- load_probpos_data("/Users/yanting/Desktop/word_length/probs/probpos_linenewpairs1024.csv")
+
+pos_disj <- probpos %>% select(-target_word, -target_word_logprob, -line_num) %>% mutate(surprisal = -disj_logprob) %>% mutate(is_short = ifelse(word_form == 'short', 0, 1))
+pos_disj$word_form <- as.factor(pos_disj$word_form)
+
+mixed_ml_pos <- glmer(is_short ~ 1 + surprisal + char_position_full + (1 + surprisal|concept), data = pos_disj, family = binomial)
+summary(mixed_ml_pos)
+mixed_ml_pos <- glm(is_short ~ 1 + surprisal * char_position_full, data = pos_disj, family = binomial)
+summary(mixed_ml_pos)
+
+ml_pos <- glm(is_short ~ 1 + surprisal * tok_position_fed, data = pos_disj, family = binomial)
+summary(ml_pos)
+
+effect_size_calculater <- function(n) {
+  ml_pos <- glm(is_short ~ 1 + surprisal * tok_position_fed, data = filter(pos_disj, tok_position_fed==n), family = binomial)
+  tidy(ml_pos) %>% filter(term == 'surprisal') %>% mutate('tok_position'=n)
+}
+
+effect_sizes <- bind_rows(map(unique(pos_disj$tok_position_fed), effect_size_calculater))
+mean_estimate <- mean(effect_sizes$estimate, na.rm = TRUE)
+sd_estimate <- sd(effect_sizes$estimate, na.rm = TRUE)
+effect_sizes %>% filter(estimate >= mean_estimate - 3 * sd_estimate,
+                        estimate <= mean_estimate + 3 * sd_estimate) %>% 
+          ggplot(aes(x = tok_position, y = estimate, color = ifelse(p.value < 0.05, "S", "NS"))) + 
+          geom_point() + theme_classic() + geom_hline(yintercept=0) + ylim(-0.5,0.5) + geom_smooth()
+# throw away outliers, color significant results, look at words with a reasonable number of datapoints
+
+pos_disj %>% mutate(position = cut_interval(tok_position_fed, 15)) %>%
+              group_by(position, word_form) %>% 
+              summarize(m=n()) %>% 
+              ungroup %>% 
+              spread(word_form, m) %>% 
+              mutate(diff = long-short) %>%
+              ggplot(aes(x=position, y= m)) + geom_point() + geom_line() + theme_classic() + geom_hline(yintercept=0)
+
+pos_disj %>% mutate(surp = cut_interval(-disj_logprob, 15)) %>%
+  group_by(surp) %>% 
+  summarize(m=mean(word_form == 'long')) %>% 
+  ungroup %>% 
+  ggplot(aes(x=surp, y= m)) + geom_point() + geom_line() + theme_classic() + geom_hline(yintercept=0.5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Fisher's method
 
